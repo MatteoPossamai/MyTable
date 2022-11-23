@@ -1,0 +1,46 @@
+{
+    "products":[
+        {
+            "id":1,
+            "name":"Pizza Margherita",
+            "price":10,
+            "description": "Pizza with tomato sauce, mozzarella and basil"
+        },
+        {
+            "id":2,
+            "name":"Pasta Carbonara",
+            "price":12,
+            "description": "Pasta with bacon, eggs and parmesan"
+        },
+        {
+            "id":3,
+            "name":"Lasagna",
+            "price":15,
+            "description": "Lasagna with tomato sauce, mozzarella, meat and béchamel"
+        },
+        {
+            "id":4,
+            "name":"Salad",
+            "price":8,
+            "description": "Salad with tomato, mozzarella, olives and basil"
+        },
+        {
+            "id":5,
+            "name":"Cannoli",
+            "price":6,
+            "description": "Cannoli with ricotta, chocolate and candied fruit"
+        },
+        {
+            "id":6,
+            "name":"Gelato",
+            "price":5,
+            "description": "Gelato with vanilla, chocolate and strawberry"
+        },
+        {
+            "id":7,
+            "name":"Tiramisù",
+            "price":8,
+            "description": "Tiramisù with mascarpone, eggs, coffee and biscuits"
+        }
+    ]
+}

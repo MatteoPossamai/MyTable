@@ -1,0 +1,37 @@
+/* Code variables */
+:root {
+  --black: #000000;
+  --blue: #1e90ff;
+  --white: #ffffff;
+}
+/* End of code variables */
+
+.App {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+/* Items code */
+.item{
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 80%;
+  margin:10px auto;
+}
+/* End of items code */
+
+/* Footer code */
+.footer{
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  font-size: 12px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* End of footer code */
