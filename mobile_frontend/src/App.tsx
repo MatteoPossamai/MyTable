@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Base />} />
+        <Route path="/:id" element={<Base />} />
       </Routes>
     </Router>
   );
