@@ -3,6 +3,10 @@
   --black: #000000;
   --blue: #1e90ff;
   --white: #ffffff;
+  --green: #2ff21d;
+  --orange: #fc3d03;
+  --red: #e60b0b;
+  --acqua: #a7ebdb;
 }
 /* End of code variables */
 
@@ -11,17 +15,149 @@
   font-family: 'Merriweather', serif;
 }
 
+/* Header code */
+
+.header {
+  background-color: var(--green);
+  height: 100px;
+  padding: 12px;
+  color: var(--white);
+}
+
+/* End of header code */
+
+/* Category code */
+
+.categories{
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.category {
+  height: 50px;
+  padding: 12px;
+  border: none;
+  transition: 1s;
+}
+
+#active{
+  background-color: var(--blue);
+  color: var(--white);
+  border-bottom: var(--green) 7px solid; 
+  transition: 1s; 
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  color: var(--black);
+  margin-left: 30px;
+}
+/* End of category code */
+
+/* Products code */
+
+.products{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.empty{
+  border: 2px var(--red) solid ;
+  border-radius: 20px;
+  padding: 20px;
+  color: var(--white);
+  background-color: var(--red);
+}
+
+/* End of products code */
+
 /* Items code */
 .item{
+  position: relative;
   background-color: var(--blue);
   color: var(--white);
   padding: 10px;
-  margin: 10px;
   border-radius: 5px;
   width: 80%;
   margin:10px auto;
 }
+
+.price{
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--orange);
+  padding: 10px;
+  border-radius: 40px;
+}
+
+.ordination{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+
+}
+
+.ordination input {
+  border-radius: 5px;
+  border: 1px solid var(--black);
+  padding: 5px;
+}
+
+.ordination button{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: var(--orange);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.cartIcon{
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  font-size: 35px;
+  background-color: var(--orange);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 40px;
+}
 /* End of items code */
+
+/* Searchbar style */
+
+.searchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  margin-left: 25%;
+  height: 25px;
+  width: 70%;
+  position: relative;
+  border-radius: 10px;
+  outline: none;
+  border: 3px solid var(--green);
+  transition: 1s;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.searchBar:focus{
+  background-color: var(--acqua);
+  color: var(--white);
+  transition:1s;
+}
+
+/* End of searchbar style */
 
 /* Footer code */
 .footer{
