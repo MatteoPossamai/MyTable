@@ -1,7 +1,7 @@
 from django.db import models
 
 class Restaurant(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     plan = models.IntegerField(default=0)
     location = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
