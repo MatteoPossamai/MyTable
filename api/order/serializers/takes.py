@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .takes import Take
+from order.models import Take
 
 class TakeSerializer(serializers.ModelSerializer):
     class Meta:
