@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .custom_user import CustomUser
+from accounts.models import CustomUser
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .restaurant_user import RestaurantUser
+from accounts.models import RestaurantUser
 
 class RestaurantUserSerializer(serializers.ModelSerializer):
     class Meta:
