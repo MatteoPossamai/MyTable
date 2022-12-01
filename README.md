@@ -1,4 +1,4 @@
-# Digital Menu :coffee:
+# MyTable :coffee:
 
 ## Introduction
 
