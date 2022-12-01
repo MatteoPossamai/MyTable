@@ -1,3 +1,154 @@
+/* Code variables */
+:root {
+  --black: #000000;
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --green: #2ff21d;
+  --orange: #fc3d03;
+  --red: #e60b0b;
+  --acqua: #a7ebdb;
+}
+
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
+
+/* Header code */
+.header{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  float: right;
+  height: auto;
+  width: 93%;
+  background-color: var(--blue);
+  top: 0;
+}
+.header h1{
+  color: var(--white);
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.header h3{
+  color: var(--white);
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.header__user-image-menu{
+  position:absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.header__user-icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--white);
+  margin: 10px;
+}
+
+.header__menu{
+  position: absolute;
+  right: 0;
+  top: 65px;
+  width: 150px;
+  border-radius: 10%;
+  background-color: var(--white);
+  margin: 10px; 
+  background-color: var(--orange);
+  display: flex;
+  flex-direction: column;
+}
+
+.header__menu button{
+  background-color: var(--orange);
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  transition: .3s;
+}
+
+.header__menu button:hover{
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+/* End of Header code */
+
+/* Lateral Nav code */
+
+.lateral-nav{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+  float: left;
+  height: 100vh;
+  width: 7%;
+  background-color: var(--black);
+  top: 0;
+}
+
+.lateral-nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lateral-nav ul li{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.lateral-nav ul li a{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.01rem;
+  padding: 10px;
+  font-weight: 400;
+  transition: .3s;
+  margin: auto;
+}
+
+.lateral-nav ul li a:hover{
+  color: var(--orange);
+  fill: var(--orange);
+}
+
+.icons{
+  width: 45px;
+  height: 45px;
+  margin: 0;
+  padding: 0;
+  margin: auto;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+  margin: auto;
+}
+/* End of Lateral Nav code */
