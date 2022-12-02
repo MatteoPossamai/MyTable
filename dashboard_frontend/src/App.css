@@ -102,7 +102,8 @@
   position: relative;
   top: 0;
   float: left;
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   width: 7%;
   background-color: var(--black);
   top: 0;
@@ -121,7 +122,7 @@
   flex-direction: column;
 }
  
-.lateral-nav ul li a{
+.lateral-nav ul li section {
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -133,14 +134,12 @@
   margin: auto;
 }
 
-.lateral-nav ul li a:hover{
+.lateral-nav ul li section:hover{
   color: var(--orange);
   fill: var(--orange);
 }
 
 .icons{
-  width: 45px;
-  height: 45px;
   margin: 0;
   padding: 0;
   margin: auto;
@@ -152,3 +151,24 @@ p{
   margin: auto;
 }
 /* End of Lateral Nav code */
+
+/* Main code */
+
+.main-content{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  float: right;
+  width: 93%;
+  top: 0;
+}
+
+.addCategoryForm{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: var(--acqua);
+  top: 0;
+}
+
+/* End of Main code */

@@ -9,64 +9,75 @@ import { AiOutlineSetting } from "react-icons/ai";
 
 import { IoLogoHackernews } from "react-icons/io";
 
+// Local imports
+// Context
+import { navigationContext } from "./main";
+import React from "react";
+
 function LateralNav(){
+    let { setOpenedWidget } = React.useContext(navigationContext);
+    let size:string = '3.5rem';
+
+    let changeCurrentWidget = (widget: number) => {
+        setOpenedWidget(widget);
+        console.log(widget);
+    }
     return (
         <div className="lateral-nav">
             <ul>
                 <li>
-                    <a href="#">
-                    <IoLogoHackernews className="icons" />
-                    </a>
+                    <section>
+                    <IoLogoHackernews size={size} className="icons" />
+                    </section>
                     <br />
                 </li>
                 <li>
-                    <a href="#">
-                        <TfiDashboard className="icons" />
+                    <section  onClick={() => changeCurrentWidget(0)}>
+                        <TfiDashboard size={size} className="icons" />
                         <p>Dashboard</p>
-                    </a>
+                    </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <MdOutlineMenuBook className="icons" />
+                    <section onClick={() => changeCurrentWidget(1)}>
+                        <MdOutlineMenuBook size={size} className="icons" />
                         <p>Menu</p>
-                        </a>
+                        </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <BiCategoryAlt className="icons" />
+                    <section onClick={() => changeCurrentWidget(2)}>
+                        <BiCategoryAlt size={size} className="icons" />
                         <p>Categories</p>
-                    </a>
+                    </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <IoFastFoodOutline className="icons" />
+                    <section onClick={() => changeCurrentWidget(3)}>
+                        <IoFastFoodOutline size={size} className="icons" />
                         <p>Foods</p>
-                    </a>
+                    </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <RiListOrdered className="icons" />
+                    <section onClick={() => changeCurrentWidget(4)}>
+                        <RiListOrdered size={size} className="icons" />
                         <p>Orders</p>
-                    </a>
+                    </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <TbReportAnalytics className="icons" />
+                    <section onClick={() => changeCurrentWidget(5)}>
+                        <TbReportAnalytics size={size} className="icons" />
                         <p>Reports</p>
-                    </a>
+                    </section>
                 </li>
                 <li>
-                    <a href="#">
-                        <AiOutlineSetting className="icons" />
+                    <section onClick={() => changeCurrentWidget(6)}>
+                        <AiOutlineSetting size={size} className="icons" />
                         <p>Settings</p>
-                    </a>
+                    </section>
                 </li>
-                <li>
-                    
-                    <a href="#">
-                        <BiHelpCircle className="icons" />
+                <li> 
+                    <section onClick={() => changeCurrentWidget(7)}>
+                        <BiHelpCircle size={size} className="icons" />
                         <p>Help</p>
-                    </a>
+                    </section>
                 </li>
             </ul>
         </div>
