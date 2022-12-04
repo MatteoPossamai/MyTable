@@ -162,14 +162,6 @@ p{
   top: 0;
 }
 
-.addCategoryForm{
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  background-color: var(--acqua);
-  top: 0;
-}
-
 .categories{
   display: flex;
   flex-direction: row;
@@ -187,16 +179,16 @@ p{
 .category{
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 93%;
   margin: auto;
   padding: 0 2% 0 2%;
   position: relative;
-  transition: .5s;
   border-radius: 10px;
 }
 
 .category:hover{
-  background-color: var(--blue);
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .categories aside{
@@ -210,10 +202,6 @@ p{
   right: 0;
 }
 
-.active{
-  border-left: var(--green) 7px solid;
-}
-
 .icon2{
   height: 3rem;
   width: 3rem;
@@ -225,4 +213,101 @@ p{
   fill: var(--orange);
 }
 
+.all-categories{
+  width: 100%;
+  margin: auto;
+  border: 2px var(--black) solid;
+  border-radius: 10px;
+  min-height: 70%;
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+.item{
+  width: 300px;
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  border-bottom: 2px solid var(--black);
+  position: relative;
+  border-left: transparent 7px solid;
+}
+
+.active{
+  border-left: var(--green) 7px solid;
+}
+
+.topItem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.item:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.priceTag{
+  position: absolute;
+  right: 0;
+}
+
+.invisible{
+  display: none;
+}
+
+.it11{
+  padding: 10px;
+  word-wrap: break-word;
+  position: relative;
+  height: fit-content;
+}
+
+.iconize{
+  height: 2rem;
+  width: 2rem;
+  transition: .5s;
+}
+
+.iconize:hover{
+  fill: var(--orange);
+}
+
+.addCategoryForm{
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  min-height: 70%;
+  max-height: 70%;
+}
+
+.labelForm{
+  font-size: 1.5rem;
+  padding: 10px 0;
+}
+
+.submitBTN{
+  margin: 20px auto;
+  height: 50px;
+  width: 65%;
+  color: var(--white);
+  background-color: var(--orange);
+  border: 2px solid var(--white);
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition: .5s;
+}
+
+.submitBTN:hover{
+  background-color: var(--blue);
+}
+
+.add-category{
+  margin: 0;
+
+}
 /* End of Main code */

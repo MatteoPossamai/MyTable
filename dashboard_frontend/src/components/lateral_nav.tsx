@@ -20,7 +20,6 @@ function LateralNav(){
 
     let changeCurrentWidget = (widget: number) => {
         setOpenedWidget(widget);
-        console.log(widget);
     }
     return (
         <div className="lateral-nav">

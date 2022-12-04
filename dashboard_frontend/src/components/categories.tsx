@@ -3,8 +3,13 @@ import { useState, createContext } from "react";
 
 // Local imports
 import data from "../fake_categories.json";
+import faker from "../faker.json";
 // Components
 import SingleCategory from "./category";
+import ItemDiv from "./item";
+// Types
+import Item from "../types/item";
+import Category from "../types/category";
 
 let categoriesContext = createContext<any>(0);
 
@@ -15,15 +20,19 @@ function Categories(){
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? categories[0].id : null);
+    const [selectedItem, setSelectedItem] = useState<number>(-1);
+
+    let items = faker.products;
+    items = items.filter(item => item.category === selectedCategory);
 
     return (
-        <categoriesContext.Provider value={{selectedCategory, setSelectedCategory}}>
+        <categoriesContext.Provider value={{selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
             <section className="categories">
                 <div className="categories-content">
                     <h1>All your Categories</h1>
                     <div className="all-categories">
                         <div className="categories-list">
-                            {categories.map((category) => (
+                            {categories.map((category: Category) => (
                                 <SingleCategory key={category.id} category={category} />
                             ))}
                         </div>
@@ -35,7 +44,11 @@ function Categories(){
                 <div className="categories-foods">
                     <h1>Category's foods</h1>
                     <div className="all-categories">
-                    
+                        {
+                            items.map((item: Item) =>{
+                                return <ItemDiv key={item.id} item={item} />
+                            })
+                        }
                     </div>
                 </div>
                         
@@ -43,13 +56,11 @@ function Categories(){
                 <hr />
 
                 <div className="add-category">
-                    <h2>Add Category</h2>
+                    <h1>Add Category</h1>
                     <form className="addCategoryForm">
-                        <label htmlFor="category-name">Category Name</label>
+                        <label htmlFor="category-name" className="labelForm">Category Name</label>
                         <input type="text" name="category-name" id="category-name" />
-                        <label htmlFor="category-image">Category Image</label>
-                        <input type="file" name="category-image" id="category-image" />
-                        <button type="submit">Add Category</button>
+                        <button type="submit" className="submitBTN">Add Category</button>
                     </form>
                 </div>
             </section>
