@@ -1,0 +1,31 @@
+{
+    "restaurants":[
+        {
+            "id":1,
+            "name":"Pizzeria Napoli",
+            "email":"pizzanapoli@gmail.com",
+            "password": "123456",
+            "telephone":"1234567890",
+            "location":"Via Roma 1",
+            "plan": 1
+        },
+        {
+            "id":2,
+            "name":"Birreria Pedavena",
+            "email":"birreria@gmail.com", 
+            "password": "123123",
+            "telephone":"2222222222",
+            "location":"Via Fermi 3",
+            "plan": 2
+        },
+        {
+            "id":3,
+            "name":"BBar Centrale",
+            "email":"central@gmail.com",
+            "password": "090909",
+            "telephone":"555555555",
+            "location":"Via Cavour 5",
+            "plan": 3 
+        }
+    ]
+}
