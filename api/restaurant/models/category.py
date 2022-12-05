@@ -6,6 +6,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     number = models.IntegerField()
     iconId = models.IntegerField()
+    isActive = models.BooleanField(default=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
     def __str__(self):
