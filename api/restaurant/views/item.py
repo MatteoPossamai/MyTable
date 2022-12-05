@@ -15,6 +15,10 @@ class ItemGetAllView(generics.ListAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+class ItemGetAllActiveView(generics.ListAPIView):
+    queryset = Item.objects.filter(isActive=True)
+    serializer_class = ItemSerializer
+
 # Get single item
 class ItemGetView(generics.RetrieveAPIView):
     queryset = Item.objects.all()

@@ -3,7 +3,7 @@ from django.urls import path, include
 from .views import RestaurantCreateView, RestaurantGetAllView, RestaurantGetView, \
     RestaurantPutView, RestaurantDeleteView, ItemCreateView, ItemGetAllView, ItemGetView, \
     ItemPutView, ItemDeleteView, CategoryCreateView, CategoryGetAllView, CategoryGetView, \
-    CategoryPutView, CategoryDeleteView
+    CategoryPutView, CategoryDeleteView, CategoryGetAllActiveView, ItemGetAllActiveView
 
 current_version = 'v1'
 
@@ -13,6 +13,7 @@ category_urlpatterns = [
     path('create/', CategoryCreateView.as_view(), name='category_create'),
     # Read
     path('', CategoryGetAllView.as_view(), name='category_get_all'),
+    path('active/', CategoryGetAllActiveView.as_view(), name='category_get_all_active'),
     path('get/<int:pk>/', CategoryGetView.as_view(), name='category_get'),
     # Update
     path('put/<int:pk>/', CategoryPutView.as_view(), name='category_put'),
@@ -26,6 +27,7 @@ item_urlpatterns = [
     path('create/', ItemCreateView.as_view(), name='item-create'),
     # Read
     path('', ItemGetAllView.as_view(), name='item-get-all'),
+    path('active/', ItemGetAllActiveView.as_view(), name='item-get-all-active'),
     path('get/<int:pk>/', ItemGetView.as_view(), name='item-get'),
     # Update
     path('put/<int:pk>/', ItemPutView.as_view(), name='item-put'),
