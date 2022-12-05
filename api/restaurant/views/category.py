@@ -15,6 +15,10 @@ class CategoryGetAllView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class CategoryGetAllActiveView(generics.ListAPIView):
+    queryset = Category.objects.filter(isActive=True)
+    serializer_class = CategorySerializer
+
 # Get single category
 class CategoryGetView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
