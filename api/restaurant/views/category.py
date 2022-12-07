@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status, views
+from rest_framework.response import Response
 
 from ..models.category import Category
 from ..serializers.category import CategorySerializer
@@ -29,6 +30,30 @@ class CategoryGetView(generics.RetrieveAPIView):
 class CategoryPutView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class CategoriesChangeNumberView(views.APIView):
+    def post(self, request, format=None):
+        try:
+            categories = request.data.get('categories')
+            for category in categories:
+                instance = Category.objects.get(id=category['id'])
+                instance.number = category['number']
+                instance.save()
+        except:
+            return Response({'error': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': 'Number changed'}, status=status.HTTP_200_OK)
+
+class CategoriesChangeActiveView(views.APIView):
+    def post(self, request, format=None):
+        try:
+            categories = request.data.get('categories')
+            for category in categories:
+                instance = Category.objects.get(id=category['id'])
+                instance.isActive = category['isActive']
+                instance.save()
+        except:
+            return Response({'error': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': 'Active changed'}, status=status.HTTP_200_OK)
 
 # DELETE
 # Delete the category

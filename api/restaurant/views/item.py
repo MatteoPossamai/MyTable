@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status, views
+from rest_framework.response import Response
 
 from ..models.item import Item
 from ..serializers.item import ItemSerializer
@@ -29,6 +30,32 @@ class ItemGetView(generics.RetrieveAPIView):
 class ItemPutView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+class ItemsChangeNumberView(views.APIView):
+    def post(self, request, format=None):
+        try:
+            items = request.data.get('items')
+            for item in items:
+                instance = Item.objects.get(id=item['id'])
+                instance.number = item['number']
+                instance.save()
+        except:
+            return Response({'error': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': 'Number changed'}, status=status.HTTP_200_OK)
+        
+
+class ItemsChangeActiveView(views.APIView):
+    def post(self, request, format=None):
+        try:
+            items = request.data.get('items')
+            for item in items:
+                instance = Item.objects.get(id=item['id'])
+                instance.isActive = item['isActive']
+                instance.save()
+        except:
+            return Response({'error': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': 'Active changed'}, status=status.HTTP_200_OK)
+
 
 # DELETE
 # Delete the item
