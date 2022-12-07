@@ -7,14 +7,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Components
 import Base from './components/base';
 import InitialForm from './components/initialForm';
+import FourOhFour from './components/404';
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/:id" element={<InitialForm />} />
-        <Route path="ordination/:id" element={<Base />} />
+        <Route path="mytable/:id" element={<InitialForm />} />
+        <Route path="mytable/menu/:id" element={<Base />} />
+        <Route path='*' element={<FourOhFour />} /> 
       </Routes>
     </Router>
   );
