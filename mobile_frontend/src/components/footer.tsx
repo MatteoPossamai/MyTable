@@ -1,7 +1,7 @@
 function Footer(){
     return (
         <footer className="footer">
-            <p>Copyright © 2022 Digital Menu </p>
+            <p>Copyright © 2022 MyTable </p>
         </footer>
     );
 }

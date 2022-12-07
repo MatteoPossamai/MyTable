@@ -19,6 +19,9 @@ import restaurants from '../fake_data.json'
 import categories from '../fake_categories.json';
 
 function Base(){
+    // setting up basic variables given by the environment
+    let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
+
     // Get the id from the url
     const { id } = useParams<{id: string}>();
     const identificationNumber:number = Number(id);
@@ -72,7 +75,7 @@ function Base(){
                 {itemsByCategory.length === 0 ? (
                     <div className="noProducts">
                         
-                        <h1 className="empty"> <BsFillXCircleFill />  No item to display</h1>
+                        <h1 className="empty"> <BsFillXCircleFill />  Non esistono prodotti con queste caratteristiche</h1>
                     </div>
                 ):(
                     itemsByCategory.map((item:Item) => {
@@ -84,7 +87,7 @@ function Base(){
             </main>
 
             {/* Cart Icon */}
-            <MdOutlineShoppingCart className='cartIcon' />
+            <MdOutlineShoppingCart style={{display: restaurant.plan >= min_order_plan ? 'visible' : 'none'}} className='cartIcon' />
 
             {/* Footer */}
             <Footer />
