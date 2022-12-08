@@ -21,7 +21,7 @@ function HomePage(){
 
     const goToMenu = (e:any) => {
         e.preventDefault();
-        history(`/mytable/menu/${restaurantCode}`);
+        history(`/mytable/${restaurantCode}`);
     }
 
 
