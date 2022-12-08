@@ -1,6 +1,6 @@
 // Global imports
-import { useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { BsFillXCircleFill } from 'react-icons/bs';
 
@@ -28,8 +28,25 @@ function Base(){
     
     // API restaurant of faker in production
     const allRestaurants:Restaurant[] = restaurants["restaurants"];
-    const restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
+    let fake:boolean = false;
+    let restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
+    const fake_restaurant: Restaurant = {"email": "fake", "id": 0, "name": "fake", "plan": 0, "password" : "fake", 
+                                "telephone": "fake", "location": "fake"};
 
+    if (restaurant === undefined){
+        restaurant = fake_restaurant;
+        fake = true;
+    }
+
+    // Navigation 
+    let history = useNavigate();
+
+    useEffect(() => {
+        if (fake){
+            history("/notfound");
+        }
+    })
+    
     // API categories of faker in production
     const allCategories:Category[] = categories["categories"];
     allCategories.sort((a:Category, b:Category) => a.number - b.number);

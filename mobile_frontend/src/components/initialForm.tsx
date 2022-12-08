@@ -47,11 +47,11 @@ function InitialForm(){
             <Header name={restaurant.name} />
             <form className="initialForm" onSubmit={(e)=>goToOrderPage(e)}>
                 <label className='labelsN'>Inserire il numero del tavolo:</label>
-                <input className='enterN' type={'number'} placeholder={'Enter table number'} value={tableNumber} onChange={(e)=> setTableNumber(Number(e.target.value)) } />         
+                <input className='enterN' type={'number'} placeholder={'Numero del tavolo'} value={tableNumber} onChange={(e)=> setTableNumber(Number(e.target.value)) } />         
                 
                 <div style={{display: restaurant.plan >= min_order_plan ? 'fixed' : 'none'}} className="brings">
                     <label className='labelsN'>Inserire il numero delle portate:</label>
-                    <input className='enterN' type={'number'} placeholder={'Brings number'} value={bringsNumber} onChange={(e)=> setBringsNumber(Number(e.target.value)) } />
+                    <input className='enterN' type='number' placeholder={'Numero portate'} value={bringsNumber} onChange={(e)=> setBringsNumber(Number(e.target.value)) } />
                     <p>(se si intende consumare in un unica portata, si selezioni 1)</p>
                 </div>
 
