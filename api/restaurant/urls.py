@@ -5,7 +5,7 @@ from .views import RestaurantCreateView, RestaurantGetAllView, RestaurantGetView
     ItemPutView, ItemDeleteView, CategoryCreateView, CategoryGetAllView, CategoryGetView, \
     CategoryPutView, CategoryDeleteView, CategoryGetAllActiveView, ItemGetAllActiveView, \
     ItemsChangeNumberView, CategoriesChangeNumberView, ItemsChangeActiveView,  \
-    CategoriesChangeActiveView 
+    CategoriesChangeActiveView, RestaurantChangePlan
     
 
 current_version = 'v1'
@@ -51,6 +51,7 @@ restaurant_urlpatterns = [
     path('<int:pk>/', RestaurantGetView.as_view(), name='restaurant-detail'),
     # Update
     path('put/<int:pk>/', RestaurantPutView.as_view(), name='restaurant-put'),
+    path('change-plan/', RestaurantChangePlan.as_view(), name='restaurant-change-plan'),
     # Delete
     path('delete/<int:pk>/', RestaurantDeleteView.as_view(), name='restaurant-delete'),
 ]
