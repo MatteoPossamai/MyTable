@@ -15,6 +15,39 @@
   font-family: 'Merriweather', serif;
 }
 
+/* Home page code */
+
+.homeDiv{
+  text-align: center;
+}
+
+.homeDiv h1{
+  font-size: 5rem;
+  font-weight: 700;
+  background-color: var(--orange);
+  color: var(--white);
+  width: 100%;
+  padding: 20px 0 10px 0;
+}
+
+.homeDiv p{
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.goto{
+  border: var(--orange) 2px solid;
+  border-radius: 10px;
+  background-color: var(--orange);
+  color: var(--white);
+  padding: 20px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  transition: .5;
+}
+
+/* End of home page code */
+
 /* Header code */
 
 .header {
@@ -259,3 +292,6 @@
   font-weight: 700;
   color: var(--orange);
 }
+
+/* End of Four Oh Four code */
+
