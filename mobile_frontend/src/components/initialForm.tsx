@@ -20,7 +20,6 @@ function InitialForm(){
 
     // State and history
     const [tableNumber, setTableNumber] = useState<number>(1);
-    const [bringsNumber, setBringsNumber] = useState<number>(1);
     let history = useNavigate();
 
     // API restaurant of faker in production
@@ -39,7 +38,7 @@ function InitialForm(){
 
     const goToOrderPage = (e:any) => {
         e.preventDefault();
-        history(`/mytable/menu/${id}?talbe=${tableNumber}&brings=${bringsNumber}`);
+        history(`/mytable/menu/${id}?talbe=${tableNumber}`);
     }
 
     return (
@@ -47,13 +46,7 @@ function InitialForm(){
             <Header name={restaurant.name} />
             <form className="initialForm" onSubmit={(e)=>goToOrderPage(e)}>
                 <label className='labelsN'>Inserire il numero del tavolo:</label>
-                <input className='enterN' type={'number'} placeholder={'Numero del tavolo'} value={tableNumber} onChange={(e)=> setTableNumber(Number(e.target.value)) } />         
-                
-                <div style={{display: restaurant.plan >= min_order_plan ? 'fixed' : 'none'}} className="brings">
-                    <label className='labelsN'>Inserire il numero delle portate:</label>
-                    <input className='enterN' type='number' placeholder={'Numero portate'} value={bringsNumber} onChange={(e)=> setBringsNumber(Number(e.target.value)) } />
-                    <p>(se si intende consumare in un unica portata, si selezioni 1)</p>
-                </div>
+                <input className='enterN' type={'number'} placeholder={'Numero del tavolo'} value={tableNumber} onChange={(e)=> setTableNumber(Number(e.target.value)) } /> 
 
                 <button type={'submit'} className='submission'>Vai al menu'</button>
 
