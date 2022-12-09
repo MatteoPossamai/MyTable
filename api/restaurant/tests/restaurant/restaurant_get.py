@@ -4,6 +4,11 @@ from rest_framework import status
 from restaurant.models.restaurant import Restaurant
 
 class RestaurantGetTest(APITestCase):
+
+    def test_restaurant_get_zero(self):
+        response = self.client.get(f'/api/v1/restaurant/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
     
     def test_restaurant_get_all(self):
         data = {
