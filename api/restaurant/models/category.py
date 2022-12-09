@@ -8,6 +8,7 @@ class Category(models.Model):
     iconId = models.IntegerField()
     isActive = models.BooleanField(default=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name

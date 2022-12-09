@@ -32,7 +32,7 @@ class CategoryPutView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
 
 class CategoriesChangeNumberView(views.APIView):
-    def post(self, request, format=None):
+    def put(self, request, format=None):
         try:
             categories = request.data.get('categories')
             for category in categories:
@@ -44,7 +44,7 @@ class CategoriesChangeNumberView(views.APIView):
         return Response({'success': 'Number changed'}, status=status.HTTP_200_OK)
 
 class CategoriesChangeActiveView(views.APIView):
-    def post(self, request, format=None):
+    def put(self, request, format=None):
         try:
             categories = request.data.get('categories')
             for category in categories:

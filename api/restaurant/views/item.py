@@ -27,12 +27,27 @@ class ItemGetView(generics.RetrieveAPIView):
 
 # UPDATE
 # Retrieve the item
-class ItemPutView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
+class ItemPutView(views.APIView):
+    def put(self, request, pk, format=None):
+        try:
+            item = request.data
+            instance = Item.objects.get(id=pk)
+            instance.name = item['name']
+            instance.description = item['description']
+            instance.price = item['price']
+            instance.iconId = item['iconId']
+            instance.facts = item['facts']
+            instance.number = item['number']
+            instance.isActive = item['isActive']
+            instance.save()
+        except Item.DoesNotExist:
+            return Response({'error': 'Item does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': 'Item updated'}, status=status.HTTP_200_OK)
 
 class ItemsChangeNumberView(views.APIView):
-    def post(self, request, format=None):
+    def put(self, request, format=None):
         try:
             items = request.data.get('items')
             for item in items:
@@ -45,7 +60,7 @@ class ItemsChangeNumberView(views.APIView):
         
 
 class ItemsChangeActiveView(views.APIView):
-    def post(self, request, format=None):
+    def put(self, request, format=None):
         try:
             items = request.data.get('items')
             for item in items:

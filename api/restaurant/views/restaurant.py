@@ -28,9 +28,9 @@ class RestaurantPutView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RestaurantSerializer
 
 class RestaurantChangePlan(views.APIView):
-    def post(self, request, format=None):
+    def put(self, request, pk, format=None):
         try:
-            id = request.data.get('id')
+            id = int(pk)
             instance = Restaurant.objects.get(id=id)
             plan = request.data.get('plan')
             if type(plan) is not int:

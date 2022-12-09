@@ -17,7 +17,7 @@ category_urlpatterns = [
     # Read
     path('', CategoryGetAllView.as_view(), name='category_get_all'),
     path('active/', CategoryGetAllActiveView.as_view(), name='category_get_all_active'),
-    path('get/<int:pk>/', CategoryGetView.as_view(), name='category_get'),
+    path('<int:pk>/', CategoryGetView.as_view(), name='category_get'),
     # Update
     path('put/<int:pk>/', CategoryPutView.as_view(), name='category_put'),
     path('change-number/', CategoriesChangeNumberView.as_view(), name='category_change_number'),
@@ -33,7 +33,7 @@ item_urlpatterns = [
     # Read
     path('', ItemGetAllView.as_view(), name='item-get-all'),
     path('active/', ItemGetAllActiveView.as_view(), name='item-get-all-active'),
-    path('get/<int:pk>/', ItemGetView.as_view(), name='item-get'),
+    path('<int:pk>/', ItemGetView.as_view(), name='item-get'),
     # Update
     path('put/<int:pk>/', ItemPutView.as_view(), name='item-put'),
     path('change-number/', ItemsChangeNumberView.as_view(), name='item-change-number'),
@@ -47,11 +47,11 @@ restaurant_urlpatterns = [
     # Create
     path('create/', RestaurantCreateView.as_view(), name='restaurant-create'),
     # Read
-    path('', RestaurantGetAllView.as_view(), name='restaurant-get-`all'),
+    path('', RestaurantGetAllView.as_view(), name='restaurant-get-all'),
     path('<int:pk>/', RestaurantGetView.as_view(), name='restaurant-detail'),
     # Update
     path('put/<int:pk>/', RestaurantPutView.as_view(), name='restaurant-put'),
-    path('change-plan/', RestaurantChangePlan.as_view(), name='restaurant-change-plan'),
+    path('change-plan/<int:pk>/', RestaurantChangePlan.as_view(), name='restaurant-change-plan'),
     # Delete
     path('delete/<int:pk>/', RestaurantDeleteView.as_view(), name='restaurant-delete'),
 ]
