@@ -45,37 +45,37 @@ function LateralNav(){
                 <li>
                     <section onClick={() => changeCurrentWidget(2)}>
                         <BiCategoryAlt size={size} className="icons" />
-                        <p>Categories</p>
+                        <p>Categorie</p>
                     </section>
                 </li>
                 <li>
                     <section onClick={() => changeCurrentWidget(3)}>
                         <IoFastFoodOutline size={size} className="icons" />
-                        <p>Foods</p>
+                        <p>Prodotti</p>
                     </section>
                 </li>
                 <li>
                     <section onClick={() => changeCurrentWidget(4)}>
                         <RiListOrdered size={size} className="icons" />
-                        <p>Orders</p>
+                        <p>Ordini</p>
                     </section>
                 </li>
                 <li>
                     <section onClick={() => changeCurrentWidget(5)}>
                         <TbReportAnalytics size={size} className="icons" />
-                        <p>Reports</p>
+                        <p>Report</p>
                     </section>
                 </li>
                 <li>
                     <section onClick={() => changeCurrentWidget(6)}>
                         <AiOutlineSetting size={size} className="icons" />
-                        <p>Settings</p>
+                        <p>Impostazioni</p>
                     </section>
                 </li>
                 <li> 
                     <section onClick={() => changeCurrentWidget(7)}>
                         <BiHelpCircle size={size} className="icons" />
-                        <p>Help</p>
+                        <p>Aiuto!   </p>
                     </section>
                 </li>
             </ul>

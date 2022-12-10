@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Components
 import MainPage from './components/main';
 import LoginPage from './components/login';
+import FourOhFour from './components/404';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="login" element={<LoginPage />} />
         <Route path="dashboard/:id" element={<MainPage />}/>
+        <Route path="*" element={<FourOhFour />} />
       </Routes>
     </Router>
   );

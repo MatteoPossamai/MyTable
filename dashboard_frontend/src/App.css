@@ -107,6 +107,7 @@
   width: 7%;
   background-color: var(--black);
   top: 0;
+
 }
 
 .lateral-nav ul{
@@ -127,9 +128,9 @@
   flex-direction: column;
   text-decoration: none;
   color: var(--white);
-  font-size: 1.01rem;
+  font-size: .85rem;
   padding: 10px;
-  font-weight: 400;
+  font-weight: 500;
   transition: .3s;
   margin: auto;
 }
@@ -423,3 +424,97 @@ p{
 }
 
 /* End of Login code */
+
+/* Start of 404 code */
+
+.fof{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+  margin-top: 80px;
+  margin-left: 20%;
+  padding: 20px 0 20px 0;
+  top: 0;
+  z-index: 1;
+  border: 3px solid var(--orange);
+  border-radius: 30px;
+  transition: .3s;
+  color: var(--orange);
+}
+
+.fof h1{
+  font-size: 10rem;
+  color: var(--orange);
+  font-weight: 700;
+  font-size: 35pt;
+}
+
+.ice{
+  height: 200px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  color: var(--orange);
+}
+
+.fof:hover{
+  cursor: pointer;
+  background-color: var(--orange);
+  color: var(--white);
+  fill: var(--white);
+}
+
+.fof:hover .ice{
+  color: var(--white);
+}
+
+.fof:hover h1{
+  color: var(--white);
+}
+
+/* End of 404 code */
+
+/* Start of Coming Soon code */
+
+.soon{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 59%;
+  margin-top: 80px;
+  margin-left: 20%;
+  padding: 20px 0 20px 0;
+  top: 0;
+  z-index: 1;
+  border: 3px solid var(--orange);
+  border-radius: 30px;
+  transition: .3s;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+.soon h1{
+  font-size: 50pt;
+  font-weight: 700;
+}
+
+.soon p{
+  font-size: 20pt;
+}
+
+.soon aside{
+  padding: 20px;
+  margin-left: 10%;
+}
+
+.soon h2{
+  font-size: 30pt;
+  font-weight: 700;
+}
+
+/* End of Coming Soon code */
