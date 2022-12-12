@@ -7,13 +7,13 @@ function ComingSoon() {
 
     return <div className="soon">
         <h1>...Coming soon...</h1>
-        <p>Questa funzionalita' non e' ancora disponibile, ma lo sara' presto.
+        <aside>Questa funzionalita' non e' ancora disponibile, ma lo sara' presto.
             Se sono te la vuoi perdere quando uscira', tieni d'occhio la newsletter
             e i nostri social.
 
             <br />
             <br />
-            <aside className="social">
+            <p className="social">
                 <AiOutlineInstagram />
                 Instagram: <a href="https://www.instagram.com/mytableofficial/">@mytableofficial</a>
                 <br />
@@ -23,8 +23,8 @@ function ComingSoon() {
                 <FaTwitter />
                 Twitter: <a href="https://twitter.com/mytableofficial">@mytableofficial</a>
                 <br />
-            </aside>
-        </p>
+            </p>
+        </aside>
 
     </div>
 

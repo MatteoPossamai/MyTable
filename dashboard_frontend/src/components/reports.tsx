@@ -1,6 +1,10 @@
+// Local import
+// Component
+import ComingSoon from "./comingsoon";
+
 function Reports(){
     return (
-        <h1 style={{backgroundColor:"red"}}>Reports</h1>
+        <ComingSoon />
     )
 }
 
