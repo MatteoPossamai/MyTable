@@ -205,6 +205,10 @@
   bottom: 0;
 }
 
+.footer a{
+  color: var(--white);
+}
+
 /* End of footer code */
 
 /* Initial form code */
@@ -295,3 +299,26 @@
 
 /* End of Four Oh Four code */
 
+/* Middle Page code */
+
+.middlePage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80vh;
+  width: 100%;
+}
+
+.middlePage h1{
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.middlePage p{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* End of Middle Page code */

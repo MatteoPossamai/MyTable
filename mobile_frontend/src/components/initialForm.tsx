@@ -50,7 +50,7 @@ function InitialForm(){
 
     const goToOrderPage = (e:any) => {
         e.preventDefault();
-        history(`/mytable/menu/${id}?talbe=${tableNumber}`);
+        history(`/mytable/menu/${id}?table=${tableNumber}`);
     }
 
     return (

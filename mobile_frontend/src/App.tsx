@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/homepage';
 import Base from './components/base';
 import InitialForm from './components/initialForm';
+import MiddlePage from './components/middlePage';
 import FourOhFour from './components/404';
 
 
@@ -16,6 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="initial/:id" element={<MiddlePage />} />
         <Route path="mytable/:id" element={<InitialForm />} />
         <Route path="mytable/menu/:id" element={<Base />} />
         <Route path='*' element={<FourOhFour />} /> 

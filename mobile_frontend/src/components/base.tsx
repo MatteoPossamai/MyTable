@@ -53,28 +53,20 @@ function Base(){
 
     // State
     const [activeCategory, setActiveCategory] = useState<number>(allCategories[0].id);
-    const [searchText, setSearchText] = useState<string>("");
 
     // Button function
     function handleClick(category:Category){
         setActiveCategory(category.id);
     }
 
-    function handleChange(e:any){
-        setSearchText(e.target.value);
-    }
-
     // API items list of the restaurant or faker in production
     const items:Item[] = data["products"];
-    const condition: boolean = searchText.length > 0 ? true : false;
     let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
-    itemsByCategory = condition ? itemsByCategory.filter((item:Item) => item.name.toLowerCase().includes(searchText.toLowerCase())) : itemsByCategory;
 
     return (
         <div className="flex-wrapper">
             {/* Header */}
             <Header name={restaurant.name} />
-            <input type="text" className="searchBar" placeholder="Search" value={searchText} onChange={(e) => handleChange(e)} />
 
             {/* NavBar for categories */}
             <nav className="categories">

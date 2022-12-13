@@ -1,7 +1,7 @@
 function Footer(){
     return (
         <footer className="footer">
-            <p>Copyright © 2022 MyTable </p>
+            <p>Powered by <a href="https://mytablelanding.netlify.app/">MyTable</a> </p>
         </footer>
     );
 }

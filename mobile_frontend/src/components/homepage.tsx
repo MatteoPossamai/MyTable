@@ -21,9 +21,8 @@ function HomePage(){
 
     const goToMenu = (e:any) => {
         e.preventDefault();
-        history(`/mytable/${restaurantCode}`);
+        history(`/initial/${restaurantCode}`);
     }
-
 
     return (
         <div className="homeDiv">
