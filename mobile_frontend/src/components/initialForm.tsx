@@ -24,7 +24,19 @@ function InitialForm(){
 
     // API restaurant of faker in production
     const allRestaurants:Restaurant[] = restaurants["restaurants"];
-    const restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
+    let restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
+    const fake_restaurant:Restaurant = {
+        id: -1,
+        name: "-1",
+        plan: -1,
+        email: "fake@gmail.com",
+        password: "123456789",
+        telephone: "123456789",
+        location: "Via Roma, 1",
+    }
+    if(restaurant === undefined){
+        restaurant = fake_restaurant;
+    }
 
     useEffect(() => {
         // when loaded up, if the restaurant has a plan < 2, the bringsNumber is set to 1
