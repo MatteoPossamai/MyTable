@@ -43,10 +43,8 @@ function MiddlePage(){
 
     return (
         <div className='middlePage'>
-            <h1>Benvenuto in <br /><br />{restaurant.name}</h1>
-            <p>Stai per accedere al nostro catalogo di cibi e bevande</p>
-            <p>Clicca per iniziare... e goditi il buon cibo</p>
-            <button className='submission' onClick={()=>history(`/mytable/${id}`)}>Inizia</button>
+            <h1>{restaurant.name}</h1>
+            <button className='bigButton' onClick={()=>history(`/mytable/${id}`)}>Get Started</button>
         </div>
     )
 }

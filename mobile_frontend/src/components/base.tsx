@@ -71,7 +71,7 @@ function Base(){
             {/* NavBar for categories */}
             <nav className="categories">
                 { categories["categories"].map((category:Category) => 
-                    <button key={category.id} className="category" id={category.id === activeCategory ? "active" : ""}
+                    <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
                     onClick={() => handleClick(category)}>{category.name}</button>
                 ) }
             </nav>

@@ -41,7 +41,7 @@ function HomePage(){
 
             <h3>Visualizza menu del ristorante</h3>
             <input className="enterN" value={restaurantCode} onChange={(e)=>{changeRestaurant(e)}} type="number" placeholder="Inserisci il codice del ristorante" />
-            <button className="goto" onClick={(e)=>{goToMenu(e)}}>Vai al menu</button>
+            <button className="bigButton" onClick={(e)=>{goToMenu(e)}}>Vai al menu</button>
 
             <h3>Per ristoranti...</h3>
             <p>

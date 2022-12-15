@@ -60,7 +60,7 @@ function InitialForm(){
                 <label className='labelsN'>Inserire il numero del tavolo:</label>
                 <input className='enterN' type={'number'} placeholder={'Numero del tavolo'} value={tableNumber} onChange={(e)=> setTableNumber(Number(e.target.value)) } /> 
 
-                <button type={'submit'} className='submission'>Vai al menu'</button>
+                <button type={'submit'} className='bigButton initialFormButton'>Vai al menu'</button>
 
             </form>
             <Footer />

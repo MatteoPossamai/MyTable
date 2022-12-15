@@ -2,11 +2,13 @@
 :root {
   --black: #000000;
   --blue: #1e90ff;
+  --backgrey: #f1f1f1;
   --white: #ffffff;
-  --green: #2ff21d;
   --orange: #fc3d03;
-  --red: #e60b0b;
   --acqua: #a7ebdb;
+  --redwine: #6b0909;
+  --activebutton: #f4890f;
+  --secondary: #a9a9a9;
 }
 /* End of code variables */
 
@@ -24,8 +26,7 @@
 .homeDiv h1{
   font-size: 5rem;
   font-weight: 700;
-  background-color: var(--orange);
-  color: var(--white);
+  color: var(--redwine);
   width: 100%;
   padding: 20px 0 10px 0;
 }
@@ -35,26 +36,14 @@
   font-weight: 300;
 }
 
-.goto{
-  border: var(--orange) 2px solid;
-  border-radius: 10px;
-  background-color: var(--orange);
-  color: var(--white);
-  padding: 20px;
-  font-size: 1.8rem;
-  font-weight: 800;
-  transition: .5;
-}
-
 /* End of home page code */
 
 /* Header code */
 
-.header {
-  background-color: var(--green);
-  height: 100px;
+.header { 
+  color: var(--black);
+  height: 60px;
   padding: 12px;
-  color: var(--white);
 }
 
 /* End of header code */
@@ -62,26 +51,49 @@
 /* Category code */
 
 .categories{
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
   height: 50px;
-  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  z-index: 10;
+  padding: 8px;
+  background-color: var(--backgrey);
 }
 
-.category {
-  height: 50px;
-  padding: 12px;
-  border: none;
-  transition: 1s;
+.categories::-webkit-scrollbar-track {
+  background-color: var(--white);
 }
 
-#active{
-  background-color: var(--blue);
+.categories::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #737272;
+}
+
+.smallButton {
   color: var(--white);
-  border-bottom: var(--green) 7px solid; 
-  transition: 1s; 
+  background-color: var(--redwine);
+  height: 50px;
+  padding: 15px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  transition: 1s;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 5px;
+}
+
+#activeSmallButton{
+  background-color: var(--activebutton);
 }
 
 .categoryTitle {
@@ -100,56 +112,71 @@
 }
 
 .empty{
-  border: 2px var(--red) solid ;
+  border: 2px var(--redwine) solid ;
   border-radius: 20px;
   padding: 20px;
   color: var(--white);
-  background-color: var(--red);
+  background-color: var(--redwine);
 }
 
 /* End of products code */
 
 /* Items code */
 .item{
+  display: flex;
+  flex-direction: row;
   position: relative;
-  background-color: var(--blue);
+  background-color: var(--white);
   color: var(--white);
-  padding: 10px;
-  border-radius: 5px;
-  width: 80%;
+  padding: 5px;
+  border-radius: 20px;
+  width: 90%;
+  height: 130px;
   margin:10px auto;
+  color: var(--black);
+  align-items: center;
+}
+
+.item p{
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--secondary);
+}
+
+.foodIcon{
+  height: 80%;
+  margin: 0 8px;
 }
 
 .price{
-  font-size: 20px;
   font-weight: bold;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: var(--orange);
-  padding: 10px;
-  border-radius: 40px;
+  font-size: 1.1rem;
+  color: var(--activebutton);
 }
 
 .ordination{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin: 10px;
-
+  width: 10%;
 }
 
 .ordination input {
-  border-radius: 5px;
-  border: 1px solid var(--black);
+  border: none;
   padding: 5px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .ordination button{
-  border-radius: 5px;
+  border: none;
+  border-radius: 100px;
   padding: 5px;
-  background-color: var(--orange);
-  color: var(--white);
+  background-color: var(--activebutton);
+  color: var(--orange);
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -158,39 +185,12 @@
   bottom: 80px;
   right: 30px;
   font-size: 35px;
-  background-color: var(--orange);
+  background-color: var(--redwine);
   color: var(--white);
   padding: 15px;
-  border-radius: 40px;
+  border-radius: 20px;
 }
 /* End of items code */
-
-/* Searchbar style */
-
-.searchBar{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 10px;
-  margin-left: 25%;
-  height: 25px;
-  width: 70%;
-  position: relative;
-  border-radius: 10px;
-  outline: none;
-  border: 3px solid var(--green);
-  transition: 1s;
-  font-size: 12pt;
-  font-weight: 700;
-}
-
-.searchBar:focus{
-  background-color: var(--acqua);
-  color: var(--white);
-  transition:1s;
-}
-
-/* End of searchbar style */
 
 /* Footer code */
 .footer{
@@ -219,12 +219,17 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+}
+
+.initialFormButton{
+  margin: 50px 0;
 }
 
 .submission{
   margin: 30px;
   border: var(--orange) 2px solid;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: var(--orange);
   color: var(--white);
   padding: 20px;
@@ -250,14 +255,22 @@
 }
 
 .enterN{
+  margin: 50px 0;
   width:80%;
   margin: 10px auto;
   font-size: 15pt;
   padding: 10px;
-  border-radius: 10px;
-  border: 1px solid var(--black);
+  border: none;
+  border-bottom: 2px solid var(--black);
+  border-radius: 5px;
   font-weight: 700;
-  background-color: var(--acqua);
+  background-color: var(--white);
+  transition: .5s;
+}
+
+.enterN:focus{
+  outline: none;
+  border-bottom: 5px solid var(--black);
 }
 
 .labelsN{
@@ -281,20 +294,19 @@
 }
 
 .f0f{
-  background-color: var(--acqua);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  color: var(--orange);
+  width: 60%;
+  color: var(--redwine);
 }
 
 .error404{
   font-size: 10rem;
   font-weight: 700;
-  color: var(--orange);
+  color: var(--redwine);
 }
 
 /* End of Four Oh Four code */
@@ -307,6 +319,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 50px;
   height: 80vh;
   width: 100%;
 }
@@ -319,6 +332,16 @@
 .middlePage p{
   font-size: 1.3rem;
   font-weight: 500;
+}
+
+.bigButton{
+  background-color: var(--redwine);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  width: 50%;
+  border: none;
 }
 
 /* End of Middle Page code */

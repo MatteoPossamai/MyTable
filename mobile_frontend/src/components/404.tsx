@@ -1,7 +1,6 @@
 // Global imports
 import { useNavigate } from "react-router-dom";
 import { TbError404 } from "react-icons/tb";
-import { BiError } from "react-icons/bi";
 
 // Local imports
 // Components
@@ -24,8 +23,7 @@ function FourOhFour() {
             Pagina <br />
             inesistente
         </h1>
-        <BiError className="error404" />
-        <button className="goto" onClick={(e)=>{goToMenu(e)}}>Torna alla homepage</button>
+        <button className="bigButton" onClick={(e)=>{goToMenu(e)}}>Torna alla homepage</button>
         <Footer />
     </div>
   )
