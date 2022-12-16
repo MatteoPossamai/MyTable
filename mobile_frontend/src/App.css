@@ -6,6 +6,7 @@
   --orange: #fc3d03;
   --redwine: #530F26;
   --activeyellow: #FFB01D;
+  --lowyellow: #FFD27F;
   --greyactive: #8E8EA9;
 }
 /* End of code variables */
@@ -183,8 +184,8 @@
   border: none;
   border-radius: 100px;
   padding: 5px;
-  background-color: var(--activeyellow);
-  color: var(--orange);
+  background-color: var(--lowyellow);
+  color: var(--activeyellow);
   font-size: 1.2rem;
   font-weight: 700;
 }
