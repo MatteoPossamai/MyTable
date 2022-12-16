@@ -1,36 +1,31 @@
 /* Code variables */
 :root {
-  --black: #000000;
   --blue: #1e90ff;
   --white: #ffffff;
-  --green: #2ff21d;
-  --orange: #fc3d03;
   --red: #e60b0b;
   --acqua: #a7ebdb;
-  --senape: #fcba03;
+  --black: #32324d;
+  --backgrey: #f1f1f1;
+  --redwine: #530F26;
+  --activeyellow: #FFB01D;
+  --lowyellow: #FFD27F;
+  --greyactive: #8E8EA9;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
   border-radius: 10px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--orange); 
+  background: var(--redwine); 
   border-radius: 10px;
 }
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
-}
-
 
 .App {
   text-align: center;
@@ -45,12 +40,12 @@
   position: relative;
   float: right;
   height: auto;
-  width: 93%;
-  background-color: var(--blue);
+  width: 92%;
+  background-color: var(--backgrey);
   top: 0;
 }
 .header h1{
-  color: var(--white);
+  color: var(--black);
   font-size: 2rem;
   margin: 0;
   padding: 0;
@@ -60,7 +55,7 @@
 }
 
 .header h3{
-  color: var(--white);
+  color: var(--black);
   font-size: 1.5rem;
   margin: 0;
   padding: 0;
@@ -93,13 +88,13 @@
   border-radius: 10%;
   background-color: var(--white);
   margin: 10px; 
-  background-color: var(--orange);
+  background-color: var(--redwine);
   display: flex;
   flex-direction: column;
 }
 
 .header__menu button{
-  background-color: var(--orange);
+  background-color: var(--redwine);
   border: none;
   color: var(--white);
   font-size: 1rem;
@@ -110,7 +105,7 @@
 }
 
 .header__menu button:hover{
-  background-color: var(--blue);
+  background-color: var(--backgrey);
   color: var(--white);
 }
 
@@ -126,10 +121,9 @@
   float: left;
   min-height: 100vh;
   height: fit-content;
-  width: 7%;
+  width: 8%;
   background-color: var(--black);
   top: 0;
-
 }
 
 .lateral-nav ul{
@@ -154,18 +148,29 @@
   padding: 10px;
   font-weight: 500;
   transition: .3s;
-  margin: auto;
+  height: 100%;
+  width: 80%;
 }
 
 .lateral-nav ul li section:hover{
-  color: var(--orange);
-  fill: var(--orange);
+  color: var(--redwine);
+  fill: var(--redwine);
+  background-color: var(--white);
+  cursor: pointer;
+}
+
+.logo{
+  color: var(--white);
+  height: 3rem;
+  width: 3rem;
 }
 
 .icons{
   margin: 0;
   padding: 0;
   margin: auto;
+  height: 3rem;
+  width: 3rem;
 }
 
 p{
@@ -182,7 +187,7 @@ p{
   flex-direction: column;
   position: relative;
   float: right;
-  width: 93%;
+  width: 92%;
   top: 0;
 }
 
@@ -234,7 +239,7 @@ p{
 }
 
 .icon2:hover{
-  fill: var(--orange);
+  fill: var(--redwine);
 }
 
 .all-categories{
@@ -259,7 +264,7 @@ p{
 }
 
 .active{
-  border-left: var(--green) 7px solid;
+  border-left: var(--activeyellow) 7px solid;
 }
 
 .topItem{
@@ -297,7 +302,7 @@ p{
 }
 
 .iconize:hover{
-  fill: var(--orange);
+  fill: var(--redwine);
 }
 
 .addCategoryForm{
@@ -318,7 +323,7 @@ p{
   height: 50px;
   width: 65%;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--redwine);
   border: 2px solid var(--white);
   border-radius: 10px;
   font-size: 1.2em;
@@ -327,7 +332,7 @@ p{
 }
 
 .submitBTN:hover{
-  background-color: var(--blue);
+  background-color: var(--backgrey);
 }
 
 .add-category{
@@ -383,7 +388,7 @@ p{
   margin: 10px 0;
   height: 30px;
   width: 90%;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--redwine);
   border-radius: 10px;
   font-size: 1.2em;
   font-weight: 600;
@@ -394,7 +399,7 @@ p{
   margin: 10px 0;
   height: 30px;
   width: 90%;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--redwine);
   border-radius: 10px;
   font-size: 1.2em;
   font-weight: 600;
@@ -406,7 +411,7 @@ p{
   height: 50px;
   width: 65%;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--redwine);
   border: 2px solid var(--white);
   border-radius: 10px;
   font-size: 1.2em;
@@ -480,7 +485,7 @@ p{
   height: 50px;
   width: 65%;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--redwine);
   border: 2px solid var(--white);
   border-radius: 10px;
   font-size: 1.2em;
@@ -495,7 +500,7 @@ p{
   padding: 30px;
   border-radius: 10px;
   box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
-  background-color: var(--senape);
+  background-color: var(--activeyellow);
 }
 
 /* End of Login code */
@@ -514,15 +519,15 @@ p{
   padding: 20px 0 20px 0;
   top: 0;
   z-index: 1;
-  border: 3px solid var(--orange);
+  border: 3px solid var(--redwine);
   border-radius: 30px;
   transition: .3s;
-  color: var(--orange);
+  color: var(--redwine);
 }
 
 .fof h1{
   font-size: 10rem;
-  color: var(--orange);
+  color: var(--redwine);
   font-weight: 700;
   font-size: 35pt;
 }
@@ -532,12 +537,12 @@ p{
   width: 200px;
   margin: 0;
   padding: 0;
-  color: var(--orange);
+  color: var(--redwine);
 }
 
 .fof:hover{
   cursor: pointer;
-  background-color: var(--orange);
+  background-color: var(--redwine);
   color: var(--white);
   fill: var(--white);
 }
@@ -565,7 +570,7 @@ p{
   padding: 20px 0 20px 0;
   top: 0;
   z-index: 1;
-  border: 3px solid var(--orange);
+  border: 3px solid var(--redwine);
   transition: .3s;
   padding: 20px;
   line-height: 1.4;
@@ -611,7 +616,7 @@ p{
   margin-top: 5px;
   padding: 20px 0 20px 0;
   top: 0;
-  border: 3px solid var(--orange);
+  border: 3px solid var(--redwine);
   line-height: 1.4;
   overflow-y: auto;
   border-radius: 10px;

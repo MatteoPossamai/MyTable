@@ -7,8 +7,6 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { RiListOrdered } from "react-icons/ri";
 import { AiOutlineSetting } from "react-icons/ai";
 
-import { IoLogoHackernews } from "react-icons/io";
-
 // Local imports
 // Context
 import { navigationContext } from "./main";
@@ -26,7 +24,7 @@ function LateralNav(){
             <ul>
                 <li>
                     <section>
-                    <IoLogoHackernews size={size} className="icons" />
+                    <img src="/mytable_logo.svg" alt="logo" className="logo" />
                     </section>
                     <br />
                 </li>
