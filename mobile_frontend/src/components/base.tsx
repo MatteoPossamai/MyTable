@@ -84,7 +84,7 @@ function Base(){
                 {itemsByCategory.length === 0 ? (
                     <div className="noProducts">
                         
-                        <h1 className="empty"> <BsFillXCircleFill />  Non esistono prodotti con queste caratteristiche</h1>
+                        <h2 className="empty"> <BsFillXCircleFill />  Non esistono prodotti con queste caratteristiche</h2>
                     </div>
                 ):(
                     itemsByCategory.map((item:Item) => {

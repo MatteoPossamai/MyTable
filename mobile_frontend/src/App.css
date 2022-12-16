@@ -1,14 +1,12 @@
 /* Code variables */
 :root {
-  --black: #000000;
-  --blue: #1e90ff;
+  --black: #32324d;
   --backgrey: #f1f1f1;
   --white: #ffffff;
   --orange: #fc3d03;
-  --acqua: #a7ebdb;
-  --redwine: #6b0909;
-  --activebutton: #f4890f;
-  --secondary: #a9a9a9;
+  --redwine: #530F26;
+  --activeyellow: #FFB01D;
+  --greyactive: #8E8EA9;
 }
 /* End of code variables */
 
@@ -93,7 +91,7 @@
 }
 
 #activeSmallButton{
-  background-color: var(--activebutton);
+  background-color: var(--activeyellow);
 }
 
 .categoryTitle {
@@ -111,12 +109,23 @@
   justify-content: center;
 }
 
+.noProducts{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .empty{
   border: 2px var(--redwine) solid ;
   border-radius: 20px;
   padding: 20px;
   color: var(--white);
   background-color: var(--redwine);
+  width: 80%;
+  height: fit-content;
 }
 
 /* End of products code */
@@ -140,7 +149,7 @@
 .item p{
   font-size: .8rem;
   font-weight: 400;
-  color: var(--secondary);
+  color: var(--greyactive);
 }
 
 .foodIcon{
@@ -151,7 +160,7 @@
 .price{
   font-weight: bold;
   font-size: 1.1rem;
-  color: var(--activebutton);
+  color: var(--activeyellow);
 }
 
 .ordination{
@@ -174,7 +183,7 @@
   border: none;
   border-radius: 100px;
   padding: 5px;
-  background-color: var(--activebutton);
+  background-color: var(--activeyellow);
   color: var(--orange);
   font-size: 1.2rem;
   font-weight: 700;
