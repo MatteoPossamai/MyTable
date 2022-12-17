@@ -5,7 +5,6 @@ import {useParams, useNavigate} from 'react-router-dom';
 // Local imports
 // Components
 import Header from './header';
-import Footer from './footer';
 
 import Restaurant from '../types/restaurant';
 import restaurants from '../fake_data.json'
@@ -63,7 +62,6 @@ function InitialForm(){
                 <button type={'submit'} className='bigButton initialFormButton'>Vai al menu'</button>
 
             </form>
-            <Footer />
         </>
     )
 }

@@ -2,10 +2,6 @@
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 
-// Local imports
-// Components
-import Footer from "./footer";
-
 function HomePage(){
     // State of the insertion bar
     const [restaurantCode, setRestaurantCode] = useState<number>(0);
@@ -49,7 +45,6 @@ function HomePage(){
                 e presto anche per gestire le prenotazioni. Devi solo registrarti, e iniziare a
                 automatizzare la tua attività, a un prezzo davvero vantaggioso.
             </p>
-            <Footer />
         </div>
     )
 }
