@@ -1,22 +1,25 @@
 // Global imports
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
-import { MdOutlineShoppingCart } from 'react-icons/md';
 import { BsFillXCircleFill } from 'react-icons/bs';
 
 // Local imports
 // Components
 import Header from './header';
 import ItemComponent from './itemComponent';
-import Footer from './footer';
+import Ordered from './ordered';
 // Types
 import Item from '../types/item';
+import Order from '../types/order';
 import Restaurant from '../types/restaurant';
 import Category from '../types/category';
 // Other
 import data from '../faker.json';
 import restaurants from '../fake_data.json'
 import categories from '../fake_categories.json';
+
+// Context
+let orderedContext = createContext<any>([]);
 
 function Base(){
     // setting up basic variables given by the environment
@@ -63,45 +66,51 @@ function Base(){
     const items:Item[] = data["products"];
     let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
+    const [orderedItems, setOrderedItems] = useState<Order[]>([]);
+
     return (
         <div className="flex-wrapper">
-            {/* Header */}
-            <Header name={restaurant.name} />
+            <orderedContext.Provider value={[orderedItems, setOrderedItems]}>
+                {/* Header */}
+                <Header name={restaurant.name} />
 
-            {/* NavBar for categories */}
-            <nav className="categories">
-                { categories["categories"].map((category:Category) => 
-                    <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
-                    onClick={() => handleClick(category)}>{category.name}</button>
-                ) }
-            </nav>
+                {/* NavBar for categories */}
+                <nav className="categories">
+                    { categories["categories"].map((category:Category) => 
+                        <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
+                        onClick={() => handleClick(category)}>{category.name}</button>
+                    ) }
+                </nav>
 
-            {/* Category Name */}
-            <h2 className='categoryTitle'>{ allCategories.filter((category:Category) => (category.id === activeCategory))[0].name }</h2>
+                {/* Category Name */}
+                <h2 className='categoryTitle'>{ allCategories.filter((category:Category) => (category.id === activeCategory))[0].name }</h2>
 
-            {/* All Products to display */}
-            <main className="products">
-                {itemsByCategory.length === 0 ? (
-                    <div className="noProducts">
-                        
-                        <h2 className="empty"> <BsFillXCircleFill />  Non esistono prodotti con queste caratteristiche</h2>
-                    </div>
+                {/* All Products to display */}
+                <main className="products">
+                    {itemsByCategory.length === 0 ? (
+                        <div className="noProducts">
+                            
+                            <h2 className="empty"> <BsFillXCircleFill />  Non esistono prodotti con queste caratteristiche</h2>
+                        </div>
+                    ):(
+                        itemsByCategory.map((item:Item) => {
+                            return (
+                                <ItemComponent key={item.id} item={item} restaurant={restaurant} />
+                            )
+                        })
+                    )}
+                </main>
+
+                {/* Order list in case */}
+                {restaurant.plan >= min_order_plan ? (
+                    <Ordered restaurant={restaurant} />
                 ):(
-                    itemsByCategory.map((item:Item) => {
-                        return (
-                            <ItemComponent key={item.id} item={item} restaurant={restaurant} />
-                        )
-                    })
+                    <div></div>
                 )}
-            </main>
-
-            {/* Cart Icon */}
-            <MdOutlineShoppingCart style={{display: restaurant.plan >= min_order_plan ? 'visible' : 'none'}} className='cartIcon' />
-
-            {/* Footer */}
-            <Footer />
+            </orderedContext.Provider>
         </div>
     )
 }
 
 export default Base;
+export { orderedContext };
