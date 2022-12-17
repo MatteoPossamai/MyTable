@@ -2,10 +2,6 @@
 import { useNavigate } from "react-router-dom";
 import { TbError404 } from "react-icons/tb";
 
-// Local imports
-// Components
-import Footer from "./footer"
-
 function FourOhFour() {
   // Creation and handling of the navigation
   let history = useNavigate();
@@ -24,7 +20,6 @@ function FourOhFour() {
             inesistente
         </h1>
         <button className="bigButton" onClick={(e)=>{goToMenu(e)}}>Torna alla homepage</button>
-        <Footer />
     </div>
   )
 }

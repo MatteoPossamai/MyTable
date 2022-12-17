@@ -1,19 +1,18 @@
 /* Code variables */
 :root {
   --black: #32324d;
-  --backgrey: #f1f1f1;
+  --backgrey: #E5E5E5;
   --white: #ffffff;
-  --orange: #fc3d03;
+  --orange: #FF7B2C;
   --redwine: #530F26;
   --activeyellow: #FFB01D;
-  --lowyellow: #FFD27F;
+  --lowyellow: #FFF2EA;
   --greyactive: #8E8EA9;
 }
 /* End of code variables */
 
 .App {
   text-align: center;
-  font-family: 'Merriweather', serif;
 }
 
 /* Home page code */
@@ -41,8 +40,13 @@
 
 .header { 
   color: var(--black);
-  height: 60px;
+  height: 50px;
   padding: 12px;
+}
+
+.header h1{
+  font-size: 22px;
+  font-weight: medium;
 }
 
 /* End of header code */
@@ -141,7 +145,7 @@
   padding: 5px;
   border-radius: 20px;
   width: 90%;
-  height: 130px;
+  height: 140px;
   margin:10px auto;
   color: var(--black);
   align-items: center;
@@ -190,36 +194,7 @@
   font-weight: 700;
 }
 
-.cartIcon{
-  position: fixed;
-  bottom: 80px;
-  right: 30px;
-  font-size: 35px;
-  background-color: var(--redwine);
-  color: var(--white);
-  padding: 15px;
-  border-radius: 20px;
-}
 /* End of items code */
-
-/* Footer code */
-.footer{
-  background-color: var(--black);
-  color: var(--white);
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px 0;
-  position: absolute;
-  bottom: 0;
-}
-
-.footer a{
-  color: var(--white);
-}
-
-/* End of footer code */
 
 /* Initial form code */
 
@@ -354,4 +329,46 @@
   border: none;
 }
 
+.longButton{
+  background-color: var(--redwine);
+  color: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  width: 90%;
+  border: none;
+  margin-top: 10px;
+}
+
 /* End of Middle Page code */
+
+/* Order section code */
+
+.orderSection{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+  position:fixed;
+  bottom: 0;
+  transition: .5s;
+  background-color: var(--white);
+  border-radius: 30px 30px 0 0;
+  z-index: 100;
+  height: 90px;
+  overflow: hidden;
+}
+
+.open{
+  height: 700px;
+  overflow-y: auto;
+}
+
+.orderSection ol{
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+  width: 100%;
+}
+/* End of Order section code */

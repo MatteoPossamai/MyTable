@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
 
 body {
   margin: 0;
@@ -9,8 +9,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   position: relative;
-  background-color: #f1f1f1;
-  font-family: 'Merriweather', serif;
+  background-color: #E5E5E5;
+  font-family: 'Mulish', sans-serif;
+  letter-spacing: -0.5px;
 }
 
 body::after{
