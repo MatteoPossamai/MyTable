@@ -69,7 +69,7 @@ function Base(){
     const [quantities, setQuantities] = useState<number[]>([]);
 
     return (
-        <div className="flex-wrapper">
+        <>
             <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities}}>
                 {/* Header */}
                 <Header name={restaurant.name} />
@@ -108,7 +108,7 @@ function Base(){
                     <div></div>
                 )}
             </orderedContext.Provider>
-        </div>
+        </>
     )
 }
 

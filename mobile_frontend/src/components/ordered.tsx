@@ -1,5 +1,5 @@
 // Global imports
-import { useContext, useState } from "react";
+import { useContext, useState, memo } from "react";
 
 // Local imports
 // Components
@@ -10,7 +10,7 @@ import { orderedContext } from "./base";
 import Restaurant from "../types/restaurant";
 import Item from "../types/item";
 
-function Ordered(props: {restaurant: Restaurant}) {
+const Ordered = memo((props: {restaurant: Restaurant}) => {
   const {orderedItems, setOrderedItems, quantities, setQuantities} = useContext(orderedContext);
 
   // State
@@ -50,6 +50,6 @@ function Ordered(props: {restaurant: Restaurant}) {
       </section> 
     </orderedContext.Provider>
   );
-}
+});
 
 export default Ordered;

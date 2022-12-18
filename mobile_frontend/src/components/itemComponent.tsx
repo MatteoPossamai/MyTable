@@ -1,5 +1,5 @@
 // Global imports
-import { useContext } from 'react';
+import { useContext, memo } from 'react';
 
 // Local imports
 // Context
@@ -8,7 +8,7 @@ import { orderedContext } from "./base";
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
 
-function ItemComponent(props: {item: Item, restaurant: Restaurant}) {
+const ItemComponent = memo((props: {item: Item, restaurant: Restaurant}) => {
     // setting up basic variables given by the environment
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
 
@@ -67,6 +67,6 @@ function ItemComponent(props: {item: Item, restaurant: Restaurant}) {
             </form>
         </section>
     )
-}
+});
 
 export default ItemComponent;
