@@ -7,11 +7,11 @@ import ItemComponent from "./itemComponent";
 // Context
 import { orderedContext } from "./base";
 // Types
-import Order from "../types/order";
 import Restaurant from "../types/restaurant";
+import Item from "../types/item";
 
 function Ordered(props: {restaurant: Restaurant}) {
-  const {orderedItems, setOrderedItems} = useContext(orderedContext);
+  const {orderedItems, setOrderedItems, quantities, setQuantities} = useContext(orderedContext);
 
   // State
   const [visibleOrder, setVisibleOrder] = useState<boolean>(false);
@@ -23,22 +23,32 @@ function Ordered(props: {restaurant: Restaurant}) {
   };
 
   return (
-    <section className={visibleOrder ? "orderSection open" :"orderSection"}>
-        <button className="longButton" onClick={(e) => changeVisibility(e)}>{visibleOrder ? "Back": `View Order`}</button>
-        <br />
-        <ol>
-            { orderedItems === undefined || orderedItems.length === 0 ? 
-            
-                <p>There are no items in your order</p> :
-            
-                orderedItems.map((order: Order) => (
-                    <ItemComponent item={order.item} restaurant={props.restaurant} key={order.item.id} quantity={order.quantity} />
-                ))
+    <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities}}>
+      <section className={visibleOrder ? "orderSection open" :"orderSection"}>
+          <button className="longButton" onClick={(e) => changeVisibility(e)}>{visibleOrder ? "Back": `View Order`}</button>
+          <br />
+          <ol>
+              { orderedItems === undefined || orderedItems.length === 0 ? 
+              
+                  <p>There are no items in your order</p> :
+              
+                  orderedItems.map((item: Item) => (
+                      <ItemComponent item={item} restaurant={props.restaurant} key={item.id} />
+                  ))
 
-            }
-            <button className="longButton" onClick={(e) => console.log("GO TO Pay Page")}>Send Order &rarr;</button>
-        </ol>
-    </section>
+              }
+              <button className="total" onClick={(e) => e.preventDefault()}>Total: €{
+                  orderedItems === undefined || orderedItems.length === 0 ?
+                  0 :
+                  orderedItems.map((item: Item) => (
+                      item.price * quantities[orderedItems.indexOf(item)]
+                  )).reduce((a: any, b:any) => a + b)
+
+                } </button>
+              <button className="longButton" onClick={(e) => console.log("GO TO Pay Page")}>Send Order &rarr;</button>
+          </ol>
+      </section> 
+    </orderedContext.Provider>
   );
 }
 

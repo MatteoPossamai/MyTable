@@ -10,7 +10,6 @@ import ItemComponent from './itemComponent';
 import Ordered from './ordered';
 // Types
 import Item from '../types/item';
-import Order from '../types/order';
 import Restaurant from '../types/restaurant';
 import Category from '../types/category';
 // Other
@@ -66,11 +65,12 @@ function Base(){
     const items:Item[] = data["products"];
     let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
-    const [orderedItems, setOrderedItems] = useState<Order[]>([]);
+    const [orderedItems, setOrderedItems] = useState<Item[]>([]);
+    const [quantities, setQuantities] = useState<number[]>([]);
 
     return (
         <div className="flex-wrapper">
-            <orderedContext.Provider value={[orderedItems, setOrderedItems]}>
+            <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities}}>
                 {/* Header */}
                 <Header name={restaurant.name} />
 

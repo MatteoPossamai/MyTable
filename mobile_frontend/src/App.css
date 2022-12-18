@@ -361,7 +361,7 @@
 }
 
 .open{
-  height: 700px;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -370,5 +370,17 @@
   margin: 0 0 20px 0;
   padding: 0;
   width: 100%;
+}
+
+.total{
+  background-color: var(--activeyellow);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  width: 90%;
+  border: none;
+  font-weight: medium;
+  margin-top: 10px;
 }
 /* End of Order section code */

@@ -1,17 +1,21 @@
 // Global imports
-import { useState } from 'react';
+import { useContext } from 'react';
 
 // Local imports
+// Context
+import { orderedContext } from "./base";
 // Types
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
 
-function ItemComponent(props: {item: Item, restaurant: Restaurant, quantity?: number}) {
+function ItemComponent(props: {item: Item, restaurant: Restaurant}) {
     // setting up basic variables given by the environment
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
 
+    const {orderedItems, setOrderedItems, quantities, setQuantities} = useContext(orderedContext);
+
     // setting up the state variables
-    const [quantity, setQuantity] = useState(props.quantity ? props.quantity : 0);
+    let quantity = quantities[orderedItems.indexOf(props.item)] || 0;
 
     const item:Item = props.item;
     const restaurant:Restaurant = props.restaurant;
@@ -23,10 +27,26 @@ function ItemComponent(props: {item: Item, restaurant: Restaurant, quantity?: nu
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>, action: string) => {
         event.preventDefault();
         if (action === "plus") {
-            setQuantity(quantity + 1);
+            if (quantity === 0){
+                setOrderedItems([...orderedItems, item]);
+                setQuantities([...quantities, 1]);
+            } else {
+                let newQuantities:number[] = [...quantities];
+                newQuantities[orderedItems.indexOf(item)] += 1;
+                setQuantities(newQuantities);
+            }          
         } else if (action === "minus") {
-            if (quantity > 0) {
-                setQuantity(quantity - 1);
+            if (quantity === 1){
+                let newOrderedItems:Item[] = [...orderedItems];
+                let newQuantities:number[] = [...quantities];
+                newOrderedItems.splice(orderedItems.indexOf(item), 1);
+                newQuantities.splice(orderedItems.indexOf(item), 1);
+                setOrderedItems(newOrderedItems);
+                setQuantities(newQuantities);
+            }else{
+                let newQuantities:number[] = [...quantities];
+                newQuantities[orderedItems.indexOf(item)] -= 1;
+                setQuantities(newQuantities);
             }
         }
     }
