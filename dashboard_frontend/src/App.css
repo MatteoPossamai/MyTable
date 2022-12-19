@@ -10,6 +10,8 @@
   --activeyellow: #FFB01D;
   --lowyellow: #FFD27F;
   --greyactive: #8E8EA9;
+  --greytext: #707070;
+  --activelateral: rgba(67, 145, 237, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -40,28 +42,9 @@
   position: relative;
   float: right;
   height: auto;
-  width: 92%;
-  background-color: var(--backgrey);
+  width: 83%;
+  background-color: var(--white);
   top: 0;
-}
-.header h1{
-  color: var(--black);
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.header h3{
-  color: var(--black);
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 0;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .header__user-image-menu{
@@ -117,17 +100,20 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
   top: 0;
   float: left;
-  min-height: 100vh;
-  height: fit-content;
-  width: 8%;
-  background-color: var(--black);
+  height: 100vh;
+  width: 17%;
+  background-color: var(--white);
   top: 0;
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .lateral-nav ul{
   list-style: none;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -141,43 +127,66 @@
  
 .lateral-nav ul li section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-decoration: none;
-  color: var(--white);
+  color: var(--greytext);
   font-size: .85rem;
-  padding: 10px;
+  padding: 10px 0 10px 0;
   font-weight: 500;
   transition: .3s;
   height: 100%;
-  width: 80%;
+  width: 100%;
 }
 
 .lateral-nav ul li section:hover{
-  color: var(--redwine);
-  fill: var(--redwine);
-  background-color: var(--white);
+  background-color: var(--activelateral);
   cursor: pointer;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.logoContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 10px;
+  width: 100%;
+  height: 7%;
+  margin: 0 0 40px 0;
+  padding: 0;
+}
+
+.logoContainer h3{
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 900;
 }
 
 .logo{
-  color: var(--white);
+  color: var(--redwine);
+  fill: var(--redwine);
   height: 3rem;
   width: 3rem;
 }
 
 .icons{
-  margin: 0;
+  margin: 0 8% 0 20%;
   padding: 0;
-  margin: auto;
-  height: 3rem;
-  width: 3rem;
+  height: 2.2rem;
+  width: 2.2rem;
 }
 
-p{
+.lateral-nav ul li section p{
   margin: 0;
   padding: 0;
-  margin: auto;
+  font-size: 16px;
+  font-weight: medium;
+  margin: auto 0 auto 10px;
 }
+
 /* End of Lateral Nav code */
 
 /* Main code */
@@ -187,8 +196,8 @@ p{
   flex-direction: column;
   position: relative;
   float: right;
-  width: 92%;
-  top: 0;
+  width: 83%;
+  top: 80px;
 }
 
 .categories{
