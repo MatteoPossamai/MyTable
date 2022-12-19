@@ -1,5 +1,5 @@
 // Global imports
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {useNavigate} from 'react-router-dom';
 
 function HomePage(){
@@ -7,10 +7,11 @@ function HomePage(){
     const [restaurantCode, setRestaurantCode] = useState<number>(0);
 
     // Function to change the restaurant code
-    const changeRestaurant = (e:any) => {
+    const changeRestaurant = useCallback((e:any) => {
         e.preventDefault();
         setRestaurantCode(Number(e.target.value));
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [restaurantCode]);
 
     // Creation and handling of the navigation
     let history = useNavigate();

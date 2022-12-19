@@ -1,5 +1,5 @@
 // Global imports
-import { useContext, memo } from 'react';
+import { useContext, memo, useCallback } from 'react';
 
 // Local imports
 // Context
@@ -24,7 +24,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant}) => {
         event.preventDefault();
     }
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>, action: string) => {
+    const handleClick = useCallback((event: React.MouseEvent<HTMLButtonElement>, action: string) => {
         event.preventDefault();
         if (action === "plus") {
             if (quantity === 0){
@@ -49,7 +49,8 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant}) => {
                 setQuantities(newQuantities);
             }
         }
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [orderedItems, quantities, item]);
 
     return (
         <section className='item'>

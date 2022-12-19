@@ -4,6 +4,7 @@ import { useContext, useState, memo } from "react";
 // Local imports
 // Components
 import ItemComponent from "./itemComponent";
+import AssurancePopUp from "./assurancePopUp";
 // Context
 import { orderedContext } from "./base";
 // Types
@@ -15,11 +16,19 @@ const Ordered = memo((props: {restaurant: Restaurant}) => {
 
   // State
   const [visibleOrder, setVisibleOrder] = useState<boolean>(false);
+  const [visibleAssurance, setVisibleAssurance] = useState<boolean>(false);
 
   // Button function
   const changeVisibility = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setVisibleOrder(!visibleOrder);
+  };
+
+  // Open assurance popup
+  const popUpize = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if(orderedItems === undefined || orderedItems.length === 0) return;
+    setVisibleAssurance(true);
   };
 
   return (
@@ -45,8 +54,10 @@ const Ordered = memo((props: {restaurant: Restaurant}) => {
                   )).reduce((a: any, b:any) => a + b)
 
                 } </button>
-              <button className="longButton" onClick={(e) => console.log("GO TO Pay Page")}>Send Order &rarr;</button>
+              <button className="longButton" onClick={(e) => popUpize(e)}>Send Order &rarr;</button>
           </ol>
+
+          <AssurancePopUp visible={visibleOrder && visibleAssurance} toggle={setVisibleAssurance} />
       </section> 
     </orderedContext.Provider>
   );
