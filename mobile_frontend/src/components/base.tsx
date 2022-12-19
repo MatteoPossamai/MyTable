@@ -1,5 +1,5 @@
 // Global imports
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useCallback } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { BsFillXCircleFill } from 'react-icons/bs';
 
@@ -8,6 +8,7 @@ import { BsFillXCircleFill } from 'react-icons/bs';
 import Header from './header';
 import ItemComponent from './itemComponent';
 import Ordered from './ordered';
+import Navbar from './navBar';
 // Types
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
@@ -57,9 +58,10 @@ function Base(){
     const [activeCategory, setActiveCategory] = useState<number>(allCategories[0].id);
 
     // Button function
-    function handleClick(category:Category){
+    const handleClick = useCallback((category:Category) => {
         setActiveCategory(category.id);
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeCategory]);
 
     // API items list of the restaurant or faker in production
     const items:Item[] = data["products"];
@@ -75,12 +77,8 @@ function Base(){
                 <Header name={restaurant.name} />
 
                 {/* NavBar for categories */}
-                <nav className="categories">
-                    { categories["categories"].map((category:Category) => 
-                        <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
-                        onClick={() => handleClick(category)}>{category.name}</button>
-                    ) }
-                </nav>
+                <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} />
+
 
                 {/* Category Name */}
                 <h2 className='categoryTitle'>{ allCategories.filter((category:Category) => (category.id === activeCategory))[0].name }</h2>
