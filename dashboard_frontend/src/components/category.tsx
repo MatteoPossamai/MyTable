@@ -7,12 +7,12 @@ import { BiTrash } from "react-icons/bi";
 // Types
 import Category from "../types/category";
 // Context
-import {categoriesContext} from "./categories";
+import {menuContext} from "./menu";
 
 function SingleCategory(props: {category: Category}) {
     let category = props.category;
     // getting the selected category from the context
-    const {selectedCategory, setSelectedCategory} = useContext(categoriesContext);
+    const {selectedCategory, setSelectedCategory} = useContext(menuContext);
 
     // changing the selected category
     let changeSelectedCategory = () => {

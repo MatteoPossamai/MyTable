@@ -1,16 +1,23 @@
 // Global imports
 import { FaUserAlt } from "react-icons/fa";
+import { FiHelpCircle } from "react-icons/fi";
 import {useState} from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+    let history = useNavigate();
+
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+    const sendToHelp = () => {
+        history('/help');
+    }
+
     return (
         <header className="header">
             {/* User profile */}
             <aside className="header__user-image-menu">
-                <aside>
-                    <p>?</p>
-                </aside>
+                <FiHelpCircle className="header__help-icon" onClick={() => sendToHelp()} />
                 <div className="header__user-box">                 
                     <FaUserAlt className="header__user-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} />
                 </div>
