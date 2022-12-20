@@ -4,6 +4,7 @@ interface Item {
     price: number;
     description: string;
     category: number;
+    iconId: number;
 }
 
 export default Item;

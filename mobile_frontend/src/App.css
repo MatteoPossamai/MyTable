@@ -8,6 +8,7 @@
   --activeyellow: #FFB01D;
   --lowyellow: #FFF2EA;
   --greyactive: #8E8EA9;
+  --yellowopac: rgba(255, 176, 29, 0.29);
 }
 /* End of code variables */
 
@@ -52,6 +53,19 @@
 /* End of header code */
 
 /* Category code */
+.parent{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.parent aside img{
+  width: 40px;
+  margin-left: 10px;
+  height: 40px;
+}
 
 .categories{
   position: sticky;
@@ -59,12 +73,21 @@
   display: flex;
   flex-direction: row;
   height: 50px;
-  max-width: 100%;
+  width: 72%;
   overflow-x: auto;
   overflow-y: hidden;
   z-index: 10;
   padding: 8px;
   background-color: var(--backgrey);
+}
+
+.emptyButton{
+  background-color: var(--redwine);
+  padding: 10px;
+  height: 35px; 
+  width: 13%;
+  margin-left: 2%;
+  border-radius: 20px;
 }
 
 .categories::-webkit-scrollbar-track {
@@ -99,11 +122,13 @@
   background-color: var(--activeyellow);
 }
 
-.categoryTitle {
-  font-size: 1.5rem;
-  color: var(--black);
-  margin-left: 30px;
+.separator{
+  width: 90%;
+  border: var(--black) .7px solid;
+  margin: auto;
+  margin-top: 15px;
 }
+
 /* End of category code */
 
 /* Products code */
@@ -303,10 +328,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  margin-top: 50px;
-  height: 80vh;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .middlePage h1{
@@ -317,6 +343,23 @@
 .middlePage p{
   font-size: 1.3rem;
   font-weight: 500;
+}
+
+.middlePage img{
+  width: 60%;
+  padding: 20px;
+  margin: 50px 0 20px 0;
+  border-radius: 20px;
+}
+
+.middleImage1{
+  position: relative;
+  left: -30%;
+}
+
+.middleImage2{
+  position: relative;
+  right: -30%;
 }
 
 .bigButton{
@@ -491,17 +534,21 @@
 }
 
 .confirmPage h2{
-  font-size: 2rem;
+  font-size: 26px;
   color: var(--activeyellow);
   font-weight: 700;
 }
 
 .confirmPage h3{
-  font-size: 1.5rem;
+  font-size: 26px;
   color: var(--black);
   font-weight: 700;
-  word-spacing: 5px;
+  word-spacing: 2px;
   letter-spacing: 1px;
+}
+
+.confirmImage{
+  width: 80%;
 }
 
 /* End of Confirmation page */

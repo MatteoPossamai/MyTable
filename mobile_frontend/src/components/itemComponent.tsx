@@ -8,7 +8,7 @@ import { orderedContext } from "./base";
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
 
-const ItemComponent = memo((props: {item: Item, restaurant: Restaurant}) => {
+const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:boolean}) => {
     // setting up basic variables given by the environment
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
 
@@ -54,7 +54,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant}) => {
 
     return (
         <section className='item'>
-            <img src={`/icon1.png`} alt="Pizza Icon" className='foodIcon' />
+            <img src={`/plates/food_${item.iconId}.svg`} alt="Pizza Icon" className='foodIcon' />
             <span className='itemTextSpan'>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>

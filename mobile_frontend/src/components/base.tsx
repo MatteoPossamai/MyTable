@@ -77,11 +77,10 @@ function Base(){
                 <Header name={restaurant.name} />
 
                 {/* NavBar for categories */}
-                <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} />
+                <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} 
+                    note={min_order_plan <= restaurant.plan ? true : false} />
 
-
-                {/* Category Name */}
-                <h2 className='categoryTitle'>{ allCategories.filter((category:Category) => (category.id === activeCategory))[0].name }</h2>
+                <hr className='separator' />
 
                 {/* All Products to display */}
                 <main className="products">

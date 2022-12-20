@@ -8,10 +8,12 @@ const ConfirmPage = () => {
     const handleBackToMenu = () => {
         navigate(`/mytable/menu/${id}`);
     };
+
     return (
         <div className="confirmPage">
-            <h2>Ordine confermato</h2>
-            <h3>Il tuo ordine Arrivera'<br /> tra poco</h3>
+            <img src={`/other/cuoco.svg`} alt="cuoco" className="confirmImage" />
+            <h2>Ordine confermato!</h2>
+            <h3>Il Tuo ordine arrivera'<br /> tra poco</h3>
             <button className="longButton" onClick={() => handleBackToMenu()}>&#x2190; Back to Menu</button>
         </div>
     );
