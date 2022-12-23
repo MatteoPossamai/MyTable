@@ -5,11 +5,12 @@ import { useState, createContext } from "react";
 import data from "../fake_categories.json";
 import faker from "../faker.json";
 // Components
-import SingleCategory from "./category";
-import ItemDiv from "./item";
-// Types
-import Item from "../types/item";
-import Category from "../types/category";
+import Categories from "./menu_page/categories";
+import Items from "./menu_page/items";
+import CreateItem from "./menu_page/create_item";
+import CreateCategory from "./menu_page/create_category";
+// Styles
+import "../styles/menu.css";
 
 let menuContext = createContext<any>(0);
 
@@ -27,43 +28,18 @@ function Menu(){
 
     return (
         <menuContext.Provider value={{selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
-            <section className="categories">
-                <div className="categories-content">
-                    <h1>All your Categories</h1>
-                    <div className="all-categories">
-                        <div className="categories-list">
-                            {categories.map((category: Category) => (
-                                <SingleCategory key={category.id} category={category} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
+        <h1 className="topHeading">Menu'</h1>
+        <div className="menu-container">
+                <section className="menu">
+                    <Categories categories={categories} />
+                    <Items items={items} />
+                </section>
 
-                <hr />
-
-                <div className="categories-foods">
-                    <h1>Category's foods</h1>
-                    <div className="all-categories">
-                        {
-                            items.map((item: Item) =>{
-                                return <ItemDiv key={item.id} item={item} />
-                            })
-                        }
-                    </div>
-                </div>
-                        
-
-                <hr />
-
-                <div className="add-category">
-                    <h1>Add Category</h1>
-                    <form className="addCategoryForm">
-                        <label htmlFor="category-name" className="labelForm">Category Name</label>
-                        <input type="text" name="category-name" id="category-name" />
-                        <button type="submit" className="submitBTN">Add Category</button>
-                    </form>
-                </div>
-            </section>
+                <section className="create-items">
+                    <CreateCategory />
+                    <CreateItem />
+                </section>
+        </div>
         </menuContext.Provider>
     )
 }

@@ -7,8 +7,6 @@ import Header from "./header";
 import LateralNav from "./lateral_nav";
 import DashboardCard from "./dashboard";
 import Menu from "./menu";
-import Categories from "./categories";
-import Foods from "./foods";
 import Orders from "./orders";
 import Settings from "./settings";
 

@@ -12,6 +12,8 @@
   --greyactive: #8E8EA9;
   --greytext: #707070;
   --activelateral: rgba(67, 145, 237, 0.1);
+  --grey: #EEF2F5;
+  --p_font_size: 14px;
 }
 
 ::-webkit-scrollbar {
@@ -647,3 +649,56 @@
 }
 
 /* End of active code */
+
+
+/* Loading code */
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.svg{
+  width: 150px;
+  height: 150px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.svg circle{
+  background-color: red;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke-width: 10;
+  stroke: var(--redwine);
+  stroke-linecap: round;
+  transform:translate(5px, 5px);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  animation: circular 4s linear infinite;
+  z-index: 100;
+}
+
+@keyframes circular{
+  0%, 100%{
+    stroke-dashoffset: 440;
+  }
+  50%{
+    stroke-dashoffset: 0;
+  }
+  50.1%{
+    stroke-dashoffset: 880;
+  }
+}
+/* End of Loading code */
