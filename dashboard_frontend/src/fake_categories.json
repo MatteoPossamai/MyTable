@@ -4,61 +4,50 @@
             "id": 1,
             "name": "Pizzas",
             "number": 1,
-            "iconId": 2
+            "iconId": 1, 
+            "isActive": true
         }, 
         {
             "id": 2,
             "name": "Pasta",
             "number": 2,
-            "iconId": 3
+            "iconId": 2,
+            "isActive": true
         },
         {
             "id": 3,
             "name": "Salads",
             "number": 3,
-            "iconId": 4
+            "iconId": 3,
+            "isActive": true
         },
         {
             "id": 4,
             "name": "Deserts",
             "number": 4,
-            "iconId": 5
+            "iconId": 4,
+            "isActive": true
         },
         {
             "id": 5,
             "name": "Drinks",
             "number": 5,
-            "iconId": 6
+            "iconId": 6,
+            "isActive": true
         },
         {
             "id": 6,
             "name": "Sides",
             "number": 6,
-            "iconId": 7
+            "iconId": 2,
+            "isActive": true
         },
         {
             "id": 7,
             "name": "Kids",
             "number": 7,
-            "iconId": 8
-        },
-        {
-            "id": 8,
-            "name": "Specials",
-            "number": 8,
-            "iconId": 9
-        },
-        {
-            "id": 9,
-            "name": "Beverages",
-            "number": 9,
-            "iconId": 10
-        },
-        {
-            "id": 10,
-            "name": "Exclusive",
-            "number": 10,
-            "iconId": 11
+            "iconId": 3,
+            "isActive": true
         }
     ]
 }

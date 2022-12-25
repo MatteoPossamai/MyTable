@@ -3,6 +3,8 @@ import {AiOutlineSearch} from "react-icons/ai";
 import { useState } from "react";
 
 // Local imports
+// Components
+import ItemComponent from "./item";
 // Types
 import Item from "../../types/item";
 
@@ -31,9 +33,7 @@ function Items(props:{items:Item[]}){
             <div className="categoriesContainer">
                 {filteredItems.map((item) => {
                     return (
-                        <div className="category">
-                            <p>{item.name}</p>
-                        </div>
+                        <ItemComponent food={item} key={item.id} />
                     )
                 })}
             </div>

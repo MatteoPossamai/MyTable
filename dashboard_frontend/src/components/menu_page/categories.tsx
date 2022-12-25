@@ -3,6 +3,8 @@ import { useState } from "react";
 import {AiOutlineSearch} from "react-icons/ai";
 
 // Local imports
+// Components
+import CategoryItem from "./cateogory";
 // Types
 import Category from "../../types/category";
 
@@ -31,9 +33,7 @@ function Categories(props:{categories:Category[]}){
             <div className="categoriesContainer">
                 {filteredCategories.map((category) => {
                     return (
-                        <div className="category" draggable>
-                            <p>{category.name}</p>
-                        </div>
+                        <CategoryItem key={category.id} category={category} />
                     )
                 })}
             </div>

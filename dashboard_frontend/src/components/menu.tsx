@@ -20,7 +20,7 @@ function Menu(){
     categories.sort((a, b) => a.number-b.number);
 
     // state for the selected category
-    const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? categories[0].id : null);
+    const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
 
     let items = faker.products;
