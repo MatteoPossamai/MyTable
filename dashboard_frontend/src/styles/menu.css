@@ -35,6 +35,10 @@
     border-radius: 10px;
     padding: 0;
     overflow-y: auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
 }
 
 .greyBox p {
@@ -112,6 +116,7 @@
     width: 87%;
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 
 .alwaysActiveCategory{
@@ -151,12 +156,17 @@
 .category aside button{
     background-color: var(--redwine);
     color: var(--white);
-    padding: 5px;
+    padding: 7px;
     border-radius: 20px;
     font-size: 14px;
-    width: 90%;
+    width: 95%;
+    height: 32px;
     border: none;
     margin: 3px 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .iconModifier{
@@ -175,10 +185,35 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
 }
 
+.hideIcon{
+    border-radius: 16px;
+    background-color: var(--inactive_red);
+    padding: 5px;
+    width: 20%;
+    height: 80%;
+    color: var(--black);
+}
+
+.deleteIcon{
+    border-radius: 16px;
+    background-color: var(--white);
+    padding: 5px;
+    width: 20%;
+    height: 80%;
+    color: var(--redwine);
+}
+
+.bottomButton{
+   position: absolute;
+    bottom: 0px; 
+    margin-left:15%;
+    z-index: 1;
+}  
+/* cursor: move; */
 /* End of general menu code */

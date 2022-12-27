@@ -37,6 +37,7 @@ function Categories(props:{categories:Category[]}){
                     )
                 })}
             </div>
+            <button className="submitBTN bottomButton">Confirm changes</button>
         </div>
     )
 }

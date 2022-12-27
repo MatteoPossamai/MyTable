@@ -19,7 +19,7 @@
             "name": "Salads",
             "number": 3,
             "iconId": 3,
-            "isActive": true
+            "isActive": false
         },
         {
             "id": 4,
@@ -47,7 +47,7 @@
             "name": "Kids",
             "number": 7,
             "iconId": 3,
-            "isActive": true
+            "isActive": false
         }
     ]
 }

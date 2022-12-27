@@ -14,6 +14,7 @@
   --activelateral: rgba(67, 145, 237, 0.1);
   --grey: #EEF2F5;
   --p_font_size: 14px;
+  --inactive_red: #FF7B7B;
 }
 
 ::-webkit-scrollbar {
@@ -358,7 +359,7 @@
 }
 
 .submitBTN:hover{
-  background-color: var(--backgrey);
+  background-color: var(--inactive_red);
 }
 
 .add-category{
