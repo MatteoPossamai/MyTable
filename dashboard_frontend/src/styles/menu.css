@@ -87,23 +87,25 @@
     margin: 0 0 0 10px;
 }
 
-.smallGrayBox{
+.createBox{
     background-color: var(--grey);
     width: 100%;
-    height: 200px;
     border-radius: 10px;
     padding: 0;
-    margin: 0 0 20px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin: 0;
 }
 
-.smallGrayBox p {
+.creationForms{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.creationForms p {
     font-size: var(--p_font_size);
     font-weight: medium;
     margin: 0;
-    padding: 15px;
 }
 
 .plusIcon{
@@ -210,10 +212,40 @@
 }
 
 .bottomButton{
-   position: absolute;
+   position: relative;
     bottom: 0px; 
     margin-left:15%;
     z-index: 1;
 }  
+
+.itemOn{
+    background-color: var(--activelateral);
+    margin-top: 10px;
+    width: 87%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.priceP{
+    color: var(--orange);
+    font-size: var(--p_font_size);
+    font-weight: 800;
+}
+
+.onElement{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editIcon{
+    width: 25px;
+    height: 25px;
+    margin: 0 25px 0 0;
+}
+
+
 /* cursor: move; */
 /* End of general menu code */
