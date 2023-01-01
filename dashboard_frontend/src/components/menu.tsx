@@ -16,23 +16,23 @@ let menuContext = createContext<any>(0);
 
 function Menu(){
     // fetching data from the fake server
-    const [categories, setCategories] = useState(data.categories);
+    const [categories, setCategories] = useState(data.categories.sort((a, b) => a.number-b.number));
     categories.sort((a, b) => a.number-b.number);
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
 
-    let items = faker.products;
-    items = items.filter(item => item.category === selectedCategory);
+    const [items, setItems] = useState(faker.products.sort((a, b) => a.number-b.number));
 
     return (
-        <menuContext.Provider value={{categories, setCategories, selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
+        <menuContext.Provider value={{categories, setCategories, items, setItems,
+                                    selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <section className="menu">
                     <Categories />
-                    <Items items={items} />
+                    <Items />
                 </section>
 
                 <section className="create-items">

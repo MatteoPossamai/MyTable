@@ -4,6 +4,7 @@ interface Item {
     price: number;
     description: string;
     category: number;
+    number: number;
 }
 
 export default Item;

@@ -13,13 +13,17 @@ function Food(props: {food: Item}) {
     const {selectedItem, setSelectedItem} = useContext(menuContext);
 
     const handleItemClick = () => {
+        if (selectedItem === props.food.id) {
+            setSelectedItem(-1);
+            return;
+        }
         setSelectedItem(props.food.id);
     }
 
     return (
         <div className={selectedItem === props.food.id ? "category itemOn":"category"}
         onClick={() => handleItemClick()}>
-            <div className="alwaysActiveCategory">
+            <div className="alwaysActiveCategory" style={{alignItems: props.food.id === selectedItem ? "center" : "normal"}}>
                 <MdOutlineDragIndicator className="dragIcon" />
                 {selectedItem === props.food.id ?
                 <div className="onElement">

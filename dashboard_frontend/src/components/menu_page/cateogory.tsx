@@ -76,6 +76,7 @@ function CategoryItem(props:{category:Category}) {
         <div className={selectedCategory === category.id ? "category activeCategory":"category"}
             onClick={() => handleCategoryClick()} 
             style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}>
+                
             <div className="alwaysActiveCategory" style={{alignItems: props.category.id === selectedCategory ? "center" : "normal"}}>
                 <MdOutlineDragIndicator className="dragIcon" />
                 <p style={{display: props.category.id === selectedCategory ? "none" : "block" }}>{category.name}</p>

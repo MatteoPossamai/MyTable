@@ -13,8 +13,6 @@ function CreateItem(){
         e.preventDefault();
         console.log("Create Item");
         // Send the request to the backend
-
-        // End of the call
         setUpdate(!update);
     }
 

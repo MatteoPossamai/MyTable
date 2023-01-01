@@ -23,8 +23,8 @@
 }
 
 .create-items{
+    height: 75vh;
     width: 30%;
-    height: 100px;
     margin: 0;
     padding: 0;
 }
@@ -115,17 +115,20 @@
 .category{
     background-color: var(--white);
     margin-top: 10px;
-    width: 87%;
+    width: 90%;
     max-height: 250px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     z-index: 10; 
-    padding: 5px;
+    padding: 2px;
 }
 
 .alwaysActiveCategory{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .category:hover{
@@ -140,16 +143,18 @@
 
 .activeCategory{
     background-color: var(--activelateral);
+    align-items: center;
+    justify-content: center;
 }
 
 .category aside{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0;
+    padding: 10px;
     margin: 0;
-    max-height: 200px;
     overflow-y: auto;
+    max-height: 180px;
 }
 
 .category aside img{
@@ -175,37 +180,37 @@
 }
 
 .iconModifier{
-    width: 45%;
-    margin: 12px 0 0 0;
+    width: 40%;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+}
+
+.manageCategory{
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    height: 140px;
     border-radius: 20px;
 }
 
 .changeCategoryIcon{
     background-color: var(--redwine);
-    justify-content: center;
-    width: 50%;
+    width: 55%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-radius: 20px;
     overflow-y: auto;
-    z-index: 1000;
-    height: fit-content;
-}
-
-.manageCategory{
-    background-color: var(--white);
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
+    height: 140px;
+    padding: 0;
+    margin: 0;
 }
 
 .hideIcon{
@@ -235,7 +240,7 @@
 .itemOn{
     background-color: var(--activelateral);
     margin-top: 10px;
-    width: 87%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     z-index: 10;

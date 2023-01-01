@@ -1,21 +1,26 @@
 // Global imports
 import {AiOutlineSearch} from "react-icons/ai";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 // Local imports
+// Context
+import { menuContext } from "../menu";
 // Components
 import ItemComponent from "./item";
 // Types
 import Item from "../../types/item";
 
-function Items(props:{items:Item[]}){
+function Items(){
+    const {items, setItems, selectedCategory} = useContext(menuContext);
     const [search, setSearch] = useState("");
 
     const handleModification = (e: any) => {
         setSearch(e.target.value);
     }
 
-    let filteredItems = props.items.filter((item) => {
+    let filteredItems = items.filter((item:Item)=>{
+        return item.category === selectedCategory;
+    }).filter((item: Item) => {
         return item.name.toLowerCase().includes(search.toLowerCase());
     });
 
@@ -31,7 +36,7 @@ function Items(props:{items:Item[]}){
             </header>
 
             <div className="categoriesContainer">
-                {filteredItems.map((item) => {
+                {filteredItems.map((item: Item) => {
                     return (
                         <ItemComponent food={item} key={item.id} />
                     )
