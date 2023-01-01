@@ -26,6 +26,13 @@ function CreateCategory(){
                 <label htmlFor="categoryDescription">Category Description</label>
                 <input type="text" value={categoryDescription} onChange={(e) => {setCategoryDescription(e.target.value)}} />
 
+                <label>Icon</label>
+                <select name="icon">
+                    <option value="1">Icon 1</option>
+                    <option value="2">Icon 2</option>
+                    <option value="3">Icon 3</option>
+                </select>
+
                 <button type="submit" className="submitBTN">Create</button>
             </form>
         </div>

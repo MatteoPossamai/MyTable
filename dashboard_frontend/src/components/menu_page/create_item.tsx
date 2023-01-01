@@ -38,13 +38,6 @@ function CreateItem(){
                     <option value="3">Category 3</option>
                 </select>
 
-                <label>Icon</label>
-                <select name="icon">
-                    <option value="1">Icon 1</option>
-                    <option value="2">Icon 2</option>
-                    <option value="3">Icon 3</option>
-                </select>
-
                 <label htmlFor="categoryDescription">Facts</label>
                 <input type="text" value={itemFacts} onChange={(e) => {setItemFacts(e.target.value)}} />
 

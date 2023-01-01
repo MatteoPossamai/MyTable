@@ -1,21 +1,36 @@
 // Global imports
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {AiOutlineSearch} from "react-icons/ai";
 
 // Local imports
+// Context
+import { menuContext } from "../menu";
 // Components
 import CategoryItem from "./cateogory";
 // Types
 import Category from "../../types/category";
 
-function Categories(props:{categories:Category[]}){
+function Categories(){
     const [search, setSearch] = useState("");
+    const {categories} = useContext(menuContext);
 
+    // Handle modification
     const handleModification = (e: any) => {
         setSearch(e.target.value);
     }
 
-    let filteredCategories = props.categories.filter((category) => {
+    // Confirm changes
+    const confirmChanges = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        // Call the API to update the categories
+        let data = {
+            categories: categories
+        }
+
+        console.log(data)
+    }
+
+    let filteredCategories = categories.filter((category:Category) => {
         return category.name.toLowerCase().includes(search.toLowerCase());
     });
 
@@ -31,13 +46,13 @@ function Categories(props:{categories:Category[]}){
             </header>
 
             <div className="categoriesContainer">
-                {filteredCategories.map((category) => {
+                {filteredCategories.map((category: Category) => {
                     return (
                         <CategoryItem key={category.id} category={category} />
                     )
                 })}
             </div>
-            <button className="submitBTN bottomButton">Confirm changes</button>
+            <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton">Confirm changes</button>
         </div>
     )
 }

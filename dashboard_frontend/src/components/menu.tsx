@@ -16,7 +16,7 @@ let menuContext = createContext<any>(0);
 
 function Menu(){
     // fetching data from the fake server
-    const categories = data.categories;
+    const [categories, setCategories] = useState(data.categories);
     categories.sort((a, b) => a.number-b.number);
 
     // state for the selected category
@@ -27,11 +27,11 @@ function Menu(){
     items = items.filter(item => item.category === selectedCategory);
 
     return (
-        <menuContext.Provider value={{selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
+        <menuContext.Provider value={{categories, setCategories, selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <section className="menu">
-                    <Categories categories={categories} />
+                    <Categories />
                     <Items items={items} />
                 </section>
 
