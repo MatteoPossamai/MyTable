@@ -1,5 +1,10 @@
 // Global Imports
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Category from "../../types/category";
+
+// Local imports
+// Context
+import { menuContext } from "../menu";
 
 function CreateItem(){
 
@@ -7,7 +12,8 @@ function CreateItem(){
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemPrice, setItemPrice] = useState(0);
-    const [itemFacts, setItemFacts] = useState("");
+
+    const {categories} = useContext(menuContext);
 
     const createItem = (e: any) => {
         e.preventDefault();
@@ -18,26 +24,25 @@ function CreateItem(){
 
     return (
         <div className="createBox">
-            <p>Create Category</p>
+            <p>Create Item</p>
             <form className="creationForms" onSubmit={(e) => createItem(e)}>
                 <label htmlFor="categoryName">Item Name</label>
-                <input type="text" value={itemName} onChange={(e) => {setItemName(e.target.value)}} />
+                <input className="creationInput" type="text" value={itemName} onChange={(e) => {setItemName(e.target.value)}} />
 
                 <label htmlFor="categoryDescription">Item Description</label>
-                <input type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)}} />
+                <input className="creationInput" type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)}} />
 
                 <label htmlFor="categoryDescription">Item Price</label>
-                <input type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))}} />
+                <input className="creationInput" type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))}} />
 
                 <label>Category</label>
-                <select name="category" id="category">
-                    <option value="1">Category 1</option>
-                    <option value="2">Category 2</option>
-                    <option value="3">Category 3</option>
+                <select name="category" className="selectionCategory">
+                    {categories.map((category: Category) => {
+                        return (
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        )
+                    })}
                 </select>
-
-                <label htmlFor="categoryDescription">Facts</label>
-                <input type="text" value={itemFacts} onChange={(e) => {setItemFacts(e.target.value)}} />
 
                 <button type="submit" className="submitBTN">Create</button>
             </form>
