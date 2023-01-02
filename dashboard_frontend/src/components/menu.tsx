@@ -30,10 +30,9 @@ function Menu(){
                                     selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
-                <section className="menu">
-                    <Categories />
-                    <Items />
-                </section>
+                <Categories />
+                
+                <Items />
 
                 <section className="create-items">
                     <CreateCategory />
