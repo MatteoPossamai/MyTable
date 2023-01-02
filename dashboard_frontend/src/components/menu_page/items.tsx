@@ -11,7 +11,7 @@ import ItemComponent from "./item";
 import Item from "../../types/item";
 
 function Items(){
-    const {items, setItems, selectedCategory} = useContext(menuContext);
+    const {items, selectedCategory} = useContext(menuContext);
     const [search, setSearch] = useState("");
 
     const handleModification = (e: any) => {
@@ -36,11 +36,24 @@ function Items(){
             </header>
 
             <div className="categoriesContainer">
+                {/* All the categories */}
                 {filteredItems.map((item: Item) => {
                     return (
                         <ItemComponent food={item} key={item.id} />
                     )
                 })}
+
+                {/* Add item button */}
+                <div className="category" style={{display: selectedCategory === -1 ? "none" : "flex"}}
+                onClick={()=>{console.log("Create Item in the category")}}>
+                    <p style={{margin: "15px auto"}}>Add Item in this category</p>
+                </div>
+
+                {/* Empty category placeholder */}
+                <div className="category" style={{display: selectedCategory === -1 ? "flex" : "none"}}>
+                    <p style={{margin: "15px auto"}}>Select a category to see the items</p>
+                </div>
+
             </div>
         </div>
     )
