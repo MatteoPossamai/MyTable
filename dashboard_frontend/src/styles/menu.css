@@ -7,34 +7,25 @@
 }
 
 .menu-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0;
-    margin: 20px;
-}
-
-.menu{
-    height: 75vh;
-    width: 65%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: .5rem;
+    padding: 10px;
+    margin: 10px;
+    height: 78vh;
 }
 
 .create-items{
-    height: 75vh;
-    width: 30%;
-    margin: 0;
-    padding: 0;
+    height: 78vh;
+    display: grid;
+    row-gap: .5rem;
 }
 
 .greyBox{
     background-color: var(--grey);
-    width: 48%;
     border-radius: 10px;
     padding: 0;
-    overflow-y: auto;
+    overflow-y: overlay;
     position: relative;
     align-items: center;
     justify-content: center;
@@ -92,20 +83,17 @@
     width: 100%;
     border-radius: 10px;
     padding: 0;
-    margin: 0;
+}
+
+.createBox p{
+    margin: 10px;
 }
 
 .creationForms{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 15px;
-}
-
-.creationForms p {
-    font-size: var(--p_font_size);
-    font-weight: medium;
-    margin: 0;
+    margin: 0 15px 0 15px;
 }
 
 .plusIcon{
@@ -263,6 +251,54 @@
     width: 25px;
     height: 25px;
     margin: 0 25px 0 0;
+}
+
+.creationInput{
+    background-color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: var(--p_font_size);
+    margin: 2px 0 2px 0;
+    box-shadow: 0 2px 5px 0px var(--greytext);
+}
+
+.creationInput:focus{
+    outline: none;
+}
+
+.iconsChoice{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    max-height: 130px;
+    overflow-y: auto;
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+.foodIcon{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+}
+
+#categoryProblem1, #categoryProblem2 {
+    display: none;
+    font-size: smaller;
+    color: var(--redwine);
+    margin: 0;
+    padding: 0;
+}
+
+.selectionCategory{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
 }
 
 /* cursor: move; */

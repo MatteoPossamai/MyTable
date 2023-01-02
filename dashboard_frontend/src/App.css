@@ -37,6 +37,7 @@
   text-align: center;
   margin: 0;
   padding: 0;
+  overflow-y: overlay;
 }
 
 /* Header code */
@@ -347,12 +348,12 @@
 }
 
 .submitBTN{
-  margin: 20px auto;
-  height: 50px;
+  margin: 10px auto;
+  height: 45px;
   width: 65%;
   color: var(--white);
   background-color: var(--redwine);
-  border: 2px solid var(--white);
+  border: none;
   border-radius: 10px;
   font-size: 1.2em;
   font-weight: 600;
