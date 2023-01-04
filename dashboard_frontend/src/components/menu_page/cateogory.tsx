@@ -1,8 +1,9 @@
 // Global imports
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import {MdOutlineDragIndicator} from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
+import { Draggable } from "react-beautiful-dnd";
 
 // Local imports
 // Context
@@ -10,14 +11,13 @@ import { menuContext } from "../menu";
 // Types
 import Category from "../../types/category";
 
-function CategoryItem(props:{category:Category}) {
+function CategoryItem(props:{category:Category, idx:number}) {
     const {categories, setCategories} = useContext(menuContext);
     const {selectedCategory, setSelectedCategory} = useContext(menuContext);
     const [update, setUpdate] = useState(true);
-    const [isSetting, setIsSetting] = useState(false);
 
-    // Get from .env file the number of icons
-    let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
+    const [name, setName] = useState(props.category.name);
+    const [description, setDescription] = useState(props.category.description);
 
     let category = categories.find((category:Category) => category.id === props.category.id);
 
@@ -28,12 +28,6 @@ function CategoryItem(props:{category:Category}) {
             return;
         }
         setSelectedCategory(category.id);
-    }
-
-    // Change icon
-    const changeIcon = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.stopPropagation();
-        setIsSetting(!isSetting);
     }
 
     // Hide/show category
@@ -56,57 +50,107 @@ function CategoryItem(props:{category:Category}) {
         setUpdate(!update);
     }
 
-    // Change category icon
-    const changeCategoryIcon = (e: React.MouseEvent<HTMLImageElement, MouseEvent>, icon:number) => {
+    // Change name
+    const changeName = (e:React.ChangeEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        // Call the API to update the category
-        setIsSetting(!isSetting);
-        setCategories(categories.map((category:Category) => {
-            if (category.id === props.category.id) {
-                category.iconId = icon+1;
-            }
-            return category;
-        }));
-        setUpdate(!update);
+        deactiveError();
+        setName(e.target.value);
     }
 
+    // Change description
+    const changeDescription = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+        e.stopPropagation();
+        deactiveError();
+        setDescription(e.target.value);
+    }
 
+    const activeError = () => {
+        let flag = true;
+        if(name === ""){
+            let name = document.getElementById("categoryName");
+            let problem = document.getElementById("categoryProblem3");
+            name!.style.border = "1px solid red";
+            problem!.style.display = "block";
+            flag = false;
+        }
+        if(description === ""){
+            let desc = document.getElementById("categoryDescription");
+            let problem = document.getElementById("categoryProblem4");
+            desc!.style.border = "1px solid red";
+            problem!.style.display = "block";
+            flag = false;
+        }
+        return flag;
+    }
+
+    const deactiveError = () => {
+        let name = document.getElementById("categoryName");
+        let problem = document.getElementById("categoryProblem3");
+        name!.style.border = "none";
+        problem!.style.display = "none";
+
+        let desc = document.getElementById("categoryDescription");
+        let problem2 = document.getElementById("categoryProblem4");
+        desc!.style.border = "none";
+        problem2!.style.display = "none";
+    }
+
+    // Update category
+    const updateCategory = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        let flag = activeError();
+
+        if(flag){
+            e.preventDefault();
+            e.stopPropagation();
+            // Call the API to update the category
+
+            // Data are in name, description
+            setUpdate(!update);
+        }      
+    }      
 
     return (
-        <div className={selectedCategory === category.id ? "category activeCategory":"category"}
-            onClick={() => handleCategoryClick()} 
-            style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}>
-                
-            <div className="alwaysActiveCategory" style={{alignItems: props.category.id === selectedCategory ? "center" : "normal"}}>
-                <MdOutlineDragIndicator className="dragIcon" />
-                <p style={{display: props.category.id === selectedCategory ? "none" : "block" }}>{category.name}</p>
-            </div>
-
-            <aside style={{display: selectedCategory === category.id ? "flex": "none"}}>
-                <div className="iconModifier">
-                    <img src={`/plates/food_${category.iconId}.svg`} alt="Category cover" />
-                    <button onClick={(e) => changeIcon(e)}>Change cover</button>
+        <Draggable key={props.category.id} draggableId={props.category.id.toString()} index={props.idx}>
+            {(provided) => (
+                <div className={selectedCategory === category.id ? "category activeCategory":"category"}
+                onClick={() => handleCategoryClick()} 
+                style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}
+                ref={provided.innerRef} 
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                >
+                        
+                    <div className="alwaysActiveCategory" style={{alignItems: props.category.id === selectedCategory ? "center" : "normal"}}>
+                        <MdOutlineDragIndicator className="dragIcon" />
+                        <p style={{display: props.category.id === selectedCategory ? "none" : "block" }}>{category.name}</p>
+                    </div>
+        
+                    <aside style={{display: selectedCategory === category.id ? "flex": "none"}}>
+        
+                        <form className="modifyCategory" onClick={(e) => e.stopPropagation()} onSubmit={e => updateCategory(e)}>
+                            <label htmlFor="categoryName">Category Name</label>
+                            <p id="categoryProblem3">The name must be given</p>
+                            <input value={name} onChange={(e) => changeName(e)} type="text" name="categoryName" id="categoryName" />    
+                            <label htmlFor="categoryDescription">Category Description</label>
+                            <p id="categoryProblem4">The description must be given</p>
+                            <textarea value={description} onChange={(e) => changeDescription(e)} name="categoryDescription" id="categoryDescription" 
+                                    style={{maxWidth: "85%"}} />
+                            <button>Update Category</button>
+                            <div className="manageCategory">
+                                <button onClick={(e) => hideCategory(e) }> <BiHide className="hideIcon" 
+                                        style={{backgroundColor: categories.find((category: Category) => category.id === props.category.id).isActive ? "#FF7B7B" : "#76CB8E"}} /> 
+                                    {category.isActive ? "Hide Category" : "Show Category"}
+                                </button>
+                                <button onClick={(e) => deleteCategory(e)}> <BsTrash className="deleteIcon" /> Delete Category</button>
+                            </div>
+                        </form>
+        
+                        
+                    </aside>
                 </div>
-
-                <div className="changeCategoryIcon" style={{display: isSetting ? "flex" : "none" }}>
-                    {Array.from(Array(icon_plates).keys()).map((icon) => {
-                        return (
-                            <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
-                            onClick={(e) => changeCategoryIcon(e, icon)} />
-                        )
-                    })
-                    }
-                </div>
-
-                <div className="manageCategory" style={{display: isSetting ? "none" : "flex" }}>
-                    <button onClick={(e) => hideCategory(e) }> <BiHide className="hideIcon" 
-                            style={{backgroundColor: categories.find((category: Category) => category.id === props.category.id).isActive ? "#FF7B7B" : "#76CB8E"}} /> 
-                        {category.isActive ? "Hide Category" : "Show Category"}
-                    </button>
-                    <button onClick={(e) => deleteCategory(e)}> <BsTrash className="deleteIcon" /> Delete Category</button>
-                </div>
-            </aside>
-        </div>
+            )}
+        </Draggable>
     )
 }
 

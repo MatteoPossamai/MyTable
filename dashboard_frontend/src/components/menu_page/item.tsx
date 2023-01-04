@@ -1,5 +1,5 @@
 // Global Imports
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {MdOutlineDragIndicator} from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 
@@ -11,6 +11,8 @@ import Item from "../../types/item";
 
 function Food(props: {food: Item}) {
     const {selectedItem, setSelectedItem} = useContext(menuContext);
+    const [edit, setEdit] = useState(false);
+    console.log(edit)
 
     const handleItemClick = () => {
         if (selectedItem === props.food.id) {
@@ -32,11 +34,15 @@ function Food(props: {food: Item}) {
                         <p>{props.food.description}</p>
                         <p className="priceP">€{props.food.price}</p>
                     </div>
-                    <FaPen className="editIcon" />
+                    <FaPen className="editIcon" onClick={(e) => {e.stopPropagation();setEdit(!edit)}} />
                 </div>
                 :
                 <p>{props.food.name}</p>
                 }
+            </div>
+
+            <div className="editItem" style={{display: edit && selectedItem === props.food.id ? "flex" : "none"}}>
+                <h1>Edit</h1>
             </div>
         </div>
     )

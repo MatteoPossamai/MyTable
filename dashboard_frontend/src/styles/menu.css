@@ -104,7 +104,8 @@
     background-color: var(--white);
     margin-top: 10px;
     width: 90%;
-    max-height: 250px;
+    height: fit-content;
+    max-height: 350px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -129,6 +130,10 @@
     margin: 12px 0 0 0;
 }
 
+.dragIcon:hover{
+    cursor: grab;
+}
+
 .activeCategory{
     background-color: var(--activelateral);
     align-items: center;
@@ -137,12 +142,12 @@
 
 .category aside{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     margin: 0;
     overflow-y: auto;
-    max-height: 180px;
+    max-height: 240px;
 }
 
 .category aside img{
@@ -180,11 +185,9 @@
 .manageCategory{
     background-color: var(--white);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    width: 55%;
-    height: 140px;
+    width: 100%;
     border-radius: 20px;
 }
 
@@ -284,7 +287,7 @@
     border-radius: 10px;
 }
 
-#categoryProblem1, #categoryProblem2 {
+#categoryProblem1, #categoryProblem2, #categoryProblem3, #categoryProblem4 {
     display: none;
     font-size: smaller;
     color: var(--redwine);
@@ -299,6 +302,45 @@
     margin: 0 auto;
     text-align: center;
     font-size: 18px;
+}
+
+.modifyCategory{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: 20px;
+}
+
+.modifyCategory input {
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 0 5px 0;
+    font-size: var(--p_font_size);
+    padding: 2px;
+    box-shadow: 0 2px 5px 0px var(--greytext);
+}
+
+.modifyCategory textarea{
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 0 5px 0;
+    font-size: var(--p_font_size);
+    padding: 2px;
+    box-shadow: 0 2px 5px 0px var(--greytext);box-shadow: 0 2px 5px 0px var(--greytext);   
+}
+
+.modifyCategory input:focus{
+    outline: none;
+}
+
+.modifyCategory textarea:focus{
+    outline: none;
 }
 
 /* cursor: move; */

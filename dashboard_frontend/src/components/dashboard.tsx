@@ -1,6 +1,8 @@
 function DashboardCard(){
     return (
-        <h1 style={{backgroundColor:"red"}}>Dashboard</h1>
+        <>
+            <h1 className="topHeading">Dashboard</h1>
+        </>
     )
 }
 

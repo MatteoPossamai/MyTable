@@ -7,11 +7,14 @@ import Category from "../../types/category";
 import { menuContext } from "../menu";
 
 function CreateItem(){
+    // Get from .env file the number of icons
+    let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
 
     const [update, setUpdate] = useState(false);
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemPrice, setItemPrice] = useState(0);
+    const [selectedIcon, setSelectedIcon] = useState(0);
 
     const {categories} = useContext(menuContext);
 
@@ -20,6 +23,12 @@ function CreateItem(){
         console.log("Create Item");
         // Send the request to the backend
         setUpdate(!update);
+    }
+
+    const changeCategoryIcon = (e: React.MouseEvent<HTMLImageElement, MouseEvent>, icon:number) => {
+        e.stopPropagation();
+        setSelectedIcon(icon);
+        // Call the API to update the category
     }
 
     return (
@@ -43,6 +52,18 @@ function CreateItem(){
                         )
                     })}
                 </select>
+
+                <label>Icon</label>
+                <section className="iconsChoice">
+                    {Array.from(Array(icon_plates).keys()).map((icon) => {
+                        return (
+                            <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
+                            onClick={(e) => {changeCategoryIcon(e, icon);}} className="foodIcon"
+                            style={{backgroundColor: icon === selectedIcon ? "#530F26" : "white" }} />
+                        )
+                    })
+                    }
+                </section>
 
                 <button type="submit" className="submitBTN">Create</button>
             </form>

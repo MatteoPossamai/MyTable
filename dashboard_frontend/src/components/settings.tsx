@@ -1,6 +1,12 @@
+// Local imports
+// Styles
+import "../styles/settings.css";
+
 function Settings(){
     return (
-        <h1 style={{backgroundColor:"red"}}>Settings</h1>
+        <>
+            <h1 className="topHeading">Settings</h1>
+        </>
     )
 }
 

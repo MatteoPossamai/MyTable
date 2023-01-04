@@ -2,20 +2,18 @@
 import { useState } from "react";
 
 function CreateCategory(){
-    // Get from .env file the number of icons
-    let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
 
     const [update, setUpdate] = useState(false);
     
     // Data to be sent to the API on creation of the category
     const [categoryName, setCategoryName] = useState("");
     const [categoryDescription, setCategoryDescription] = useState("");
-    const [selectedIcon, setSelectedIcon] = useState(0);
 
     const activeError = () => {
         let flag = true;
         if(categoryName === ""){
             let name = document.getElementById("categoryName");
+            console.log(name);
             let problem = document.getElementById("categoryProblem1");
             name!.style.border = "1px solid red";
             problem!.style.display = "block";
@@ -34,12 +32,12 @@ function CreateCategory(){
     const deactiveError = () => {
         let name = document.getElementById("categoryName");
         let problem = document.getElementById("categoryProblem1");
-        name!.style.border = "1px solid #530F26";
+        name!.style.border = "none";
         problem!.style.display = "none";
 
         let desc = document.getElementById("categoryDescription");
         let problem2 = document.getElementById("categoryProblem2");
-        desc!.style.border = "1px solid #530F26";
+        desc!.style.border = "none";
         problem2!.style.display = "none";
     }
 
@@ -50,16 +48,11 @@ function CreateCategory(){
         if(flag){
             setCategoryName("");
             setCategoryDescription("");
-            setSelectedIcon(0);
             // Call the API to create the category
+            // TODO: Call the API to create the category
+            // Update the menu
             setUpdate(!update);
         }
-    }
-
-    const changeCategoryIcon = (e: React.MouseEvent<HTMLImageElement, MouseEvent>, icon:number) => {
-        e.stopPropagation();
-        setSelectedIcon(icon);
-        // Call the API to update the category
     }
 
     return (
@@ -75,18 +68,6 @@ function CreateCategory(){
                 <p id="categoryProblem2">The description must be given</p>
                 <input className="creationInput" type="text" value={categoryDescription} id="categoryDescription"
                  onChange={(e) => {setCategoryDescription(e.target.value);deactiveError()}} />
-
-                <label>Icon</label>
-                <section className="iconsChoice">
-                    {Array.from(Array(icon_plates).keys()).map((icon) => {
-                        return (
-                            <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
-                            onClick={(e) => {changeCategoryIcon(e, icon);deactiveError();}} className="foodIcon"
-                            style={{backgroundColor: icon === selectedIcon ? "#530F26" : "white" }} />
-                        )
-                    })
-                    }
-                </section>
 
                 <button type="submit" className="submitBTN">Create</button>
             </form>
