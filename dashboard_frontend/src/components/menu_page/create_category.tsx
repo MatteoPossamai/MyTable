@@ -12,16 +12,12 @@ function CreateCategory(){
     const activeError = () => {
         let flag = true;
         if(categoryName === ""){
-            let name = document.getElementById("categoryName");
             let problem = document.getElementById("categoryProblem1");
-            name!.style.border = "1px solid red";
             problem!.style.display = "block";
             flag = false;
         }
         if(categoryDescription === ""){
-            let desc = document.getElementById("categoryDescription");
             let problem = document.getElementById("categoryProblem2");
-            desc!.style.border = "1px solid red";
             problem!.style.display = "block";
             flag = false;
         }
@@ -29,14 +25,10 @@ function CreateCategory(){
     }
 
     const deactiveError = () => {
-        let name = document.getElementById("categoryName");
         let problem = document.getElementById("categoryProblem1");
-        name!.style.border = "none";
         problem!.style.display = "none";
 
-        let desc = document.getElementById("categoryDescription");
         let problem2 = document.getElementById("categoryProblem2");
-        desc!.style.border = "none";
         problem2!.style.display = "none";
     }
 

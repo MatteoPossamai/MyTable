@@ -18,9 +18,49 @@ function CreateItem(){
 
     const {categories} = useContext(menuContext);
 
+    // Error handling
+    const activateError = () => {
+        let flag = true;
+        if(itemName === ""){
+            let problem = document.getElementById("categoryProblem5");
+            problem!.style.display = "block";
+            flag = false;
+        }
+        if(itemDescription === ""){
+            let problem = document.getElementById("categoryProblem6");
+            problem!.style.display = "block";
+            flag = false;
+        }
+        if(itemPrice <= 0){
+            let problem = document.getElementById("categoryProblem7");
+            problem!.style.display = "block";
+            flag = false;
+        }
+        return flag;
+    }
+
+    const deactivateError = () => {
+        let problem = document.getElementById("categoryProblem5");
+        problem!.style.display = "none";
+
+        let problem2 = document.getElementById("categoryProblem6");
+        problem2!.style.display = "none";
+
+        let problem3 = document.getElementById("categoryProblem7");
+        problem3!.style.display = "none";
+    }
+
     const createItem = (e: any) => {
         e.preventDefault();
-        console.log("Create Item");
+        let flag = activateError();
+
+        if(flag){
+            // Call the API to create the item
+            setItemName("");
+            setItemDescription("");
+            setItemPrice(0);
+            setSelectedIcon(0);
+        }
         // Send the request to the backend
         setUpdate(!update);
     }
@@ -36,13 +76,18 @@ function CreateItem(){
             <p>Create Item</p>
             <form className="creationForms" onSubmit={(e) => createItem(e)}>
                 <label htmlFor="categoryName">Item Name</label>
-                <input className="creationInput" type="text" value={itemName} onChange={(e) => {setItemName(e.target.value)}} />
+                <p id="categoryProblem5">The name must be given</p>
+                <input className="creationInput" type="text" value={itemName} onChange={(e) => {setItemName(e.target.value);deactivateError()}} />
 
                 <label htmlFor="categoryDescription">Item Description</label>
-                <input className="creationInput" type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)}} />
+                <p id="categoryProblem6">The description must be given</p>
+                <input className="creationInput" type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)
+                deactivateError()}} />
 
                 <label htmlFor="categoryDescription">Item Price</label>
-                <input className="creationInput" type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))}} />
+                <p id="categoryProblem7">The price must be bigger than 0 euro</p>
+                <input className="creationInput" type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
+                deactivateError()}} />
 
                 <label>Category</label>
                 <select name="category" className="selectionCategory">

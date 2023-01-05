@@ -287,7 +287,8 @@
     border-radius: 10px;
 }
 
-#categoryProblem1, #categoryProblem2, #categoryProblem3, #categoryProblem4 {
+#categoryProblem1, #categoryProblem2, #categoryProblem3, #categoryProblem4,
+#categoryProblem5, #categoryProblem6, #categoryProblem7, #categoryProblem8 {
     display: none;
     font-size: smaller;
     color: var(--redwine);

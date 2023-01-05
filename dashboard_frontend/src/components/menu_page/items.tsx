@@ -76,15 +76,11 @@ function Items(){
                                 )
                             })}
         
-                            {/* Add item button */}
-                            <div className="category" style={{display: selectedCategory === -1 ? "none" : "flex"}}
-                            onClick={()=>{console.log("Create Item in the category")}}>
-                                <p style={{margin: "15px auto"}}>Add Item in this category</p>
-                            </div>
-        
                             {/* Empty category placeholder */}
-                            <div className="category" style={{display: selectedCategory === -1 ? "flex" : "none"}}>
-                                <p style={{margin: "15px auto"}}>Select a category to see the items</p>
+                            <div className="category" style={{display: selectedCategory === -1 || filteredItems.length === 0 ? "flex" : "none"}}>
+                                <p style={{margin: "15px auto"}}>
+                                    {selectedCategory === -1 ? "Select a category to see its items" : "No items in this category"}
+                                </p>
                             </div>
                         
                             {provided.placeholder}
