@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import {MdOutlineDragIndicator} from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 // Local imports
 // Context
@@ -111,46 +111,46 @@ function CategoryItem(props:{category:Category, idx:number}) {
     }      
 
     return (
-        <Draggable key={props.category.id} draggableId={props.category.id.toString()} index={props.idx}>
-            {(provided) => (
-                <div className={selectedCategory === category.id ? "category activeCategory":"category"}
-                onClick={() => handleCategoryClick()} 
-                style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}
-                ref={provided.innerRef} 
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                >
-                        
-                    <div className="alwaysActiveCategory" style={{alignItems: props.category.id === selectedCategory ? "center" : "normal"}}>
-                        <MdOutlineDragIndicator className="dragIcon" />
-                        <p style={{display: props.category.id === selectedCategory ? "none" : "block" }}>{category.name}</p>
+        <>      
+            <Draggable key={props.category.id} draggableId={props.category.id.toString()} index={props.idx}>
+                {(provided, snapshot) => (
+                    <div className={selectedCategory === category.id ? "category activeCategory":"category"}
+                    onClick={() => handleCategoryClick()} 
+                    style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}
+                    ref={provided.innerRef} 
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    >
+                            
+                        <div className="alwaysActiveCategory" style={{alignItems: props.category.id === selectedCategory ? "center" : "normal"}}>
+                            <MdOutlineDragIndicator className="dragIcon" />
+                            <p style={{display: props.category.id === selectedCategory ? "none" : "block" }}>{category.name}</p>
+                        </div>
+            
+                        <aside style={{display: selectedCategory === category.id ? "flex": "none"}}>
+            
+                            <form className="modifyCategory" onClick={(e) => e.stopPropagation()} onSubmit={e => updateCategory(e)}>
+                                <label htmlFor="categoryName">Category Name</label>
+                                <p id="categoryProblem3">The name must be given</p>
+                                <input value={name} onChange={(e) => changeName(e)} type="text" name="categoryName" id="categoryName" />    
+                                <label htmlFor="categoryDescription">Category Description</label>
+                                <p id="categoryProblem4">The description must be given</p>
+                                <textarea value={description} onChange={(e) => changeDescription(e)} name="categoryDescription" id="categoryDescription" 
+                                        style={{maxWidth: "85%"}} />
+                                <button>Update Category</button>
+                                <div className="manageCategory">
+                                    <button onClick={(e) => hideCategory(e) }> <BiHide className="hideIcon" 
+                                            style={{backgroundColor: categories.find((category: Category) => category.id === props.category.id).isActive ? "#FF7B7B" : "#76CB8E"}} /> 
+                                        {category.isActive ? "Hide Category" : "Show Category"}
+                                    </button>
+                                    <button onClick={(e) => deleteCategory(e)}> <BsTrash className="deleteIcon" /> Delete Category</button>
+                                </div>
+                            </form> 
+                        </aside>
                     </div>
-        
-                    <aside style={{display: selectedCategory === category.id ? "flex": "none"}}>
-        
-                        <form className="modifyCategory" onClick={(e) => e.stopPropagation()} onSubmit={e => updateCategory(e)}>
-                            <label htmlFor="categoryName">Category Name</label>
-                            <p id="categoryProblem3">The name must be given</p>
-                            <input value={name} onChange={(e) => changeName(e)} type="text" name="categoryName" id="categoryName" />    
-                            <label htmlFor="categoryDescription">Category Description</label>
-                            <p id="categoryProblem4">The description must be given</p>
-                            <textarea value={description} onChange={(e) => changeDescription(e)} name="categoryDescription" id="categoryDescription" 
-                                    style={{maxWidth: "85%"}} />
-                            <button>Update Category</button>
-                            <div className="manageCategory">
-                                <button onClick={(e) => hideCategory(e) }> <BiHide className="hideIcon" 
-                                        style={{backgroundColor: categories.find((category: Category) => category.id === props.category.id).isActive ? "#FF7B7B" : "#76CB8E"}} /> 
-                                    {category.isActive ? "Hide Category" : "Show Category"}
-                                </button>
-                                <button onClick={(e) => deleteCategory(e)}> <BsTrash className="deleteIcon" /> Delete Category</button>
-                            </div>
-                        </form>
-        
-                        
-                    </aside>
-                </div>
-            )}
-        </Draggable>
+                )}
+            </Draggable>
+        </>
     )
 }
 

@@ -1,7 +1,7 @@
 // Global imports
 import { useContext, useState } from "react";
 import {AiOutlineSearch} from "react-icons/ai";
-import {DragDropContext,Droppable, DropResult} from "react-beautiful-dnd";
+import {DragDropContext,Droppable, DropResult} from "@hello-pangea/dnd";
 
 // Local imports
 // Context
@@ -27,7 +27,6 @@ function Categories(){
         let data = {
             categories: categories
         }
-
         console.log(data)
     }
 
@@ -39,9 +38,14 @@ function Categories(){
         const {destination, source} = result;
         if (!destination) return;
 
-        const items = Array.from(categories);
+        const items:Category[] = Array.from(categories);
         const [newOrder] = items.splice(source.index, 1);
         items.splice(destination.index, 0, newOrder);
+        console.log(items);
+
+        for(let i = 0; i < items.length; i++){
+            items[i].number = i+1;
+        }
 
         setCategories(items);
     }
@@ -69,7 +73,7 @@ function Categories(){
                                 <CategoryItem  key={category.id} idx={idx} category={category}/>
                                 )
                             })}
-
+                            {provided.placeholder}
                     </div>}
                 </Droppable>
             </DragDropContext>

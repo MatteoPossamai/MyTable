@@ -17,7 +17,6 @@ let menuContext = createContext<any>(0);
 function Menu(){
     // fetching data from the fake server
     const [categories, setCategories] = useState(data.categories.sort((a, b) => a.number-b.number));
-    categories.sort((a, b) => a.number-b.number);
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
