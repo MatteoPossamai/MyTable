@@ -113,10 +113,10 @@ function CategoryItem(props:{category:Category, idx:number}) {
     return (
         <>      
             <Draggable key={props.category.id} draggableId={props.category.id.toString()} index={props.idx}>
-                {(provided, snapshot) => (
+                {(provided) => (
                     <div className={selectedCategory === category.id ? "category activeCategory":"category"}
+                    id={category.isActive ? "":"hiddenCategory"}
                     onClick={() => handleCategoryClick()} 
-                    style={{backgroundColor: category.isActive ? "" : "#FF7B7B"}}
                     ref={provided.innerRef} 
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

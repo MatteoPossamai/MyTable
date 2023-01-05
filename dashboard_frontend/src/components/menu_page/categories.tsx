@@ -41,7 +41,6 @@ function Categories(){
         const items:Category[] = Array.from(categories);
         const [newOrder] = items.splice(source.index, 1);
         items.splice(destination.index, 0, newOrder);
-        console.log(items);
 
         for(let i = 0; i < items.length; i++){
             items[i].number = i+1;

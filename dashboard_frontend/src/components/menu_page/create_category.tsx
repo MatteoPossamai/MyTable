@@ -13,7 +13,6 @@ function CreateCategory(){
         let flag = true;
         if(categoryName === ""){
             let name = document.getElementById("categoryName");
-            console.log(name);
             let problem = document.getElementById("categoryProblem1");
             name!.style.border = "1px solid red";
             problem!.style.display = "block";

@@ -343,5 +343,9 @@
     outline: none;
 }
 
+#hiddenCategory{
+    background-color: var(--inactive_red);
+}
+
 /* cursor: move; */
 /* End of general menu code */
