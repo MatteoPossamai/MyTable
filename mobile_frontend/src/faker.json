@@ -6,6 +6,8 @@
             "price":10,
             "description": "Pizza with tomato sauce, mozzarella and basil",
             "category": 1,
+            "number": 1,
+            "isActive": true,
             "iconId": 1
         },
         {
@@ -14,7 +16,9 @@
             "price":12,
             "description": "Pasta with bacon, eggs and parmesan",
             "category": 2,
-            "iconId": 7
+            "number": 1,
+            "isActive": true,
+            "iconId": 2
         },
         {
             "id":3,
@@ -22,7 +26,9 @@
             "price":15,
             "description": "Lasagna with tomato sauce, mozzarella, meat and béchamel",
             "category": 2,
-            "iconId": 7
+            "number": 1,
+            "isActive": true,
+            "iconId": 3
         },
         {
             "id":4,
@@ -30,7 +36,9 @@
             "price":8,
             "description": "Salad with tomato, mozzarella, olives and basil",
             "category": 3,
-            "iconId": 5
+            "number": 1,
+            "isActive": true,
+            "iconId": 4
         },
         {
             "id":5,
@@ -38,7 +46,9 @@
             "price":6,
             "description": "Cannoli with ricotta, chocolate and candied fruit",
             "category": 4,
-            "iconId": 14
+            "number": 1,
+            "isActive": true,
+            "iconId": 5
         },
         {
             "id":6,
@@ -46,7 +56,9 @@
             "price":5,
             "description": "Gelato with vanilla, chocolate and strawberry",
             "category": 4,
-            "iconId": 14
+            "number": 1,
+            "isActive": false,
+            "iconId": 6
         },
         {
             "id":7,
@@ -54,7 +66,9 @@
             "price":8,
             "description": "Tiramisù with mascarpone, eggs, coffee and biscuits",
             "category": 4,
-            "iconId": 14
+            "number": 1,
+            "isActive": true,
+            "iconId": 7
         },
         {
             "id":8,
@@ -62,7 +76,9 @@
             "price":8,
             "description": "Cioccolata with chocolate and milk",
             "category": 4,
-            "iconId": 14
+            "number": 1,
+            "isActive": false,
+            "iconId": 8
         },
         {
             "id":9,
@@ -70,7 +86,9 @@
             "price":8,
             "description": "Biscuits with chocolate and milk",
             "category": 4,
-            "iconId": 14
+            "number": 1,
+            "isActive": true,
+            "iconId": 9
         }
     ]
 }

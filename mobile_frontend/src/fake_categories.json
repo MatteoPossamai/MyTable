@@ -3,62 +3,51 @@
         {
             "id": 1,
             "name": "Pizzas",
-            "number": 1,
-            "iconId": 2
+            "number": 1, 
+            "description": "Our pizzas are made with the finest ingredients and are baked to perfection.",
+            "isActive": true
         }, 
         {
             "id": 2,
             "name": "Pasta",
             "number": 2,
-            "iconId": 3
+            "description": "Our pasta",
+            "isActive": true
         },
         {
             "id": 3,
             "name": "Salads",
             "number": 3,
-            "iconId": 4
+            "description": "Our salads",
+            "isActive": false
         },
         {
             "id": 4,
             "name": "Deserts",
             "number": 4,
-            "iconId": 5
+            "description": "Our deserts",
+            "isActive": true
         },
         {
             "id": 5,
             "name": "Drinks",
             "number": 5,
-            "iconId": 6
+            "description": "Our drinks",
+            "isActive": true
         },
         {
             "id": 6,
             "name": "Sides",
             "number": 6,
-            "iconId": 7
+            "description": "Our sides",
+            "isActive": true
         },
         {
             "id": 7,
             "name": "Kids",
             "number": 7,
-            "iconId": 8
-        },
-        {
-            "id": 8,
-            "name": "Specials",
-            "number": 8,
-            "iconId": 9
-        },
-        {
-            "id": 9,
-            "name": "Beverages",
-            "number": 9,
-            "iconId": 10
-        },
-        {
-            "id": 10,
-            "name": "Exclusive",
-            "number": 10,
-            "iconId": 11
+            "description": "Our kids",
+            "isActive": false
         }
     ]
 }
