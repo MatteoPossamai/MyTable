@@ -355,13 +355,7 @@
   background-color: var(--redwine);
   border: none;
   border-radius: 10px;
-  font-size: 1.2em;
   font-weight: 600;
-  transition: .5s;
-}
-
-.submitBTN:hover{
-  background-color: var(--inactive_red);
 }
 
 .add-category{
