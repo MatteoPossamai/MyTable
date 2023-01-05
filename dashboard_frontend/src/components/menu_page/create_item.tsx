@@ -74,19 +74,19 @@ function CreateItem(){
     return (
         <div className="createBox">
             <p>Create Item</p>
-            <form className="creationForms" onSubmit={(e) => createItem(e)}>
+            <form className="generalForm" onSubmit={(e) => createItem(e)}>
                 <label htmlFor="categoryName">Item Name</label>
                 <p id="categoryProblem5">The name must be given</p>
-                <input className="creationInput" type="text" value={itemName} onChange={(e) => {setItemName(e.target.value);deactivateError()}} />
+                <input  type="text" value={itemName} onChange={(e) => {setItemName(e.target.value);deactivateError()}} />
 
                 <label htmlFor="categoryDescription">Item Description</label>
                 <p id="categoryProblem6">The description must be given</p>
-                <input className="creationInput" type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)
+                <input type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)
                 deactivateError()}} />
 
                 <label htmlFor="categoryDescription">Item Price</label>
                 <p id="categoryProblem7">The price must be bigger than 0 euro</p>
-                <input className="creationInput" type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
+                <input type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
                 deactivateError()}} />
 
                 <label>Category</label>
@@ -110,7 +110,7 @@ function CreateItem(){
                     }
                 </section>
 
-                <button type="submit" className="submitBTN">Create</button>
+                <button type="submit">Create</button>
             </form>
         </div>
     )

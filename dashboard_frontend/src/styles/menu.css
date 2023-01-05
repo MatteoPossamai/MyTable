@@ -27,8 +27,6 @@
     padding: 0;
     overflow-y: overlay;
     position: relative;
-    align-items: center;
-    justify-content: center;
     z-index: 10;
 }
 
@@ -89,11 +87,12 @@
     margin: 10px;
 }
 
-.creationForms{
+.modifyCategory{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin: 0 15px 0 15px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 .plusIcon{
@@ -105,19 +104,15 @@
     margin-top: 10px;
     width: 90%;
     height: fit-content;
-    max-height: 350px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     z-index: 10; 
-    padding: 2px;
+    overflow-x: hidden;
 }
 
 .alwaysActiveCategory{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .category:hover{
@@ -147,30 +142,13 @@
     padding: 10px;
     margin: 0;
     overflow-y: auto;
-    max-height: 240px;
 }
 
 .category aside img{
     width: 80%;
     margin: 5px;
     padding: 7px 2px 7px 2px;
-}
-
-.category aside button{
-    background-color: var(--redwine);
-    color: var(--white);
-    padding: 7px;
-    border-radius: 20px;
-    font-size: 14px;
-    width: 95%;
-    height: 32px;
-    border: none;
-    margin: 3px 0 10px 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
+}  
 
 .iconModifier{
     width: 40%;
@@ -182,21 +160,11 @@
     border-radius: 20px;
 }
 
-.manageCategory{
-    background-color: var(--white);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    border-radius: 20px;
-}
-
 .changeCategoryIcon{
     background-color: var(--redwine);
     width: 55%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-radius: 20px;
     overflow-y: auto;
     height: 140px;
@@ -230,43 +198,27 @@
 
 .itemOn{
     background-color: var(--activelateral);
-    margin-top: 10px;
     width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     z-index: 10;
 }
 
-.priceP{
-    color: var(--orange);
-    font-size: var(--p_font_size);
-    font-weight: 800;
+.smallP{
+    color: var(--greytext);
 }
 
 .onElement{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .editIcon{
     width: 25px;
     height: 25px;
     margin: 0 25px 0 0;
-}
-
-.creationInput{
-    background-color: var(--white);
-    border: none;
-    border-radius: 5px;
-    font-size: var(--p_font_size);
-    margin: 2px 0 2px 0;
-    box-shadow: 0 2px 5px 0px var(--greytext);
-}
-
-.creationInput:focus{
-    outline: none;
 }
 
 .iconsChoice{
@@ -296,7 +248,98 @@
     padding: 0;
 }
 
-.selectionCategory{
+#hidden{
+    background-color: var(--inactive_red);
+}
+
+.editItem{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.editItem form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.confirmationButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Form code unified */
+
+.generalForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', sans-serif;
+    letter-spacing: -0.5px;
+    font-weight: medium;
+    font-size: var(--p_font_size);
+}
+
+.generalForm button{
+    background-color: var(--redwine);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    width: 80%;
+    margin: 10px auto 1px auto;
+    min-height: 30px;
+    font-weight: 600;
+}
+
+.generalForm input{
+    width: 90%;
+    margin: 0 auto 5px auto;
+    padding: 7px 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.generalForm label{
+    margin: 2px 0 0 5%;
+    font-size: 13px;
+}
+
+.generalForm input:focus{
+    outline: none;
+}
+
+.generalForm textarea{
+    width: 90%;
+    min-width: 90%;
+    margin: 0 auto 10px auto;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--white);
+    color: var(--black);
+    resize: none;
+}
+
+.generalForm textarea:focus{
+    outline: none;
+}
+
+.generalForm select{
     position: relative;
     display: block;
     width: 100%;
@@ -305,48 +348,45 @@
     font-size: 18px;
 }
 
-.modifyCategory{
+/* End of form code unified */
+
+/* Hide and delete category code */
+
+.hideAndDelete{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    margin: 5px 0;
+    font-size: var(--p_font_size);
+    text-align: center;
+}
+
+.hideAndDelete button{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: var(--white);
     border-radius: 20px;
-}
-
-.modifyCategory input {
-    width: 80%;
-    border-radius: 5px;
+    margin: 2px;
+    padding: 5px;
     border: none;
-    margin: 5px 0 5px 0;
-    font-size: var(--p_font_size);
-    padding: 2px;
-    box-shadow: 0 2px 5px 0px var(--greytext);
+    color: var(--white);
+    background-color: var(--redwine);
 }
 
-.modifyCategory textarea{
+.hideAndDelete p{
+    margin: 0;
+    padding: 0;
     width: 80%;
-    border-radius: 5px;
-    border: none;
-    margin: 5px 0 5px 0;
-    font-size: var(--p_font_size);
-    padding: 2px;
-    box-shadow: 0 2px 5px 0px var(--greytext);box-shadow: 0 2px 5px 0px var(--greytext);   
+    text-align: center;
 }
 
-.modifyCategory input:focus{
-    outline: none;
-}
-
-.modifyCategory textarea:focus{
-    outline: none;
-}
-
-#hiddenCategory{
-    background-color: var(--inactive_red);
-}
+/* End of hide and delete category code */
 
 /* cursor: move; */
 /* End of general menu code */

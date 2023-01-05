@@ -25,6 +25,16 @@ function Items(){
         return item.name.toLowerCase().includes(search.toLowerCase());
     });
 
+    // Confirm changes
+    const confirmChanges = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        // Call the API to update the categories
+        let data = {
+            items: items
+        }
+        console.log(data)
+    }
+
     // On drag end
     const onDragEnd = (result:DropResult) => {
         const {destination, source} = result;
@@ -88,6 +98,8 @@ function Items(){
                     }
                 </Droppable>
             </DragDropContext>
+            <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton"
+            style={{display: filteredItems.length > 0 ? "block" : "none" }}>Confirm changes</button>
         </div>
     )
 }

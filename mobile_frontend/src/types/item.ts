@@ -1,10 +1,12 @@
 interface Item {
     id: number;
     name: string;
-    price: number;
     description: string;
-    category: number;
+    price: number;
     iconId: number;
+    category: number;
+    number: number;
+    isActive: boolean;
 }
 
 export default Item;

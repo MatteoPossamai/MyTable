@@ -1,8 +1,9 @@
 interface Category {
     id: number;
     name: string;
+    description: string;
     number: number;
-    iconId: number;
+    isActive: boolean;
 }
 
 export default Category;

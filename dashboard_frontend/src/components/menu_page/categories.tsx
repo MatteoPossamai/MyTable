@@ -76,7 +76,8 @@ function Categories(){
                     </div>}
                 </Droppable>
             </DragDropContext>
-            <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton">Confirm changes</button>
+            <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton"
+            style={{display: categories.length > 0 ? "block" : "none" }}>Confirm changes</button>
         </div>
     )
 }

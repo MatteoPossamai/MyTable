@@ -49,18 +49,18 @@ function CreateCategory(){
     return (
         <div className="createBox">
             <p>Create Category</p>
-            <form className="creationForms" onSubmit={(e) => createCategory(e)}>
+            <form className="generalForm" onSubmit={(e) => createCategory(e)}>
                 <label htmlFor="categoryName">Category Name</label>
                 <p id="categoryProblem1">The name must be given</p>
-                <input className="creationInput" type="text" value={categoryName} id="categoryName"
+                <input type="text" value={categoryName} id="categoryName"
                 onChange={(e) => {setCategoryName(e.target.value);deactiveError()}} />
 
                 <label htmlFor="categoryDescription">Category Description</label>
                 <p id="categoryProblem2">The description must be given</p>
-                <input className="creationInput" type="text" value={categoryDescription} id="categoryDescription"
+                <input type="text" value={categoryDescription} id="categoryDescription"
                  onChange={(e) => {setCategoryDescription(e.target.value);deactiveError()}} />
 
-                <button type="submit" className="submitBTN">Create</button>
+                <button type="submit">Create</button>
             </form>
         </div>
     )
