@@ -60,7 +60,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
                 <p>{item.description}</p>
                 <aside className='price'> € {item.price}</aside>
             </span>
-            <form className='ordination' style={{display: restaurant.plan >= min_order_plan ? 'visible' : 'none'}} 
+            <form className='ordination' style={{display: restaurant.plan.client_order >= min_order_plan ? 'visible' : 'none'}} 
                  onSubmit={(e) => onSubmitHandler(e)}>
                 <button className='addButton' type='submit' onClick={(e) => handleClick(e, "plus")}>+</button>
                 <input type='number' className='quantity' value={quantity} readOnly={true} />

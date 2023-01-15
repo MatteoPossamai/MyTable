@@ -7,7 +7,12 @@
             "password": "123456",
             "telephone":"1234567890",
             "location":"Via Roma 1",
-            "plan": 1
+            "plan": {
+                "menu_plan": 1,
+                "image_number": 0,
+                "client_order": 0,
+                "waiter_order": 0
+            }
         },
         {
             "id":2,
@@ -16,7 +21,12 @@
             "password": "123123",
             "telephone":"2222222222",
             "location":"Via Fermi 3",
-            "plan": 2
+            "plan": {
+                "menu_plan": 1,
+                "image_number": 0,
+                "client_order": 0,
+                "waiter_order": 0
+            }
         },
         {
             "id":3,
@@ -25,7 +35,12 @@
             "password": "090909",
             "telephone":"555555555",
             "location":"Via Cavour 5",
-            "plan": 3 
+            "plan": {
+                "menu_plan": 1,
+                "image_number": 0,
+                "client_order": 0,
+                "waiter_order": 0
+            }
         }
     ]
 }

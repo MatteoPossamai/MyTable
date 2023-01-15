@@ -24,6 +24,7 @@ let orderedContext = createContext<any>([]);
 function Base(){
     // setting up basic variables given by the environment
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
+    let min_client_order:number = Number(process.env.REACT_APP_MIN_CLIENT_ORDER);
 
     // Get the id from the url
     const { id } = useParams<{id: string}>();
@@ -33,8 +34,8 @@ function Base(){
     const allRestaurants:Restaurant[] = restaurants["restaurants"];
     let fake:boolean = false;
     let restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
-    const fake_restaurant: Restaurant = {"email": "fake", "id": 0, "name": "fake", "plan": 0, "password" : "fake", 
-                                "telephone": "fake", "location": "fake"};
+    const fake_restaurant: Restaurant = {"email": "fake", "id": 0, "name": "fake", "plan": {
+        "menu_plan": 1,"image_number": 0, "client_order": 0, "waiter_order": 0}, "password" : "fake", "telephone": "fake", "location": "fake"};
 
     if (restaurant === undefined){
         restaurant = fake_restaurant;
@@ -78,7 +79,7 @@ function Base(){
 
                 {/* NavBar for categories */}
                 <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} 
-                    note={min_order_plan <= restaurant.plan ? true : false} />
+                    note={min_order_plan <= restaurant.plan.client_order ? true : false} />
 
                 <hr className='separator' />
 
@@ -99,7 +100,7 @@ function Base(){
                 </main>
 
                 {/* Order list in case */}
-                {restaurant.plan >= min_order_plan ? (
+                {restaurant.plan.client_order >= min_order_plan ? (
                     <Ordered restaurant={restaurant} />
                 ):(
                     <div></div>

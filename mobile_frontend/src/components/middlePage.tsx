@@ -20,7 +20,7 @@ function MiddlePage(){
     const fake_restaurant:Restaurant = {
         id: -1,
         name: "-1",
-        plan: -1,
+        plan: {"menu_plan": 1,"image_number": 0,"client_order": 0,"waiter_order": 0},
         email: "fake@gmail.com",
         password: "123456789",
         telephone: "123456789",

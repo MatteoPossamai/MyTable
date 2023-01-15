@@ -27,7 +27,7 @@ function InitialForm(){
     const fake_restaurant:Restaurant = {
         id: -1,
         name: "-1",
-        plan: -1,
+        plan: {"menu_plan": 1, "image_number": 0, "client_order": 0, "waiter_order": 0},
         email: "fake@gmail.com",
         password: "123456789",
         telephone: "123456789",
@@ -41,7 +41,7 @@ function InitialForm(){
         // when loaded up, if the restaurant has a plan < 2, the bringsNumber is set to 1
         // and he is sent to the menu page, as the restaurant has only the main plan
         // and only lets see the menu
-        if(restaurant.plan < min_order_plan){
+        if(restaurant.plan.client_order < min_order_plan){
             history(`/mytable/menu/${id}`);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
