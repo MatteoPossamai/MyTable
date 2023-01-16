@@ -9,6 +9,7 @@ import MainPage from './components/main';
 import LoginPage from './components/login';
 import FourOhFour from './components/404';
 import Loader from './components/loader';
+import MainPayment from './payment/payment_main';
 
 let Help = lazy(() => import('./components/help'));
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="dashboard/:id" element={<MainPage />}/>
           <Route path="help" element={<Help />} />
+          <Route path="/payment" element={<MainPayment />} />
           <Route path="*" element={<FourOhFour />} />
         </Routes>
       </Router>

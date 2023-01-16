@@ -5,7 +5,12 @@ interface Restaurant {
     password: string;
     telephone: string;
     location: string;
-    plan: number;
+    plan: {
+        menu_plan: number, 
+        image_number: number,
+        client_order: number,
+        waiter_order: number,
+    };
 }
 
 export default Restaurant;
