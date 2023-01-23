@@ -1,11 +1,10 @@
-import Logo from "./logo";
+
 
 
 const SuccessDisplay = (props: { sessionId: any }) => {
   return (
     <section>
       <div className="product Box-root">
-        <Logo />
         <div className="description Box-root">
           <h3>Subscription to starter plan successful!</h3>
         </div>
