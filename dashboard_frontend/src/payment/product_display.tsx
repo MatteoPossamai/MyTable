@@ -43,7 +43,7 @@ const ProductDisplay = () => {
 			</div>
 
 			<div className="secondContainer">
-					<div className="checkoutForm">
+					<form action="http://127.0.0.1:8000/api/v1/stripe/customer-portal/" method="POST" className="checkoutForm">
 						<h1>Your current plan</h1>
 						<aside className="checkoutSummary">
 							<ul className="checkoutSummaryList">
@@ -53,7 +53,7 @@ const ProductDisplay = () => {
 							<h4> Your bill: $10 </h4>
 						</aside>
 						<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Cancel subsription </button>
-					</div>
+					</form>
 
 					<form action="http://127.0.0.1:8000/api/v1/stripe/create-checkout-session/" method="POST"
 						className="checkoutForm">
@@ -81,8 +81,9 @@ const ProductDisplay = () => {
 							</h4>
 						</aside>
 
-						<input type="hidden" name="lookup_key" value="1" />
-						<input type="hidden" name="lookup_key" value="122" />
+						<input type="hidden" name="price" value="price_1MUbfTEFKQV6TOkkIRfb745i" />
+						<input type="hidden" name="price" value="price_1MUbYaEFKQV6TOkkaNSCPlfw" />
+						<input type="hidden" name="customer_email" value="provaa@pp.com" />
 						<button id="checkout-and-portal-button" type="submit" className="submitBTN">
 							Change plan
 						</button>

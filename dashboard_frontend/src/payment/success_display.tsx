@@ -1,6 +1,4 @@
 
-
-
 const SuccessDisplay = (props: { sessionId: any }) => {
   return (
     <section>
@@ -9,7 +7,7 @@ const SuccessDisplay = (props: { sessionId: any }) => {
           <h3>Subscription to starter plan successful!</h3>
         </div>
       </div>
-      <form action="http://127.0.0.1:8000/api/v1/stripe/create-checkout-session/" method="POST">
+      <form action="http://127.0.0.1:8000/api/v1/stripe/create-portal-session/" method="POST">
         <input
           type="hidden"
           id="session-id"
