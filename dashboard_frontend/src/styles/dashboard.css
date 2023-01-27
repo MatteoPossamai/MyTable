@@ -1,0 +1,7 @@
+.qrSection{
+    height: fit-content;
+    width: fit-content;
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 20px;
+}
