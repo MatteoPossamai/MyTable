@@ -1,5 +1,39 @@
 .settingsContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     place-items: center;
+}
+
+.settingsSection{
+    background-color: var(--backgrey);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.settingsSection ul{
+    padding: 0;
+    list-style-type: none;
+}
+
+.contactForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.contactSection{
+    grid-column: 1 / span 2;
+    grid-column: 0 / 2;
+}
+
+.contactSection aside{
+    display: flex;
+    flex-direction: row;
+}
+
+.contactContainer{
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 20px;
 }
