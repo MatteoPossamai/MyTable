@@ -291,6 +291,7 @@
     letter-spacing: -0.5px;
     font-weight: medium;
     font-size: var(--p_font_size);
+    width: 100%;
 }
 
 .generalForm button{
