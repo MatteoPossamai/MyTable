@@ -1,5 +1,6 @@
 // Global Imports
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
+import axios from "axios";
 
 // Local imports
 import data from "../fake_categories.json";
@@ -15,14 +16,46 @@ import "../styles/menu.css";
 let menuContext = createContext<any>(0);
 
 function Menu(){
-    // fetching data from the fake server
-    const [categories, setCategories] = useState(data.categories.sort((a, b) => a.number-b.number));
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+
+    // state for the categories and items
+    const [categories, setCategories] = useState([]);
+    const [items, setItems] = useState([]);
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
 
-    const [items, setItems] = useState(faker.products.sort((a, b) => a.number-b.number));
+    // fetching categories from the server
+    useEffect(() => {
+        axios.get(`${base_link}/restaurant_category/<int:pk>/`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem("token")
+            }
+        })
+        .then((res) => {
+            setCategories(res.data.sort((a: any, b:any) => a.number-b.number));
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
+
+    // fetching items from the server
+    useEffect(() => {
+        axios.get(`${base_link}/restaurant_item/<int:pk>/`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem("token")
+            }
+        })
+        .then((res) => {
+            setItems(res.data.sort((a: any, b:any) => a.number-b.number));
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, []);
 
     return (
         <menuContext.Provider value={{categories, setCategories, items, setItems,

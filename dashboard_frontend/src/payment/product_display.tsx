@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 // Local imports
 // Components
@@ -7,13 +8,24 @@ import Product from "./product";
 import "../styles/payment.css";
 
 const ProductDisplay = () => {
+	// Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
 	const [products, setProducts] = useState<any>([]);
 	const [selectedProducts, setSelectedProducts] = useState<any>([]);
 
 	const fetchProducts = async () => {
-		//const response = await fetch("http://127.0.0.1:8000/api/v1/stripe/prices/");
-		//const data = await response.json();
+	
+		// axios.get(`${base_link}/stripe/products/`, {
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	}
+		// }).then((res) => {
+		// 	setProducts(res.data);
+		// }).catch((err) => {
+		// 	console.log(err);
+		// })
+
 		setProducts([{'id': 1, 'product': {'name': 'Dynamic Menu'},  "unit_amount": '10'}, 
 		{'id': 2, 'product': {'name': 'Ordination from clients'},  "unit_amount": '10'},
 		{'id': 3, 'product': {'name': 'Ordination from waiters'},  "unit_amount": '10'},

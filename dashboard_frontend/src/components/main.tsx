@@ -15,7 +15,6 @@ let navigationContext = createContext<any>(0);
 function MainPage(){
     const [openedWidget, setOpenedWidget] = useState<number>(0);
 
-
     return (
         <main>
             <navigationContext.Provider value={{setOpenedWidget}}>

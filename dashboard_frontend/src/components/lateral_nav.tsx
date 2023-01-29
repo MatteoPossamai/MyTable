@@ -5,6 +5,8 @@ import { FiDatabase } from "react-icons/fi";
 import { RiSettings5Line } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Local imports
 // Context
@@ -13,6 +15,28 @@ import { navigationContext } from "./main";
 import Logo from "./logo";
 
 function LateralNav(){
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+
+    let history = useNavigate();
+
+    const handleLogout = () => {
+        
+        axios.post(`${base_link}/restaurant_user/logout`, {}, {
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('token'),
+            }
+        }).then((res) => {
+            localStorage.clear();
+            history(`/login`);
+        }
+        ).catch((err) => {
+            console.log(err);
+        }
+        )
+    }
+
     let { setOpenedWidget } = React.useContext(navigationContext);
 
     let changeCurrentWidget = (widget: number) => {
@@ -47,7 +71,7 @@ function LateralNav(){
                     </section>
                 </li>
                 <li className="navSection logout"> 
-                    <section className="navSection" onClick={() => changeCurrentWidget(0)}>
+                    <section className="navSection" onClick={() => handleLogout()}>
                         <FiLogOut className="icons" />
                         <p>Logout</p>
                     </section>
