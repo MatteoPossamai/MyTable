@@ -15,41 +15,38 @@ import Restaurant from '../types/restaurant';
 import Category from '../types/category';
 // Other
 import data from '../faker.json';
-import restaurants from '../fake_data.json'
 import categories from '../fake_categories.json';
+import axios from 'axios';
 
 // Context
 let orderedContext = createContext<any>([]);
 
 function Base(){
-    // setting up basic variables given by the environment
+    // Setting up rnv variables and utilities 
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
-    let min_client_order:number = Number(process.env.REACT_APP_MIN_CLIENT_ORDER);
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let history = useNavigate();
 
     // Get the id from the url
     const { id } = useParams<{id: string}>();
     const identificationNumber:number = Number(id);
     
     // API restaurant of faker in production
-    const allRestaurants:Restaurant[] = restaurants["restaurants"];
-    let fake:boolean = false;
-    let restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
     const fake_restaurant: Restaurant = {"email": "fake", "id": 0, "name": "fake", "plan": {
         "menu_plan": 1,"image_number": 0, "client_order": 0, "waiter_order": 0}, "password" : "fake", "telephone": "fake", "location": "fake"};
 
-    if (restaurant === undefined){
-        restaurant = fake_restaurant;
-        fake = true;
-    }
-
-    // Navigation 
-    let history = useNavigate();
-
+    // Get the restaurant from the API
+    const [restaurant, setRestaurant] = useState<Restaurant>(fake_restaurant);
     useEffect(() => {
-        if (fake){
-            history("/notfound");
-        }
-    })
+        axios.get(`${base_link}/restaurant/${identificationNumber}`)
+        .then((response) => {
+            setRestaurant(response.data);
+        })
+        .catch((error) => {
+            history('/notfound');
+            console.log(error);
+        })
+    }, [identificationNumber, base_link, history]);
     
     // API categories of faker in production
     const allCategories:Category[] = categories["categories"];
