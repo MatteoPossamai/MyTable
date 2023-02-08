@@ -1,5 +1,6 @@
 // Global imports
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
+import axios from 'axios';
 
 // Local imports
 // Components
@@ -14,6 +15,39 @@ let navigationContext = createContext<any>(0);
 
 function MainPage(){
     const [openedWidget, setOpenedWidget] = useState<number>(0);
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+
+    let token:string | null = localStorage.getItem("token");
+
+    
+
+    useEffect(() => {
+        const checkIfLogged = async () => {
+            let token:any = localStorage.getItem("token");
+            console.log(token);
+    
+            try {
+                let res = await fetch(`${base_link}/restaurant_user/logged/`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': token,
+                        "HTTP_TOKEN": token
+                    },
+                });
+                console.log(await res.status);
+            }catch (err) {
+                console.log(err);
+                //window.location.href = "/login";
+            }
+        }
+
+        if (token === null){
+            window.location.href = "/login";
+        }else{
+            checkIfLogged();
+        }
+    }, [token, base_link])
 
     return (
         <main>

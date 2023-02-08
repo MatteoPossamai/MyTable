@@ -2,6 +2,7 @@
 import { useState, useEffect, createContext, useCallback } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { BsFillXCircleFill } from 'react-icons/bs';
+import axios from 'axios';
 
 // Local imports
 // Components
@@ -13,10 +14,6 @@ import Navbar from './navBar';
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
 import Category from '../types/category';
-// Other
-import data from '../faker.json';
-import categories from '../fake_categories.json';
-import axios from 'axios';
 
 // Context
 let orderedContext = createContext<any>([]);
@@ -37,33 +34,43 @@ function Base(){
 
     // Get the restaurant from the API
     const [restaurant, setRestaurant] = useState<Restaurant>(fake_restaurant);
+    const [allCategories, setAllCategories] = useState<Category[]>([]);
+    const [items, setItems] = useState<Item[]>([]);
+
     useEffect(() => {
         axios.get(`${base_link}/restaurant/${identificationNumber}`)
         .then((response) => {
             setRestaurant(response.data);
+            axios.get(`${base_link}/restaurant_category/${identificationNumber}`)
+            .then((response) => {
+                setAllCategories(response.data);
+                axios.get(`${base_link}/restaurant_item/${identificationNumber}`)
+                .then((response) => {
+                    setItems(response.data);
+                })
+                .catch((error) => {
+                    history('/notfound');
+                    console.log(error);
+                })
+            }
+            )
         })
         .catch((error) => {
             history('/notfound');
             console.log(error);
         })
     }, [identificationNumber, base_link, history]);
-    
-    // API categories of faker in production
-    const allCategories:Category[] = categories["categories"];
-    allCategories.sort((a:Category, b:Category) => a.number - b.number);
 
-    // State
-    const [activeCategory, setActiveCategory] = useState<number>(allCategories[0].id);
+
+    setAllCategories(allCategories.sort((a:Category, b:Category) => a.number - b.number));
+    const [activeCategory, setActiveCategory] = useState<number>(allCategories[0].id || 0);
+    let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
     // Button function
     const handleClick = useCallback((category:Category) => {
         setActiveCategory(category.id);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeCategory]);
-
-    // API items list of the restaurant or faker in production
-    const items:Item[] = data["products"];
-    let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
     const [orderedItems, setOrderedItems] = useState<Item[]>([]);
     const [quantities, setQuantities] = useState<number[]>([]);

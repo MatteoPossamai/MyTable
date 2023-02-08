@@ -35,7 +35,7 @@ function LoginPage(){
         }
 
         // Make the call to the API
-        axios.post(`${base_link}/restaurant_user/login`, {
+        axios.post(`${base_link}/restaurant_user/login/`, {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -76,7 +76,8 @@ function LoginPage(){
         }
 
         // Make the call to the API
-        axios.post(`${base_link}/restaurant_user/signup`, {
+        console.log(`${base_link}/restaurant_user/signup/`)
+        axios.post(`${base_link}/restaurant_user/signup/`, {
             headers: {
                 'Content-Type': 'application/json'
             },
