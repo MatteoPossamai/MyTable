@@ -43,10 +43,11 @@ function LoginPage(){
             password: password
         }).then((res) => {
             let token = res.data.token;
+            let restaurant_id = res.data.restaurant_id;
             // save the token in the local storage
             localStorage.setItem("token", token);
             // Redirect to the home page
-            history(`/dashboard/${1}`);
+            history(`/dashboard/${restaurant_id}`);
         }).catch((err) => {
             console.log(err);
         })
@@ -76,7 +77,6 @@ function LoginPage(){
         }
 
         // Make the call to the API
-        console.log(`${base_link}/restaurant_user/signup/`)
         axios.post(`${base_link}/restaurant_user/signup/`, {
             headers: {
                 'Content-Type': 'application/json'
@@ -86,10 +86,11 @@ function LoginPage(){
             confirmPassword: signupConfirmPassword
         }).then((res) => {
             let token = res.data.token;
+            let restaurant_id = res.data.restaurant_id;
             // save the token in the local storage
             localStorage.setItem("token", token);
             // Redirect to the home page
-            history(`/dashboard/${1}`);
+            history(`/dashboard/${restaurant_id}`);
         }
         ).catch((err) => {
             console.log(err);

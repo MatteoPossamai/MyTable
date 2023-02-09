@@ -1,6 +1,5 @@
 // Global imports
 import { useState, createContext, useEffect } from "react";
-import axios from 'axios';
 
 // Local imports
 // Components
@@ -24,7 +23,6 @@ function MainPage(){
     useEffect(() => {
         const checkIfLogged = async () => {
             let token:any = localStorage.getItem("token");
-            console.log(token);
     
             try {
                 let res = await fetch(`${base_link}/restaurant_user/logged/`, {
@@ -35,10 +33,13 @@ function MainPage(){
                         "HTTP_TOKEN": token
                     },
                 });
-                console.log(await res.status);
+                let status = await res.status;
+                if (status !== 204){
+                    window.location.href = "/login";
+                }
             }catch (err) {
                 console.log(err);
-                //window.location.href = "/login";
+                window.location.href = "/login";
             }
         }
 

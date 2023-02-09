@@ -11,6 +11,7 @@ import FourOhFour from './components/404';
 import Loader from './components/loader';
 import MainPayment from './payment/payment_main';
 import Account from './components/account';
+import CreateRestaurant from './components/create_restaurant';
 
 let Help = lazy(() => import('./components/help'));
 
@@ -19,11 +20,12 @@ function App() {
     <Suspense fallback={<Loader />}>
       <Router>
         <Routes>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="dashboard/:id" element={<MainPage />}/>
-          <Route path="help" element={<Help />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard/:id" element={<MainPage />}/>
+          <Route path="/help" element={<Help />} />
           <Route path="/payment" element={<MainPayment />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/create_restaurant" element={<CreateRestaurant />} />
           <Route path="*" element={<FourOhFour />} />
         </Routes>
       </Router>

@@ -22,7 +22,7 @@ function LateralNav(){
 
     const handleLogout = () => {
         
-        axios.post(`${base_link}/restaurant_user/logout`, {}, {
+        axios.post(`${base_link}/restaurant_user/logout/`, {}, {
             headers: {
                 'Content-Type': 'application/json',
                 'token': localStorage.getItem('token'),
