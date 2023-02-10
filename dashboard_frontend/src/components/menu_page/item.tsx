@@ -27,7 +27,6 @@ function Food(props: {food: Item, idx: number}) {
     const [selectedIcon, setSelectedIcon] = useState(0);
 
     const food = items.find((item: Item) => item.id === props.food.id);
-    console.log(props.food)
 
     const handleItemClick = () => {
         if (selectedItem === props.food.id) {

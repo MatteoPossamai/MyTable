@@ -74,13 +74,13 @@ function CreateCategory(){
                 if(response.status === 403){
                     window.location.href = "/login";
                 }
+                // Update the menu
+                setUpdate(!update);
+                setCategoryName("");
+                setCategoryDescription("");
                 return response.json();
               });
 
-            // Update the menu
-            setUpdate(!update);
-            setCategoryName("");
-            setCategoryDescription("");
         }  
     }
 

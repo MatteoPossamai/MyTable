@@ -12,9 +12,12 @@ import CategoryItem from "./cateogory";
 import Category from "../../types/category";
 
 function Categories(){
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
+
     const [search, setSearch] = useState("");
-    const {categories, setCategories} = useContext(menuContext);
-    console.log(categories)
+    const {categories, setCategories, update, setUpdate} = useContext(menuContext);
 
     // Handle modification
     const handleModification = (e: any) => {
@@ -25,10 +28,33 @@ function Categories(){
     const confirmChanges = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         // Call the API to update the categories
-        let data = {
-            categories: categories
-        }
-        console.log(data)
+        let currentUrl = window.location.href;
+            let id = currentUrl.split("/")[4];
+
+            if (id === undefined || isNaN(parseInt(id))) {
+                window.location.href = "/login";
+            }
+
+            let data = {
+                "categories": categories
+            }
+
+            fetch(`${base_link}/category/bulk_update/`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'token': token,
+                    "HTTP_TOKEN": token
+                },
+                body: JSON.stringify(data)
+                }).then(function(response) {
+                if(response.status === 403){
+                    window.location.href = "/login";
+                }
+                // Update the menu
+                setUpdate(!update);
+                return response.json();
+              });
     }
 
     let filteredCategories = categories.filter((category:Category) => {

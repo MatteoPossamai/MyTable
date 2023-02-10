@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 // Local imports
 // Components
@@ -8,23 +7,11 @@ import Product from "./product";
 import "../styles/payment.css";
 
 const ProductDisplay = () => {
-	// Take the base link from the .env file
-    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
 	const [products, setProducts] = useState<any>([]);
 	const [selectedProducts, setSelectedProducts] = useState<any>([]);
 
 	const fetchProducts = async () => {
-	
-		// axios.get(`${base_link}/stripe/products/`, {
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	}
-		// }).then((res) => {
-		// 	setProducts(res.data);
-		// }).catch((err) => {
-		// 	console.log(err);
-		// })
 
 		setProducts([{'id': 1, 'product': {'name': 'Dynamic Menu'},  "unit_amount": '10'}, 
 		{'id': 2, 'product': {'name': 'Ordination from clients'},  "unit_amount": '10'},

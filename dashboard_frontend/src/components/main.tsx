@@ -38,7 +38,6 @@ function MainPage(){
                     window.location.href = "/login";
                 }
             }catch (err) {
-                console.log(err);
                 window.location.href = "/login";
             }
         }

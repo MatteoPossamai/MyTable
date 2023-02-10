@@ -38,7 +38,7 @@ function Menu(){
                 "HTTP_TOKEN": token
             }})
         .then((res) => {
-            if (res.status === 403){
+            if (res.status === 403 || res.status === 400){
                 window.location.href = "/login";
             }
             return res.json();
@@ -63,7 +63,7 @@ function Menu(){
                 "HTTP_TOKEN": token
             }})
         .then((res) => {
-            if (res.status === 403){
+            if (res.status === 403 || res.status === 400){
                 window.location.href = "/login";
             }
             return res.json();

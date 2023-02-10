@@ -34,21 +34,19 @@ function CategoryItem(props:{category:Category, idx:number}) {
     // Hide/show category
     const hideCategory = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
+        
         setCategories(categories.map((category:Category) => {
             if (category.id === props.category.id) {
                 category.isActive = !category.isActive;
             }
             return category;
         }));
-        // Call the API to update the category
-        setUpdate(!update);
     }
 
     // Delete category
     const deleteCategory = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
         let id = props.category.id;
-        console.log(token)
         // Call the API to delete the category
         fetch(`${base_link}/category/delete/${id}`, {
             method: "DELETE",
@@ -60,8 +58,8 @@ function CategoryItem(props:{category:Category, idx:number}) {
             if(response.status === 403){
                 window.location.href = "/login";
             }
+            setUpdate(!update);
           });
-        setUpdate(!update);
     }
 
     // Change name
@@ -90,10 +88,34 @@ function CategoryItem(props:{category:Category, idx:number}) {
             alert("The description must be given");
             return;
         }
-        // Call the API to update the category
 
-        // Data are in name, description
-        setUpdate(!update);  
+        let currentUrl = window.location.href;
+        let restaurant_id = currentUrl.split("/")[4];
+
+        let data = {
+            "name": name,
+            "number": Number(props.category.number),
+            "isActive": Boolean(props.category.isActive),
+            "restaurant": restaurant_id,
+            "description": description
+        }
+        let id = props.category.id;
+
+        // Call the API to update the category
+        fetch(`${base_link}/category/put/${id}/`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            body: JSON.stringify(data)
+            }).then(function(response) {
+            if(response.status === 403){
+                window.location.href = "/login";
+            }
+            setUpdate(!update);
+          });
     } 
     
     const resetContent = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

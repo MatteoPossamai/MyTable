@@ -13,7 +13,6 @@ function CreateRestaurant() {
 
     const handleSubmit = async (e:any) => {
         e.preventDefault();
-        console.log("submit")
         let data = {
             "name": restaurantName,
             "location": restaurantAddress,
