@@ -1,9 +1,17 @@
 // Global Imports
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+// Local imports
+// Context
+import { menuContext } from "../menu";
 
 function CreateCategory(){
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
 
-    const [update, setUpdate] = useState(false);
+    // Get the update state from the context
+    let {update, setUpdate} = useContext(menuContext);
     
     // Data to be sent to the API on creation of the category
     const [categoryName, setCategoryName] = useState("");
@@ -37,13 +45,43 @@ function CreateCategory(){
         let flag = activeError();
      
         if(flag){
-            setCategoryName("");
-            setCategoryDescription("");
             // Call the API to create the category
-            // TODO: Call the API to create the category
+
+            let currentUrl = window.location.href;
+            let id = currentUrl.split("/")[4];
+
+            if (id === undefined || isNaN(parseInt(id))) {
+                window.location.href = "/login";
+            }
+
+            let data = {
+                "name": categoryName,
+                "description": categoryDescription,
+                "restaurant": id,
+                "number": 0,
+                "isActive": true,
+            }
+
+            fetch(`${base_link}/category/create/`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'token': token,
+                    "HTTP_TOKEN": token
+                },
+                body: JSON.stringify(data)
+                }).then(function(response) {
+                if(response.status === 403){
+                    window.location.href = "/login";
+                }
+                return response.json();
+              });
+
             // Update the menu
             setUpdate(!update);
-        }
+            setCategoryName("");
+            setCategoryDescription("");
+        }  
     }
 
     return (

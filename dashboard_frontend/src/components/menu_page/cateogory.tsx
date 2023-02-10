@@ -12,9 +12,10 @@ import HideAndDeleteButton from "./hideAndDeleteButton";
 import Category from "../../types/category";
 
 function CategoryItem(props:{category:Category, idx:number}) {
-    const {categories, setCategories} = useContext(menuContext);
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
+    const {categories, setCategories, update, setUpdate} = useContext(menuContext);
     const {selectedCategory, setSelectedCategory} = useContext(menuContext);
-    const [update, setUpdate] = useState(true);
 
     const [name, setName] = useState(props.category.name);
     const [description, setDescription] = useState(props.category.description);
@@ -46,7 +47,20 @@ function CategoryItem(props:{category:Category, idx:number}) {
     // Delete category
     const deleteCategory = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
+        let id = props.category.id;
+        console.log(token)
         // Call the API to delete the category
+        fetch(`${base_link}/category/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            }}).then(function(response) {
+            if(response.status === 403){
+                window.location.href = "/login";
+            }
+          });
         setUpdate(!update);
     }
 

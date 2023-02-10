@@ -86,11 +86,10 @@ function LoginPage(){
             confirmPassword: signupConfirmPassword
         }).then((res) => {
             let token = res.data.token;
-            let restaurant_id = res.data.restaurant_id;
             // save the token in the local storage
             localStorage.setItem("token", token);
             // Redirect to the home page
-            history(`/dashboard/${restaurant_id}`);
+            history(`/create_restaurant`);
         }
         ).catch((err) => {
             console.log(err);

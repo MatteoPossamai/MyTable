@@ -14,6 +14,7 @@ import Category from "../../types/category";
 function Categories(){
     const [search, setSearch] = useState("");
     const {categories, setCategories} = useContext(menuContext);
+    console.log(categories)
 
     // Handle modification
     const handleModification = (e: any) => {

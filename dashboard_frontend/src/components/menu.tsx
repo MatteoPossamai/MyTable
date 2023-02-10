@@ -1,10 +1,7 @@
 // Global Imports
 import { useState, createContext, useEffect } from "react";
-import axios from "axios";
 
 // Local imports
-import data from "../fake_categories.json";
-import faker from "../faker.json";
 // Components
 import Categories from "./menu_page/categories";
 import Items from "./menu_page/items";
@@ -26,40 +23,62 @@ function Menu(){
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
+    const [update, setUpdate] = useState(false);
 
     // fetching categories from the server
     useEffect(() => {
-        axios.get(`${base_link}/restaurant_category/<int:pk>/`,{
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        let token: any = localStorage.getItem("token");
+        fetch(`${base_link}/category/restaurant_category/${id}`, {
+            method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                'token': localStorage.getItem("token")
-            }
-        })
+                'token': token,
+                "HTTP_TOKEN": token
+            }})
         .then((res) => {
-            setCategories(res.data.sort((a: any, b:any) => a.number-b.number));
+            if (res.status === 403){
+                window.location.href = "/login";
+            }
+            return res.json();
+        }).then((data) => {
+            setCategories(data.categories.sort((a: any, b:any) => a.number-b.number));
         }).catch((err) => {
             console.log(err);
         })
-    }, []);
+
+    }, [base_link, update]);
 
     // fetching items from the server
     useEffect(() => {
-        axios.get(`${base_link}/restaurant_item/<int:pk>/`,{
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        let token: any = localStorage.getItem("token");
+        fetch(`${base_link}/item/restaurant_item/${id}`, {
+            method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-                'token': localStorage.getItem("token")
-            }
-        })
+                'token': token,
+                "HTTP_TOKEN": token
+            }})
         .then((res) => {
-            setItems(res.data.sort((a: any, b:any) => a.number-b.number));
+            if (res.status === 403){
+                window.location.href = "/login";
+            }
+            return res.json();
+        }).then((data) => {
+            setCategories(data.items.sort((a: any, b:any) => a.number-b.number));
         }).catch((err) => {
             console.log(err);
         })
-    }, []);
+
+    }, [base_link, update]);
 
     return (
         <menuContext.Provider value={{categories, setCategories, items, setItems,
-                                    selectedCategory, setSelectedCategory, selectedItem, setSelectedItem}}>
+                                    selectedCategory, setSelectedCategory, selectedItem, setSelectedItem,
+                                    update, setUpdate}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
