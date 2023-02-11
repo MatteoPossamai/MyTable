@@ -40,7 +40,7 @@ function Categories(){
             }
 
             fetch(`${base_link}/category/bulk_update/`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
                     'token': token,
@@ -53,7 +53,6 @@ function Categories(){
                 }
                 // Update the menu
                 setUpdate(!update);
-                return response.json();
               });
     }
 

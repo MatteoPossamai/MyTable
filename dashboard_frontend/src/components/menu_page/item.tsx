@@ -55,9 +55,8 @@ function Food(props: {food: Item, idx: number}) {
                 item.isActive = !item.isActive;
             }
             return item;
-        })
+        });
         setItems(newItems);
-        setUpdate(!update);
     }
 
     const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -81,9 +80,39 @@ function Food(props: {food: Item, idx: number}) {
     // Confirm changes
     const submitItemChanges = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        e.stopPropagation();
+
+        let id = props.food.id;
+        // Take the number of the item in the items list
+        let numb = items.indexOf(props.food);
+
+        let data = {
+            "name": name,
+            "description": description,
+            "price": price,
+            "iconId": selectedIcon,
+            "isActive": props.food.isActive,
+            "number": numb,
+            "category": props.food.category,
+            "facts": {}
+        }
         
         // Call the API to update the item
-        setEdit(false);
+        fetch(`${base_link}/item/put/${id}/`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            body: JSON.stringify(data)
+            }).then(function(response) {
+            if(response.status === 403){
+                window.location.href = "/login";
+            }
+            setUpdate(!update);
+            setEdit(false);
+          });
     }
 
 

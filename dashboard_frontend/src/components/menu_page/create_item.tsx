@@ -58,8 +58,7 @@ function CreateItem(){
         let flag = activateError();
 
         if(flag){
-            /// Call the API to create the item
-
+            // Call the API to create the item
             let currentUrl = window.location.href;
             let id = currentUrl.split("/")[4];
 
@@ -67,10 +66,6 @@ function CreateItem(){
                 window.location.href = "/login";
             }
 
-            if(selectedCategory===-1){
-                setSelectedCategory(categories[0].id);
-            }
-            
             let data = {
                 "category": selectedCategory,
                 "name": itemName,
@@ -80,6 +75,11 @@ function CreateItem(){
                 "isActive": true,
                 "number": 1,
                 "facts": {}
+            }
+
+            if(selectedCategory===-1){
+                data["category"] = categories[0].id;
+                setSelectedCategory(categories[0].id);
             }
 
             fetch(`${base_link}/item/create/`, {

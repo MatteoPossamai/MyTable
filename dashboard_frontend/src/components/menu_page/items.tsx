@@ -12,7 +12,10 @@ import ItemComponent from "./item";
 import Item from "../../types/item";
 
 function Items(){
-    const {items, setItems, selectedCategory} = useContext(menuContext);
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
+    const {items, setItems, selectedCategory, update, setUpdate} = useContext(menuContext);
     const [search, setSearch] = useState("");
 
     const handleModification = (e: any) => {
@@ -29,10 +32,32 @@ function Items(){
     const confirmChanges = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         // Call the API to update the categories
-        let data = {
-            items: items
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+
+        if (id === undefined || isNaN(parseInt(id))) {
+            window.location.href = "/login";
         }
-        console.log(data)
+
+        let data = {
+            "items": items
+        }
+
+        fetch(`${base_link}/item/bulk_update/`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            body: JSON.stringify(data)
+            }).then(function(response) {
+            if(response.status === 403){
+                window.location.href = "/login";
+            }
+            // Update the menu
+            setUpdate(!update);
+            });
     }
 
     // On drag end
