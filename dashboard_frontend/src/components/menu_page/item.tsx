@@ -13,12 +13,13 @@ import HideAndDeleteButton from "./hideAndDeleteButton";
 import Item from "../../types/item";
 
 function Food(props: {food: Item, idx: number}) {
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
     // Get from .env file the number of icons
     let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
 
-    const {selectedItem, setSelectedItem, items, setItems} = useContext(menuContext);
+    const {selectedItem, setSelectedItem, items, setItems, update, setUpdate} = useContext(menuContext);
     const [edit, setEdit] = useState(false);
-    const [update, setUpdate] = useState(true);
 
     // Data states
     const [name, setName] = useState(props.food.name);
@@ -61,8 +62,20 @@ function Food(props: {food: Item, idx: number}) {
 
     const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
-        // Call the API to delete the item
-        setUpdate(!update);
+        let id = props.food.id;
+        // Call the API to delete the category
+        fetch(`${base_link}/item/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            }}).then(function(response) {
+            if(response.status === 403){
+                window.location.href = "/login";
+            }
+            setUpdate(!update);
+          });
     }
 
     // Confirm changes

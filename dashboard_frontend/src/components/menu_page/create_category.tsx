@@ -80,7 +80,6 @@ function CreateCategory(){
                 setCategoryDescription("");
                 return response.json();
               });
-
         }  
     }
 

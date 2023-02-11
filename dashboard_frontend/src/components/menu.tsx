@@ -68,7 +68,7 @@ function Menu(){
             }
             return res.json();
         }).then((data) => {
-            setCategories(data.items.sort((a: any, b:any) => a.number-b.number));
+            setItems(data.items.sort((a: any, b:any) => a.number-b.number));
         }).catch((err) => {
             console.log(err);
         })

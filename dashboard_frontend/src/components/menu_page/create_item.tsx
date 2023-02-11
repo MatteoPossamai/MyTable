@@ -9,14 +9,17 @@ import { menuContext } from "../menu";
 function CreateItem(){
     // Get from .env file the number of icons
     let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
+    // Take the base link from the .env file
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let token: any = localStorage.getItem("token");
 
-    const [update, setUpdate] = useState(false);
+    const {categories, update, setUpdate} = useContext(menuContext);
+
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemPrice, setItemPrice] = useState(0);
     const [selectedIcon, setSelectedIcon] = useState(0);
-
-    const {categories} = useContext(menuContext);
+    const [selectedCategory, setSelectedCategory] = useState(-1);
 
     // Error handling
     const activateError = () => {
@@ -55,14 +58,51 @@ function CreateItem(){
         let flag = activateError();
 
         if(flag){
-            // Call the API to create the item
-            setItemName("");
-            setItemDescription("");
-            setItemPrice(0);
-            setSelectedIcon(0);
+            /// Call the API to create the item
+
+            let currentUrl = window.location.href;
+            let id = currentUrl.split("/")[4];
+
+            if (id === undefined || isNaN(parseInt(id))) {
+                window.location.href = "/login";
+            }
+
+            if(selectedCategory===-1){
+                setSelectedCategory(categories[0].id);
+            }
+            
+            let data = {
+                "category": selectedCategory,
+                "name": itemName,
+                "description": itemDescription,
+                "price": itemPrice,
+                "iconId": selectedIcon,
+                "isActive": true,
+                "number": 1,
+                "facts": {}
+            }
+
+            fetch(`${base_link}/item/create/`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'token': token,
+                    "HTTP_TOKEN": token
+                },
+                body: JSON.stringify(data)
+                }).then(function(response) {
+                if(response.status === 403){
+                    window.location.href = "/login";
+                }
+                // Update the menu
+                setUpdate(!update);
+                setItemPrice(0);
+                setItemName("");
+                setItemDescription("");
+                return response.json();
+              });
         }
-        // Send the request to the backend
-        setUpdate(!update);
+        
     }
 
     const changeCategoryIcon = (e: React.MouseEvent<HTMLImageElement, MouseEvent>, icon:number) => {
@@ -86,14 +126,15 @@ function CreateItem(){
 
                 <label htmlFor="categoryDescription">Item Price</label>
                 <p id="categoryProblem7">The price must be bigger than 0 euro</p>
-                <input type="number" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
+                <input type="number" required min="0" step=".01" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
                 deactivateError()}} />
 
                 <label>Category</label>
-                <select name="category" className="selectionCategory">
+                <select name="category" className="selectionCategory" value={selectedCategory}
+                    onChange={(e) => {setSelectedCategory(Number(e.target.value));console.log(selectedCategory)}}>
                     {categories.map((category: Category) => {
                         return (
-                            <option key={category.id} value={category.id}>{category.name}</option>
+                            <option key={category.id} value={Number(category.id)}>{category.name}</option>
                         )
                     })}
                 </select>
