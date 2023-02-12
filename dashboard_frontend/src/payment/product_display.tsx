@@ -42,7 +42,7 @@ const ProductDisplay = () => {
 			</div>
 
 			<div className="secondContainer">
-					<form action="http://127.0.0.1:8000/api/v1/stripe/customer-portal/" method="POST" className="checkoutForm">
+					<form action="http://127.0.0.1:5000/api/v1/stripe/customer-portal/" method="POST" className="checkoutForm">
 						<h1>Your current plan</h1>
 						<aside className="checkoutSummary">
 							<ul className="checkoutSummaryList">
@@ -54,7 +54,7 @@ const ProductDisplay = () => {
 						<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Cancel subsription </button>
 					</form>
 
-					<form action="http://127.0.0.1:8000/api/v1/stripe/create-checkout-session/" method="POST"
+					<form action="http://127.0.0.1:5000/api/v1/stripe/create-checkout-session/" method="POST"
 						className="checkoutForm">
 
 						{/* Add a hidden field with the lookup_key of your Price */}

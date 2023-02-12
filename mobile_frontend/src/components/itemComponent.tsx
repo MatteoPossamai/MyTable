@@ -8,9 +8,7 @@ import { orderedContext } from "./base";
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
 
-const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:boolean}) => {
-    // setting up basic variables given by the environment
-    let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
+const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:boolean, auth: any}) => {
 
     const {orderedItems, setOrderedItems, quantities, setQuantities} = useContext(orderedContext);
 
@@ -18,7 +16,6 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
     let quantity = quantities[orderedItems.indexOf(props.item)] || 0;
 
     const item:Item = props.item;
-    const restaurant:Restaurant = props.restaurant;
 
     const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -60,7 +57,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
                 <p>{item.description}</p>
                 <aside className='price'> € {item.price}</aside>
             </span>
-            <form className='ordination' style={{display: restaurant.plan.client_order >= min_order_plan ? 'visible' : 'none'}} 
+            <form className='ordination' style={{display: props.auth.client_order ? 'visible' : 'none'}} 
                  onSubmit={(e) => onSubmitHandler(e)}>
                 <button className='addButton' type='submit' onClick={(e) => handleClick(e, "plus")}>+</button>
                 <input type='number' className='quantity' value={quantity} readOnly={true} />

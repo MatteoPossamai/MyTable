@@ -18,18 +18,18 @@ import Category from '../types/category';
 let orderedContext = createContext<any>([]);
 
 function Base(){
-    // Setting up rnv variables and utilities 
-    let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let history = useNavigate();
     
     // API restaurant of faker in production
-    const fake_restaurant: Restaurant = {"owner": "fake", "id": 0, "name": "fake", "phone": "123", "location": "fake", "description": "random"};
+    const fake_restaurant: Restaurant = {"owner": "fake", "id": 0, "name": "Loading...", "phone": "123", "location": "fake", "description": "random"};
 
     // Get the restaurant from the API
     const [restaurant, setRestaurant] = useState<Restaurant>(fake_restaurant);
     const [allCategories, setAllCategories] = useState<Category[]>([]);
     const [items, setItems] = useState<Item[]>([]);
+    const [auth, setAuth] = useState<any>({"client_order": false, "waiter_order": false});
+    const [activeCategory, setActiveCategory] = useState<number>(0);
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -38,25 +38,41 @@ function Base(){
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
         .then((res) => {
-            /*
             if (res.status === 403 || res.status === 400){
                 window.location.href = "/error";
             }
-            */
             return res.json();
         }).then((data) => {
-            console.log(data);
             setRestaurant(data.restaurant);
+            setAuth(data.auth);
         }).catch((err) => {
             console.log(err);
         })
     }, [base_link, history]);
 
-    /*
     useEffect(() => {
         let currentUrl = window.location.href;
-        let id = currentUrl.split("/")[4];
-        fetch(`${base_link}/category/restaurant_category/${id}`, {
+        let id = currentUrl.split("/")[5];
+        fetch(`${base_link}/item/restaurant_item/active/${id}`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/error";
+            }
+            return res.json();
+        }).then((data) => {
+            setItems(data.items.sort((a: any, b:any) => a.number-b.number));
+        }).catch((err) => {
+            console.log(err);
+        })
+        
+    }, [base_link, history]);
+
+    useEffect(() => {
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[5];
+        fetch(`${base_link}/category/restaurant_category/active/${id}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
         .then((res) => {
@@ -66,14 +82,13 @@ function Base(){
             return res.json();
         }).then((data) => {
             setAllCategories(data.categories.sort((a: any, b:any) => a.number-b.number));
+            setActiveCategory(data.categories[0] ? data.categories[0].id : 0);
         }).catch((err) => {
             console.log(err);
         })
         
     }, [base_link, history]);
-    */
-
-    const [activeCategory, setActiveCategory] = useState<number>(0);
+    
     let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
     // Button function
@@ -87,13 +102,14 @@ function Base(){
 
     return (
         <>
-            <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities}}>
+            <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities,
+                auth}}>
                 {/* Header */}
-                <Header name={restaurant.name} />
+                <Header name={restaurant ? restaurant.name : "Loading..."} />
 
                 {/* NavBar for categories */}
                 <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} 
-                    note={false} />
+                    note={auth.client_order ? true : false} />
 
                 <hr className='separator' />
 
@@ -107,14 +123,14 @@ function Base(){
                     ):(
                         itemsByCategory.map((item:Item) => {
                             return (
-                                <ItemComponent key={item.id} item={item} restaurant={restaurant} />
+                                <ItemComponent key={item.id} item={item} restaurant={restaurant} auth={auth} />
                             )
                         })
                     )}
                 </main>
 
                 {/* Order list in case */}
-                {restaurant.plan.client_order >= min_order_plan ? (
+                {auth.client_order ? (
                     <Ordered restaurant={restaurant} />
                 ):(
                     <div></div>

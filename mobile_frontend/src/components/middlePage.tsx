@@ -1,45 +1,44 @@
 // Global Imports
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Local Imports
 // Types
 import Restaurant from '../types/restaurant';
 
-// Fake data
-import restaurants from '../fake_data.json'
-
 function MiddlePage(){
-
-    // Get the id from the url
-    const { id } = useParams<{id: string}>();
-    const identificationNumber:number = Number(id);
-
-    const allRestaurants:Restaurant[] = restaurants["restaurants"];
-    let restaurant: Restaurant = allRestaurants.filter((restaurant:Restaurant) => restaurant.id === identificationNumber)[0];
+    let history = useNavigate();
     const fake_restaurant:Restaurant = {
         id: -1,
-        name: "-1",
-        plan: {"menu_plan": 1,"image_number": 0,"client_order": 0,"waiter_order": 0},
-        email: "fake@gmail.com",
-        password: "123456789",
-        telephone: "123456789",
+        name: "Loading...",
+        owner: "fake@gmail.com",
+        description: "123456789",
+        phone: "123456789",
         location: "Via Roma, 1",
     }
+    const [restaurant, setRestaurant] = useState<Restaurant>(fake_restaurant);
 
-    if(restaurant === undefined){
-        restaurant = fake_restaurant;
-    }
-
-    // State and history
-    let history = useNavigate();
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+    let currentUrl = window.location.href;
+    let id = currentUrl.split("/")[4];
 
     useEffect(() => {
-        if(restaurant === fake_restaurant){
-            history('/notfound');
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        fetch(`${base_link}/restaurant/${id}`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/error";
+            }
+            return res.json();
+        }).then((data) => {
+            setRestaurant(data.restaurant);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [base_link, history]);
 
     return (
         <div className='middlePage'>
