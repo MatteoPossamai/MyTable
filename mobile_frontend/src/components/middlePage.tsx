@@ -29,8 +29,8 @@ function MiddlePage(){
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
         .then((res) => {
-            if (res.status === 403 || res.status === 400){
-                window.location.href = "/error";
+            if (res.status === 403 || res.status === 400 || res.status === 404){
+                history("/error");
             }
             return res.json();
         }).then((data) => {
