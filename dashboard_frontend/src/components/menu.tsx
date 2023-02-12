@@ -7,6 +7,7 @@ import Categories from "./menu_page/categories";
 import Items from "./menu_page/items";
 import CreateItem from "./menu_page/create_item";
 import CreateCategory from "./menu_page/create_category";
+import Popup from "./popup/popup";
 // Styles
 import "../styles/menu.css";
 
@@ -19,6 +20,10 @@ function Menu(){
     // state for the categories and items
     const [categories, setCategories] = useState([]);
     const [items, setItems] = useState([]);
+    const [popupAwake, setPopupAwake] = useState(false);
+    const [popupTitle, setPopupTitle] = useState("");
+    const [popupMessage, setPopupMessage] = useState("");
+    const [popupFollowingFunction, setPopupFollowingFunction] = useState(() => {});
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
@@ -78,7 +83,8 @@ function Menu(){
     return (
         <menuContext.Provider value={{categories, setCategories, items, setItems,
                                     selectedCategory, setSelectedCategory, selectedItem, setSelectedItem,
-                                    update, setUpdate}}>
+                                    update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
+                                    popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
@@ -90,6 +96,8 @@ function Menu(){
                     <CreateItem />
                 </section>
         </div>
+
+        <Popup awake={popupAwake} title={popupTitle} message={popupMessage} />
         </menuContext.Provider>
     )
 }

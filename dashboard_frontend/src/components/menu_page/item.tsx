@@ -19,6 +19,8 @@ function Food(props: {food: Item, idx: number}) {
     let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
 
     const {selectedItem, setSelectedItem, items, setItems, update, setUpdate} = useContext(menuContext);
+    const {setPopupAwake, setPopupTitle, 
+        setPopupMessage, setPopupFollowingFunction} = useContext(menuContext);
     const [edit, setEdit] = useState(false);
 
     // Data states
@@ -59,8 +61,15 @@ function Food(props: {food: Item, idx: number}) {
         setItems(newItems);
     }
 
-    const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const del = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
+        setPopupAwake(true);
+        setPopupTitle("Delete item");
+        setPopupMessage("Are you sure you want to delete this item?");
+        setPopupFollowingFunction(() => deleteItem);
+    }
+
+    const deleteItem = () => {
         let id = props.food.id;
         // Call the API to delete the category
         fetch(`${base_link}/item/delete/${id}`, {
@@ -160,7 +169,7 @@ function Food(props: {food: Item, idx: number}) {
                                 value={price} onChange={(e) => {e.stopPropagation(); setPrice(Number(e.target.value))}}
                                 onClick={(e) => {e.stopPropagation()}} />
 
-                                <HideAndDeleteButton hideCategory={hideItem} deleteCategory={deleteItem}
+                                <HideAndDeleteButton hideCategory={hideItem} deleteCategory={del}
                                  hided={!food.isActive} type="item" />
                                 
                                 <label htmlFor="itemDescription">Item Description</label>

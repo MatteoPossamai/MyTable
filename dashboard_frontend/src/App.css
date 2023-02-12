@@ -642,3 +642,16 @@
   max-height: 70%;
   width: 50%;
 }
+
+.popup{
+  position: absolute;
+  top: 20vh;
+  left: 20vw;
+  height: 40vh;
+  width: 35vw;
+  background-color: var(--white);
+  border: 2px solid var(--redwine);
+  z-index: 100;
+  border-radius: 10px;
+  text-align: center;
+}

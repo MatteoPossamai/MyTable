@@ -15,7 +15,8 @@ function CategoryItem(props:{category:Category, idx:number}) {
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let token: any = localStorage.getItem("token");
     const {categories, setCategories, update, setUpdate} = useContext(menuContext);
-    const {selectedCategory, setSelectedCategory} = useContext(menuContext);
+    const {selectedCategory, setSelectedCategory, setPopupAwake, setPopupTitle, 
+        setPopupMessage, setPopupFollowingFunction} = useContext(menuContext);
 
     const [name, setName] = useState(props.category.name);
     const [description, setDescription] = useState(props.category.description);
@@ -43,9 +44,16 @@ function CategoryItem(props:{category:Category, idx:number}) {
         }));
     }
 
-    // Delete category
-    const deleteCategory = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const del = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
+        setPopupAwake(true);
+        setPopupTitle("Delete category");
+        setPopupMessage("Are you sure you want to delete this category?");
+        setPopupFollowingFunction(() => deleteCategory);
+    }
+
+    // Delete category
+    const deleteCategory = () => {
         let id = props.category.id;
         // Call the API to delete the category
         fetch(`${base_link}/category/delete/${id}`, {
@@ -156,7 +164,7 @@ function CategoryItem(props:{category:Category, idx:number}) {
                                     <button type="submit">Update Category</button>
                                 </aside>
 
-                                <HideAndDeleteButton hideCategory={hideCategory} deleteCategory={deleteCategory} 
+                                <HideAndDeleteButton hideCategory={hideCategory} deleteCategory={del} 
                                 hided={!category.isActive} type="category" />
 
                             </form> 
