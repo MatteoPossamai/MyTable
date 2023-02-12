@@ -98,6 +98,15 @@ function Categories(){
                                 <CategoryItem  key={category.id} idx={idx} category={category}/>
                                 )
                             })}
+
+                        {/* Empty category list placeholder */}
+                        {filteredCategories.length === 0 &&
+                            <div className="category">
+                                <p style={{margin: "15px auto"}}>
+                                    {"No categories found with these specs"}
+                                </p>
+                            </div>
+                        }
                             {provided.placeholder}
                     </div>}
                 </Droppable>

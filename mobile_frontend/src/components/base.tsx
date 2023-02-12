@@ -1,8 +1,7 @@
 // Global imports
 import { useState, useEffect, createContext, useCallback } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsFillXCircleFill } from 'react-icons/bs';
-import axios from 'axios';
 
 // Local imports
 // Components
@@ -23,14 +22,9 @@ function Base(){
     let min_order_plan:number = Number(process.env.REACT_APP_MIN_ORDER_PLAN);
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let history = useNavigate();
-
-    // Get the id from the url
-    const { id } = useParams<{id: string}>();
-    const identificationNumber:number = Number(id);
     
     // API restaurant of faker in production
-    const fake_restaurant: Restaurant = {"email": "fake", "id": 0, "name": "fake", "plan": {
-        "menu_plan": 1,"image_number": 0, "client_order": 0, "waiter_order": 0}, "password" : "fake", "telephone": "fake", "location": "fake"};
+    const fake_restaurant: Restaurant = {"owner": "fake", "id": 0, "name": "fake", "phone": "123", "location": "fake", "description": "random"};
 
     // Get the restaurant from the API
     const [restaurant, setRestaurant] = useState<Restaurant>(fake_restaurant);
@@ -38,32 +32,48 @@ function Base(){
     const [items, setItems] = useState<Item[]>([]);
 
     useEffect(() => {
-        axios.get(`${base_link}/restaurant/${identificationNumber}`)
-        .then((response) => {
-            setRestaurant(response.data);
-            axios.get(`${base_link}/restaurant_category/${identificationNumber}`)
-            .then((response) => {
-                setAllCategories(response.data);
-                axios.get(`${base_link}/restaurant_item/${identificationNumber}`)
-                .then((response) => {
-                    setItems(response.data);
-                })
-                .catch((error) => {
-                    history('/notfound');
-                    console.log(error);
-                })
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[5];
+        fetch(`${base_link}/restaurant/${id}`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+            /*
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/error";
             }
-            )
+            */
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            setRestaurant(data.restaurant);
+        }).catch((err) => {
+            console.log(err);
         })
-        .catch((error) => {
-            history('/notfound');
-            console.log(error);
+    }, [base_link, history]);
+
+    /*
+    useEffect(() => {
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        fetch(`${base_link}/category/restaurant_category/${id}`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/error";
+            }
+            return res.json();
+        }).then((data) => {
+            setAllCategories(data.categories.sort((a: any, b:any) => a.number-b.number));
+        }).catch((err) => {
+            console.log(err);
         })
-    }, [identificationNumber, base_link, history]);
+        
+    }, [base_link, history]);
+    */
 
-
-    setAllCategories(allCategories.sort((a:Category, b:Category) => a.number - b.number));
-    const [activeCategory, setActiveCategory] = useState<number>(allCategories[0].id || 0);
+    const [activeCategory, setActiveCategory] = useState<number>(0);
     let itemsByCategory:Item[] = items.filter((item:Item) => item.category === activeCategory);
 
     // Button function
@@ -83,7 +93,7 @@ function Base(){
 
                 {/* NavBar for categories */}
                 <Navbar categories={allCategories} activeCategory={activeCategory} handleClick={handleClick} 
-                    note={min_order_plan <= restaurant.plan.client_order ? true : false} />
+                    note={false} />
 
                 <hr className='separator' />
 

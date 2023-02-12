@@ -7,8 +7,8 @@
     height: fit-content;
     width: fit-content;
     text-align: center;
-    margin: 80px 30px;
-    padding: 5px;
+    margin: 20px;
+    padding: 1px;
     background-color: var(--backgrey);
     border-radius: 20px;
 }

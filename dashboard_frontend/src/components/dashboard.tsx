@@ -2,6 +2,73 @@ import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
 
 function DashboardCard(){
+    const takeAndDownload = (e: any, filename: string, text: string) => {
+        // Get the SVG element
+        const svg = document.getElementById("qrCode") as HTMLElement;
+
+        // Get the SVG data
+        const svgData = new XMLSerializer().serializeToString(svg);
+
+        // Create a canvas element
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Create an image element
+        const img = document.createElement("img");
+
+        // Set the image source to the SVG data
+        img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
+
+        // When the image loads, draw the image on the canvas
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx?.drawImage(img, 0, 0);
+
+            // get the logo of the page from the public folder
+            const logo = new Image();
+            logo.src = "../../mytable_logo.png";
+            ctx?.drawImage(logo, 97, 97, 60, 60);
+
+            // Convert the canvas to a data URL in PNG format
+            const pngData = canvas.toDataURL("image/png");
+
+            // Create a link element
+            const link = document.createElement("a");
+
+            // Set the download attribute of the link to the filename
+            link.setAttribute("download", filename);
+
+            // Set the href of the link to the PNG data
+            link.setAttribute("href", pngData);
+
+            // Append the link to the body
+            document.body.appendChild(link);
+
+            // Simulate click
+            link.click();
+
+            // Remove the link from the body
+            document.body.removeChild(link);
+        }
+
+        // When the image fails to load, throw an error
+        img.onerror = function() {
+            throw new Error("Error loading image");
+        }
+
+        // Set the src of the image to the SVG data
+        img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
+
+        // Prevent the default click event
+        e.preventDefault();
+
+        // download the file
+        const link = document.createElement("a");
+        link.download = "sample";
+        link.click();
+    }
+
     return (
         <>
             { /* Statistiche */}
@@ -36,9 +103,11 @@ function DashboardCard(){
                         </p>
                     </aside>
                 </section>
+
                 <section className="qrSection">
-                    <h2>QR Code</h2>
-                    <QRCodeSVG 
+                <h2>QR Code</h2>
+                    <QRCodeSVG
+                        id='qrCode' 
                         value="https://mytable.it" 
                         size={256}
                         level='H'
@@ -53,6 +122,7 @@ function DashboardCard(){
                             }
                         }
                         />
+                    <button className='submitBTN' onClick={(e) => takeAndDownload(e, "sample", "Sample")}>Download</button>
                 </section>
             </div>
         </>
