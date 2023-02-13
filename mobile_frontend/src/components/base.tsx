@@ -9,6 +9,7 @@ import Header from './header';
 import ItemComponent from './itemComponent';
 import Ordered from './ordered';
 import Navbar from './navBar';
+import NotePopup from './notePopup';
 // Types
 import Item from '../types/item';
 import Restaurant from '../types/restaurant';
@@ -30,6 +31,8 @@ function Base(){
     const [items, setItems] = useState<Item[]>([]);
     const [auth, setAuth] = useState<any>({"client_order": false, "waiter_order": false});
     const [activeCategory, setActiveCategory] = useState<number>(0);
+    const [note, setNote] = useState<string>("");
+    const [visible, setVisible] = useState<boolean>(false);
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -103,7 +106,7 @@ function Base(){
     return (
         <>
             <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities,
-                auth}}>
+                auth, setVisible}}>
                 {/* Header */}
                 <Header name={restaurant ? restaurant.name : "Loading..."} />
 
@@ -135,6 +138,9 @@ function Base(){
                 ):(
                     <div></div>
                 )}
+
+                {/* Note popup */}
+                <NotePopup visible={visible} setVisible={setVisible} note={note} setNote={setNote} /> 
             </orderedContext.Provider>
         </>
     )

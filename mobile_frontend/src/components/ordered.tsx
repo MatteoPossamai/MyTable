@@ -42,7 +42,7 @@ const Ordered = memo((props: {restaurant: Restaurant}) => {
                   <p>There are no items in your order</p> :
               
                   orderedItems.map((item: Item) => (
-                      <ItemComponent item={item} restaurant={props.restaurant} key={item.id} auth={{}} />
+                      <ItemComponent item={item} restaurant={props.restaurant} key={item.id} auth={{"client_order": true}} />
                   ))
 
               }
