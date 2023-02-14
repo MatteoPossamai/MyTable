@@ -11,7 +11,7 @@ function CreateCategory(){
     let token: any = localStorage.getItem("token");
 
     // Get the update state from the context
-    let {update, setUpdate} = useContext(menuContext);
+    let {update, setUpdate, setDonePopupVisible, setDonePopupText} = useContext(menuContext);
     
     // Data to be sent to the API on creation of the category
     const [categoryName, setCategoryName] = useState("");
@@ -78,6 +78,8 @@ function CreateCategory(){
                 setUpdate(!update);
                 setCategoryName("");
                 setCategoryDescription("");
+                setDonePopupText("Category created successfully");
+                setDonePopupVisible(true);
                 return response.json();
               });
         }  

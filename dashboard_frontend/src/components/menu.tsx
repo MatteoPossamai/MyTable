@@ -8,6 +8,7 @@ import Items from "./menu_page/items";
 import CreateItem from "./menu_page/create_item";
 import CreateCategory from "./menu_page/create_category";
 import Popup from "./popup/popup";
+import DonePopup from "./menu_page/donePopup";
 // Styles
 import "../styles/menu.css";
 
@@ -24,6 +25,8 @@ function Menu(){
     const [popupTitle, setPopupTitle] = useState("");
     const [popupMessage, setPopupMessage] = useState("");
     const [popupFollowingFunction, setPopupFollowingFunction] = useState(() => {});
+    const [donePopupvisible, setDonePopupVisible] = useState(false);
+    const [donePopupText, setDonePopupText] = useState("");
 
     // state for the selected category
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
@@ -80,11 +83,23 @@ function Menu(){
 
     }, [base_link, update]);
 
+    const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setSeconds(seconds + 1);
+        setDonePopupVisible(false);
+        }, 1000);
+        return () => clearInterval(interval);
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <menuContext.Provider value={{categories, setCategories, items, setItems,
                                     selectedCategory, setSelectedCategory, selectedItem, setSelectedItem,
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
-                                    popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction}}>
+                                    popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
+                                    setDonePopupText, setDonePopupVisible}}>
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
@@ -98,6 +113,7 @@ function Menu(){
         </div>
 
         <Popup awake={popupAwake} title={popupTitle} message={popupMessage} />
+        <DonePopup text={donePopupText} visible={donePopupvisible} page="menu" />
         </menuContext.Provider>
     )
 }

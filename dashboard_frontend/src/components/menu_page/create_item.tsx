@@ -13,7 +13,7 @@ function CreateItem(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let token: any = localStorage.getItem("token");
 
-    const {categories, update, setUpdate} = useContext(menuContext);
+    const {categories, update, setUpdate, setDonePopupVisible, setDonePopupText} = useContext(menuContext);
 
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
@@ -99,6 +99,8 @@ function CreateItem(){
                 setItemPrice(0);
                 setItemName("");
                 setItemDescription("");
+                setDonePopupVisible(true);
+                setDonePopupText("Item created successfully");
                 return response.json();
               });
         }
