@@ -37,3 +37,37 @@
     border-radius: 20px;
     padding: 20px;
 }
+
+.accountMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.informationSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around ;
+    align-items: center;
+    width: 80%;
+}
+
+.informationSection main{
+    background-color: var(--backgrey);
+    padding: 20px;
+    border-radius: 20px;
+    width: 30vw;
+}
+
+.informationSection aside{
+    background-color: var(--backgrey);
+    padding: 20px;
+    border-radius: 20px;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

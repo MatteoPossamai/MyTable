@@ -6,7 +6,10 @@ function AccountPreview(){
 
     // Create a function that will be called when the user clicks on the button
     const sendToPayment = () => {
-        history('/account');
+        // get the id of the restaurant from the URL
+        let id = window.location.pathname.split("/")[2];
+
+        history(`/account/${id}`);
     }
 
     return (

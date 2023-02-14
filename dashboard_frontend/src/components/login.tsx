@@ -1,9 +1,11 @@
 // Global imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 // Local imports
+// Components
+import DonePopup from "./menu_page/donePopup";
 // Styles
 import '../styles/login.css';
 
@@ -20,6 +22,9 @@ function LoginPage(){
     const [signupEmail, setSignupEmail] = useState("");
     const [signupPassword, setSignupPassword] = useState("");
     const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
+
+    const [donePopupvisible, setDonePopupVisible] = useState(false);
+    const [donePopupText, setDonePopupText] = useState("");
 
     // Handle the login call to the API
     const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +54,8 @@ function LoginPage(){
             // Redirect to the home page
             history(`/dashboard/${restaurant_id}`);
         }).catch((err) => {
-            console.log(err);
+            setDonePopupVisible(true);
+            setDonePopupText("Wrong email or password");
         })
     }
 
@@ -58,21 +64,19 @@ function LoginPage(){
         e.preventDefault();
 
         if (signupEmail.length < 1){
-            alert("Email cannot be empty");
+            setDonePopupText("Email cannot be empty");
+            setDonePopupVisible(true);
             return;
         }
         
         if(signupPassword !== signupConfirmPassword){
-            alert("Passwords don't match");
+            setDonePopupText("Passwords do not match");
+            setDonePopupVisible(true);
             return;
         }
         if (signupPassword.length < 8){
-            alert("Password must be at least 8 characters long");
-            return;
-        }
-        
-        if (signupPassword.length < 1){
-            alert("Password cannot be empty");
+            setDonePopupText("Password must be at least 8 characters");
+            setDonePopupVisible(true);
             return;
         }
 
@@ -92,9 +96,20 @@ function LoginPage(){
             history(`/create_restaurant`);
         }
         ).catch((err) => {
-            console.log(err);
+            setDonePopupVisible(true);
+            setDonePopupText("Email already exists");
         })
     }
+
+    const [seconds, setSeconds] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setSeconds(seconds + 1);
+        setDonePopupVisible(false);
+        }, 1000);
+        return () => clearInterval(interval);
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className="authContainer">
@@ -123,6 +138,7 @@ function LoginPage(){
                     <button type="submit">Signup</button>
                 </form>
             </section>
+            <DonePopup text={donePopupText} visible={donePopupvisible} page={"login"} />
         </div>
     )
 }
