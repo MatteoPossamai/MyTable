@@ -7,43 +7,74 @@ import Product from "./product";
 import "../styles/payment.css";
 
 const ProductDisplay = () => {
+	const base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+	let token: any = localStorage.getItem("token");
 
 	const [products, setProducts] = useState<any>([]);
 	const [selectedProducts, setSelectedProducts] = useState<any>([]);
-
-	const fetchProducts = async () => {
-
-		setProducts([{'id': 1, 'product': {'name': 'Dynamic Menu'},  "unit_amount": '10'}, 
-		{'id': 2, 'product': {'name': 'Ordination from clients'},  "unit_amount": '10'},
-		{'id': 3, 'product': {'name': 'Ordination from waiters'},  "unit_amount": '10'},
-		{'id': 4, 'product': {'name': 'Ordination from clients'},  "unit_amount": '10'},
-		{'id': 5, 'product': {'name': 'Dynamic menu with image'},  "unit_amount": '10'},
-		]);
-
-	};
+	const [email, setEmail] = useState<string>("");
 
 	useEffect(() => {
-		fetchProducts();
-	}, []);
+		fetch(`${base_link}/stripe/products/`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res) => {
+            return res.json();
+        }
+        ).then((data) => {
+			let products = data.data;
+			setProducts(products);
+        }).catch((err) => {
+            console.log(err);
+        })
+	}, [base_link]);
+
+	useEffect(() => {
+		// Load the restaurant informations
+        let id = window.location.pathname.split("/")[2];
+
+        fetch(`${base_link}/restaurant/${id}/`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res) => {
+            return res.json();
+        }
+        ).then((data) => {
+            let informations = data.restaurant;
+            setEmail(informations.owner);
+        }).catch((err) => {
+            console.log(err);
+        })
+	}, [base_link])
 				
 	return (<section className="planContainer">
 
 		<div>
 			<h1>Customize your plan</h1>
 			<aside className="products">
-				{products.map((product: any) => (
+				{products.map((product: any) => {
+					return (
 						<Product
 							key={product.id}
-							name={product.product.name}
-							price={product.unit_amount}
+							name={product.name}
+							price={(product.default_price.unit_amount) / 100}
 							setSelect={setSelectedProducts}
+							description={product.description}
+							price_id={product.default_price.id}
 						/>
-				))}
+					);
+				}
+					
+				)}
 			</aside>
 		</div>
 
 		<div className="secondContainer">
-				<form action="http://127.0.0.1:5000/api/v1/stripe/customer-portal/" method="POST" className="checkoutForm">
+				<form action={`${base_link}/stripe/customer-portal/`} method="POST" className="checkoutForm">
 					<h1>Your current plan</h1>
 					<aside className="checkoutSummary">
 						<ul className="checkoutSummaryList">
@@ -52,10 +83,11 @@ const ProductDisplay = () => {
 
 						<h4> Your bill: $10 </h4>
 					</aside>
+					<input type={"hidden"} name={"token"} value={token} />
 					<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Cancel subsription </button>
 				</form>
 
-				<form action="http://127.0.0.1:5000/api/v1/stripe/create-checkout-session/" method="POST"
+				<form action={`${base_link}/stripe/create-checkout-session/`} method="POST"
 					className="checkoutForm">
 
 					{/* Add a hidden field with the lookup_key of your Price */}
@@ -81,9 +113,12 @@ const ProductDisplay = () => {
 						</h4>
 					</aside>
 
-					<input type="hidden" name="price" value="price_1MUbfTEFKQV6TOkkIRfb745i" />
-					<input type="hidden" name="price" value="price_1MUbYaEFKQV6TOkkaNSCPlfw" />
-					<input type="hidden" name="customer_email" value="provaa@pp.com" />
+					{selectedProducts.map((product: any) => {
+						return (
+							<input key={product.id} type="hidden" name="price" value={product.price_id} />
+						);
+					})}
+					<input type="hidden" name="customer_email" value={email} />
 					<button id="checkout-and-portal-button" type="submit" className="submitBTN">
 						Change plan
 					</button>
