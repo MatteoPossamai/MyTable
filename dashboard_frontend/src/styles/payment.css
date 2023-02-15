@@ -1,6 +1,6 @@
 /* Products code */
 .planContainer{
-    margin: 50px 0 0 0;
+    margin: 30px 0 0 0;
     display: grid;
     grid-template-columns: 1.3fr .7fr ;
     grid-gap: 10px;
@@ -16,6 +16,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
+    margin: 20px;
 } 
 
 .checkoutForm{
@@ -23,24 +24,66 @@
     flex-direction: column;
     margin: 0 auto;
     width: 80%;
-    justify-content: center;
+    position: relative;
+    min-height: 92vh;
+    align-items: center;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.checkoutForm2{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50vw;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
     align-items: center;
     border: 2px solid var(--black);
     border-radius: 5px;
     height: fit-content;
-    padding: 10px 0 ;
+    padding: 10px 0;
 }
 
 .checkoutSummary{
-    width: 70%;
-    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
     min-width: 70%;
-    justify-content: center;
+    align-items: center;
 }
 
 .checkoutSummaryList{
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0;
+    width: 100%;
     list-style-type: none;
+    max-height: 65vh;
+    overflow-y: auto;
 }
 
+.product{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.product h2{
+    font-weight: bold;
+}
+
+.total{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}

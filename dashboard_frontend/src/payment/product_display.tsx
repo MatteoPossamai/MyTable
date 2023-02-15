@@ -50,80 +50,95 @@ const ProductDisplay = () => {
             console.log(err);
         })
 	}, [base_link])
+
+	const removeFromSelected = (id: number) => {
+		let newSelectedProducts = selectedProducts.filter((product: any) => product.id !== id);
+		setSelectedProducts(newSelectedProducts);
+	};
 				
 	return (<section className="planContainer">
 
 		<div>
 			<h1>Customize your plan</h1>
+				
 			<aside className="products">
+				<div>
+					<h3>Prova gratis</h3>
+				</div>
 				{products.map((product: any) => {
 					return (
 						<Product
 							key={product.id}
 							name={product.name}
 							price={(product.default_price.unit_amount) / 100}
+							selected={selectedProducts}
 							setSelect={setSelectedProducts}
 							description={product.description}
 							price_id={product.default_price.id}
 						/>
 					);
-				}
-					
-				)}
+				})}
 			</aside>
 		</div>
 
 		<div className="secondContainer">
-				<form action={`${base_link}/stripe/customer-portal/`} method="POST" className="checkoutForm">
-					<h1>Your current plan</h1>
-					<aside className="checkoutSummary">
-						<ul className="checkoutSummaryList">
-
-						</ul>
-
-						<h4> Your bill: $10 </h4>
-					</aside>
-					<input type={"hidden"} name={"token"} value={token} />
-					<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Cancel subsription </button>
-				</form>
-
 				<form action={`${base_link}/stripe/create-checkout-session/`} method="POST"
 					className="checkoutForm">
 
 					{/* Add a hidden field with the lookup_key of your Price */}
+					<h3>Riepilogo del piano</h3>
+					<hr className="dashed" />
 					<aside className="checkoutSummary">
-						<h3>Plan preview</h3>
 						<ul className="checkoutSummaryList">
 							{selectedProducts.map((product: any) => (
-								<div key={product.id}>
-								<li key={product.id}>
-									{product.name} - ${product.price}
-								</li>
-								<hr />
+								<div key={product.id} className="prods">
+									<aside>
+										<h3>{product.name}</h3>
+
+										<h3>${product.price} </h3>
+									</aside>
+								<button className="submitBTN" onClick={() => {removeFromSelected(product.id)}} type="button">
+									Remove
+								</button>
 							</div>
 							))}
 						</ul>
-
-						<h4>
-							Total: $
-							{selectedProducts.reduce(
-								(total: number, product: any) =>
-									Number(total) + Number(product.price),	0
-							)}
-						</h4>
+						
 					</aside>
-
-					{selectedProducts.map((product: any) => {
-						return (
-							<input key={product.id} type="hidden" name="price" value={product.price_id} />
-						);
-					})}
-					<input type="hidden" name="customer_email" value={email} />
-					<button id="checkout-and-portal-button" type="submit" className="submitBTN">
-						Change plan
-					</button>
+					
+					<aside className="total">
+						<hr className="dashed" />
+							<h3>
+								Totale: €
+								{selectedProducts.reduce(
+									(total: number, product: any) =>
+										Number(total) + Number(product.price),	0
+								)} / mese
+							</h3>
+						{selectedProducts.map((product: any) => {
+							return (
+								<input key={product.id} type="hidden" name="price" value={product.price_id} />
+							);
+						})}
+						<input type="hidden" name="customer_email" value={email} />
+						<button id="checkout-and-portal-button" type="submit" className="submitBTN" 
+							disabled={selectedProducts.length === 0 ? true : false}
+							style={{background: selectedProducts.length === 0 ? "#8E8EA9" : "#530F26" }}>
+							Attiva il tuo piano
+						</button>
+					</aside>
 				</form>
 			</div>
+
+			<form action={`${base_link}/stripe/customer-portal/`} method="POST" className="checkoutForm2"
+				style={{height: "fit-content"}}>
+					<h1>Your current plan</h1>
+					<aside className="checkoutSummary">
+						<h4> Your bill: $10 </h4>
+					</aside>
+					<input type={"hidden"} name={"token"} value={token} />
+					<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Modifica piano </button>
+			</form>
 		</section>
 	);
 };
