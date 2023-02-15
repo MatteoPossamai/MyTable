@@ -71,3 +71,18 @@
     align-items: center;
     justify-content: center;
 }
+
+.change-password-popup{
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--backgrey);
+    border-radius: 20px;
+    border: 2px solid var(--redwine);
+    width: 30vw;
+    height: 42vh;
+    top: 10vh;
+}

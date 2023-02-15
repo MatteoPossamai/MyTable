@@ -6,7 +6,9 @@ function Plan(){
 
     // Create a function that will be called when the user clicks on the button
     const sendToPayment = () => {
-        history('/payment');
+        // get the id from the url
+        let id = window.location.pathname.split("/")[2];
+        history('/payment/' + id );
     }
 
     return (

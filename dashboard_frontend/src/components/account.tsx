@@ -2,6 +2,9 @@
 import { useState, useEffect } from "react";
 
 // Local imports
+// Components
+import DonePopup from "./menu_page/donePopup";
+import ChangePasswordPopup from "./change_password_popup";
 // Styles
 import "../styles/settings.css";
 
@@ -13,8 +16,16 @@ function Account(){
     const [phone, setPhone] = useState("");
     const [description, setDescription] = useState("");
     const [update, setUpdate] = useState(false);
+    const [oldPassword, setOldPassword] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [visibleChangePassword, setVisibleChangePassword] = useState(false);
 
     const [email, setEmail] = useState("");
+
+    const [donePopupvisible, setDonePopupVisible] = useState(false);
+    const [donePopupText, setDonePopupText] = useState("");
 
     useEffect(() => {
         // Load the restaurant informations
@@ -63,16 +74,25 @@ function Account(){
             return res.json();
         }
         ).then((data) => {
-            console.log(data);
             setUpdate(!update);
+            setDonePopupVisible(true);
+            setDonePopupText("Restaurant informations updated");
         }).catch((err) => {
-            console.log(err);
+            setDonePopupText("Something went wrong");
+            setDonePopupVisible(true);
         })
     }
 
-    const changePassword = (e:any) => {
-        e.preventDefault();
-    }
+    const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setSeconds(seconds + 1);
+        setDonePopupVisible(false);
+        }, 1000);
+        return () => clearInterval(interval);
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className="accountMain">
@@ -83,7 +103,7 @@ function Account(){
                 <aside>
                     <h2>Account Informations</h2>
                     <p>Your email is: <a href={`mailto:${email}`}>{email}</a></p>
-                    <button onClick={(e) => changePassword(e)} className="submitBTN">Change password</button>
+                    <button onClick={() => setVisibleChangePassword(true)} className="submitBTN">Change password</button>
                 </aside>
 
                 <main>
@@ -101,6 +121,10 @@ function Account(){
                     </form> 
                 </main>
             </section>
+            <DonePopup text={donePopupText} visible={donePopupvisible} page="login" />
+            <ChangePasswordPopup old={oldPassword} setOld={setOldPassword} pass={password} setPass={setPassword}
+                conf={confirmPassword} setConf={setConfirmPassword} spp={setDonePopupText} spv={setDonePopupVisible}
+                visible={visibleChangePassword} setVisible={setVisibleChangePassword} />
         </div>
     )
 }
