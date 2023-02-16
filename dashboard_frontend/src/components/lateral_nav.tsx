@@ -6,6 +6,8 @@ import { RiSettings5Line } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {RxDoubleArrowLeft} from "react-icons/rx";
+import {RxDoubleArrowRight} from "react-icons/rx";
 import axios from "axios";
 
 // Local imports
@@ -17,6 +19,8 @@ import Logo from "./logo";
 function LateralNav(){
     // Take the base link from the .env file
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+
+    let { setOpenedWidget, isCollapsed, setIsCollapsed } = React.useContext(navigationContext);    
 
     let history = useNavigate();
 
@@ -37,43 +41,49 @@ function LateralNav(){
         )
     }
 
-    let { setOpenedWidget } = React.useContext(navigationContext);
-
     let changeCurrentWidget = (widget: number) => {
         setOpenedWidget(widget);
     }
+
     return (
-        <div className="lateral-nav">
-            <Logo />
+        <div className="lateral-nav" style={{width: isCollapsed ? "5%" : "17%"}}>
+            <Logo collapsed={isCollapsed} />
             <ul>
                 <li>
                     <section className="navSection" onClick={() => changeCurrentWidget(0)}>
-                        <RxDashboard className="icons" />
-                        <p>Dashboard</p>
+                        <RxDashboard className={isCollapsed ? "icons_only" : "icons"} />
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Dashboard</p>
                     </section>
                 </li>
                 <li>
                     <section className="navSection" onClick={() => changeCurrentWidget(1)}>
-                        <BiFoodMenu className="icons" />
-                        <p>Menu</p>
+                        <BiFoodMenu className={isCollapsed ? "icons_only" : "icons"} />
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Menu</p>
                         </section>
                 </li>
                 <li>
                     <section className="navSection" onClick={() => changeCurrentWidget(2)}>
-                        <FiDatabase  className="icons" />
-                        <p>Ordini</p>
+                        <FiDatabase  className={isCollapsed ? "icons_only" : "icons"} />
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Ordini</p>
                     </section>
                 </li>
                 <li>
                     <section className="navSection" onClick={() => changeCurrentWidget(3)}>
-                        <RiSettings5Line className="icons" />
-                        <p>Settings</p>
+                        <RiSettings5Line className={isCollapsed ? "icons_only" : "icons"} />
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Impostazioni</p>
+                    </section>
+                </li>
+                <li>
+                    <section className="navSection" onClick={() => setIsCollapsed(!isCollapsed)}>
+                        { !isCollapsed ? <RxDoubleArrowLeft className={isCollapsed ? "icons_only" : "icons"} />:
+                         <RxDoubleArrowRight className={isCollapsed ? "icons_only" : "icons"} />}
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Restringi</p>
                     </section>
                 </li>
                 <li className="navSection logout"> 
                     <section className="navSection" onClick={() => handleLogout()}>
-                        <FiLogOut className="icons" />
-                        <p>Logout</p>
+                        <FiLogOut className={isCollapsed ? "icons_only" : "icons"} />
+                        <p style={{display: isCollapsed ? "none" : "block"}}>Logout</p>
                     </section>
                 </li>
             </ul>

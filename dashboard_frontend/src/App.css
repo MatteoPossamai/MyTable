@@ -118,7 +118,7 @@
   top: 0;
   float: left;
   height: 100vh;
-  width: 17%;
+  transition: .5s;
   background-color: var(--white);
   top: 0;
   padding: 0;
@@ -189,8 +189,15 @@
 .icons{
   margin: 0 8% 0 20%;
   padding: 0;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+.icons_only{
+  margin: auto;
+  padding: 0;
+  height: 1.7rem;
+  width: 1.7rem;
 }
 
 .lateral-nav ul li section p{
@@ -216,7 +223,6 @@
   flex-direction: column;
   position: relative;
   float: right;
-  width: 83%;
   top: 80px;
 }
 

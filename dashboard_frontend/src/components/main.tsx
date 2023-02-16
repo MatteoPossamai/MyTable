@@ -17,8 +17,7 @@ function MainPage(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
     let token:string | null = localStorage.getItem("token");
-
-    
+    let [isCollapsed, setIsCollapsed] = useState(true);
 
     useEffect(() => {
         const checkIfLogged = async () => {
@@ -51,10 +50,10 @@ function MainPage(){
 
     return (
         <main>
-            <navigationContext.Provider value={{setOpenedWidget}}>
+            <navigationContext.Provider value={{setOpenedWidget, isCollapsed, setIsCollapsed}}>
                 <Header />
                 <LateralNav />
-                <div className="main-content">
+                <div className="main-content" style={{width: isCollapsed ? "95%" : "83%"}}>
                     {openedWidget === 0 && <DashboardCard />}
                     {openedWidget === 1 && <Menu />}
                     {openedWidget === 2 && <Orders />}

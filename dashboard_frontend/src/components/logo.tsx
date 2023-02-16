@@ -1,4 +1,4 @@
-const Logo = () => {
+const Logo = (props:{collapsed: boolean}) => {
     return (
         <section className="logoContainer">
             <svg className="logo" xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ const Logo = () => {
                     4 0 7 -70 7 -156z"/>
                     </g>
                 </svg>
-            <h3>MyTable</h3>
+            <h3 style={{display: props.collapsed ? "none" : "block"}}>MyTable</h3>
         </section>
     )
 }
