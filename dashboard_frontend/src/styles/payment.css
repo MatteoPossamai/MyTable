@@ -4,6 +4,8 @@
     display: grid;
     grid-template-columns: 1.3fr .7fr ;
     grid-gap: 10px;
+    position: relative;
+    height: fit-content;
 }
 
 .secondContainer{
@@ -36,15 +38,17 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 50vw;
-    position: absolute;
-    bottom: 0;
-    left: 20px;
+    margin-left: 20px;
     align-items: center;
     border: 2px solid var(--black);
     border-radius: 5px;
     height: fit-content;
     padding: 10px 0;
+    width: calc(100% - 40px);
+}
+
+.checkoutForm2 > *{
+    margin: 10px 12%;
 }
 
 .checkoutSummary{
@@ -66,6 +70,37 @@
     overflow-y: auto;
 }
 
+.provaGratis{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--black);
+    border-radius: 5px;
+    padding: 10px 0;
+    width: 100%;
+    background-color: var(--redwine);
+}
+
+.provaGratis h2{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.provaGratis h3{
+    font-weight: 100;
+    color: var(--white);
+}
+
+.provaGratis p{
+    font-size: 10pt;
+    font-weight: 100;
+    color: var(--white);
+}
+
+.provaGratis > * {
+    margin: 10px 2rem;
+}
+
 .product{
     display: flex;
     flex-direction: column;
@@ -75,8 +110,17 @@
     width: 100%;
 }
 
+.product > * {
+    margin: 0 auto;
+}
+
 .product h2{
     font-weight: bold;
+}
+
+.product p{
+    margin: 10px 20px;
+    letter-spacing: .3px;
 }
 
 .total{

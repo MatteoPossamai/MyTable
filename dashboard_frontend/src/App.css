@@ -350,7 +350,7 @@
 .submitBTN{
   margin: 10px auto;
   height: 45px;
-  width: 65%;
+  width: 85%;
   color: var(--white);
   background-color: var(--redwine);
   border: none;

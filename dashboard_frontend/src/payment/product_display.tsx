@@ -57,13 +57,14 @@ const ProductDisplay = () => {
 	};
 				
 	return (<section className="planContainer">
-
-		<div>
-			<h1>Customize your plan</h1>
-				
+		<div>			
 			<aside className="products">
-				<div>
-					<h3>Prova gratis</h3>
+				<div className="provaGratis">
+					<h3>Ottieni il massimo con la</h3>
+					<h2>Prova gratis</h2>
+					<p>Customizza il tuo piano ed ottieni subito una prova gratuita di 30 giorni, 
+						senza alcun impegno, per innamorarti del nostro servizio.
+					</p>
 				</div>
 				{products.map((product: any) => {
 					return (
@@ -79,6 +80,15 @@ const ProductDisplay = () => {
 					);
 				})}
 			</aside>
+			<form action={`${base_link}/stripe/customer-portal/`} method="POST" className="checkoutForm2"
+				style={{height: "fit-content"}}>
+					<h1>Piano corrente</h1>
+					<p>In questa pagina puoi trovare il piano a cui sei correntemente abbonato. Se desideri 
+						visualizzare o cambiare piano, clicca sul pulsante sottostante.
+					</p>
+					<input type={"hidden"} name={"token"} value={token} />
+					<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Modifica piano </button>
+			</form>
 		</div>
 
 		<div className="secondContainer">
@@ -128,17 +138,9 @@ const ProductDisplay = () => {
 						</button>
 					</aside>
 				</form>
-			</div>
+		</div>
 
-			<form action={`${base_link}/stripe/customer-portal/`} method="POST" className="checkoutForm2"
-				style={{height: "fit-content"}}>
-					<h1>Your current plan</h1>
-					<aside className="checkoutSummary">
-						<h4> Your bill: $10 </h4>
-					</aside>
-					<input type={"hidden"} name={"token"} value={token} />
-					<button id="checkout-and-portal-button" type="submit" className="submitBTN"> Modifica piano </button>
-			</form>
+			
 		</section>
 	);
 };

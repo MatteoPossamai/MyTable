@@ -15,11 +15,14 @@ const Product = (props: { name: string, price: number | any, setSelect: any, des
 
   return(
       <div className="product">
-        <h2>{props.name}</h2>
+        <header style={{display: "flex", flexDirection: 'row'}}>
+          <img src={'/mytable_logo.svg'} alt="product" style={{width:"30px", fill: "#530F26"}} />
+          <h2>{props.name}</h2>
+        </header>
         <p>{props.description}</p>    
         <hr className="dashed" />
         
-        <aside style={{display: "flex", flexDirection: "row", margin: " 0 25%"}}>
+        <aside style={{display: "flex", flexDirection: "row", margin: " 0 10%"}}>
           <p><b style={{fontSize: "1.3em"}}>€{props.price}</b>/ month</p>
         </aside>
 
