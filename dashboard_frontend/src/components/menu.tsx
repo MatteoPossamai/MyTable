@@ -9,6 +9,7 @@ import CreateItem from "./menu_page/create_item";
 import CreateCategory from "./menu_page/create_category";
 import Popup from "./popup/popup";
 import DonePopup from "./menu_page/donePopup";
+import Banner from "./menu_page/banner";
 // Styles
 import "../styles/menu.css";
 
@@ -17,6 +18,53 @@ let menuContext = createContext<any>(0);
 function Menu(){
     // Take the base link from the .env file
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
+
+    // check if the user payid for the service
+    const [activePrice, setActivePrice] = useState([]);
+    const [activeProduct, setActiveProduct] = useState([]);
+
+    const [products, setProducts] = useState<any>([]);
+
+    useEffect(() => {
+		fetch(`${base_link}/stripe/products/`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res) => {
+            return res.json();
+        }
+        ).then((data) => {
+			let products = data.data;
+			setProducts(products);
+            console.log(products)
+        }).catch((err) => {
+            console.log(err);
+        })
+	}, [base_link]);
+
+    useEffect(() => {
+        let token: any = localStorage.getItem("token");
+        fetch(`${base_link}/stripe/costumer-subscription/`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            }
+        }).then((res) => {
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/login";
+            }
+            return res.json();
+        }).then((data) => {
+            setActivePrice(data.prices);
+            setActiveProduct(data.products);
+            console.log(data.products);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [base_link]);
 
     // state for the categories and items
     const [categories, setCategories] = useState([]);
@@ -100,6 +148,7 @@ function Menu(){
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
                                     setDonePopupText, setDonePopupVisible}}>
+        <Banner visible={true} />
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
