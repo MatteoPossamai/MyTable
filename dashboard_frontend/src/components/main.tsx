@@ -17,7 +17,7 @@ function MainPage(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
     let token:string | null = localStorage.getItem("token");
-    let [isCollapsed, setIsCollapsed] = useState(true);
+    let [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
         const checkIfLogged = async () => {

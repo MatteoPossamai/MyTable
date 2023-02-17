@@ -558,7 +558,7 @@
 
 .note-popup{
   width: 80%;
-  height: 45%;
+  height: fit-content;
   position: absolute;
   top: 200px;
   left: 10%;
@@ -567,13 +567,16 @@
   border: 2px solid var(--redwine);
   z-index: 100;
   text-align: center;
+  padding: 20px 0;
 }
 
 .note-popup textarea {
   width: 90%;
   height: 80%;
+  min-height: 100px;
   resize: none;
   font-family: 'Courier New', Courier, monospace;
+  font-size: 1.2rem;  
 } 
 
 /* End of Note Popup */

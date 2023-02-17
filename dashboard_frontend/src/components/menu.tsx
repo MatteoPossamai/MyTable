@@ -20,51 +20,28 @@ function Menu(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
     // check if the user payid for the service
-    const [activePrice, setActivePrice] = useState([]);
-    const [activeProduct, setActiveProduct] = useState([]);
-
-    const [products, setProducts] = useState<any>([]);
-
+    const [auth, setAuth] = useState<any>({"client_order": false, "image_menu": false, "base_menu": false , "waiter_order": false});
+    
     useEffect(() => {
-		fetch(`${base_link}/stripe/products/`, {
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        fetch(`${base_link}/restaurant/${id}`, {
             method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }).then((res) => {
-            return res.json();
-        }
-        ).then((data) => {
-			let products = data.data;
-			setProducts(products);
-            console.log(products)
-        }).catch((err) => {
-            console.log(err);
-        })
-	}, [base_link]);
-
-    useEffect(() => {
-        let token: any = localStorage.getItem("token");
-        fetch(`${base_link}/stripe/costumer-subscription/`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'token': token,
-                "HTTP_TOKEN": token
-            }
-        }).then((res) => {
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
             if (res.status === 403 || res.status === 400){
-                window.location.href = "/login";
+                window.location.href = "/error";
             }
             return res.json();
         }).then((data) => {
-            setActivePrice(data.prices);
-            setActiveProduct(data.products);
-            console.log(data.products);
+            console.log(data)
+            console.log(data.auth)
+            setAuth(data.auth);
         }).catch((err) => {
             console.log(err);
         })
     }, [base_link]);
+
 
     // state for the categories and items
     const [categories, setCategories] = useState([]);
@@ -83,6 +60,7 @@ function Menu(){
 
     // fetching categories from the server
     useEffect(() => {
+        // Get the ID of the restaurant from the url
         let currentUrl = window.location.href;
         let id = currentUrl.split("/")[4];
         let token: any = localStorage.getItem("token");
@@ -148,7 +126,7 @@ function Menu(){
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
                                     setDonePopupText, setDonePopupVisible}}>
-        <Banner visible={true} />
+        <Banner visible={auth.base_menu || auth.image_menu ? false : true } />
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
