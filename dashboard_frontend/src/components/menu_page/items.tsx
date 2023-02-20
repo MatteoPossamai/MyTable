@@ -15,7 +15,8 @@ function Items(){
     // Take the base link from the .env file
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let token: any = localStorage.getItem("token");
-    const {items, setItems, selectedCategory, update, setUpdate} = useContext(menuContext);
+    const {items, setItems, selectedCategory, update, setUpdate
+        , setDonePopupVisible, setDonePopupText} = useContext(menuContext);
     const [search, setSearch] = useState("");
 
     const handleModification = (e: any) => {
@@ -57,6 +58,8 @@ function Items(){
             }
             // Update the menu
             setUpdate(!update);
+            setDonePopupText("Modifications saved successfully");
+            setDonePopupVisible(true);
             });
     }
 

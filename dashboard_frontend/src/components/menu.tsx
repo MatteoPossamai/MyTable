@@ -34,8 +34,6 @@ function Menu(){
             }
             return res.json();
         }).then((data) => {
-            console.log(data)
-            console.log(data.auth)
             setAuth(data.auth);
         }).catch((err) => {
             console.log(err);

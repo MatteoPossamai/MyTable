@@ -16,7 +16,7 @@ function CategoryItem(props:{category:Category, idx:number}) {
     let token: any = localStorage.getItem("token");
     const {categories, setCategories, update, setUpdate} = useContext(menuContext);
     const {selectedCategory, setSelectedCategory, setPopupAwake, setPopupTitle, 
-        setPopupMessage, setPopupFollowingFunction} = useContext(menuContext);
+        setPopupMessage, setPopupFollowingFunction, setDonePopupVisible, setDonePopupText} = useContext(menuContext);
 
     const [name, setName] = useState(props.category.name);
     const [description, setDescription] = useState(props.category.description);
@@ -67,6 +67,8 @@ function CategoryItem(props:{category:Category, idx:number}) {
                 window.location.href = "/login";
             }
             setUpdate(!update);
+            setDonePopupText("Deleted successfully");
+            setDonePopupVisible(true);
           });
     }
 

@@ -17,7 +17,8 @@ function Categories(){
     let token: any = localStorage.getItem("token");
 
     const [search, setSearch] = useState("");
-    const {categories, setCategories, update, setUpdate} = useContext(menuContext);
+    const {categories, setCategories, update, setUpdate
+        , setDonePopupVisible, setDonePopupText} = useContext(menuContext);
 
     // Handle modification
     const handleModification = (e: any) => {
@@ -51,6 +52,8 @@ function Categories(){
                 if(response.status === 403){
                     window.location.href = "/login";
                 }
+                setDonePopupText("Modifications saved successfully");
+                setDonePopupVisible(true);
                 // Update the menu
                 setUpdate(!update);
               });

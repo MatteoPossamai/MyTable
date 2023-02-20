@@ -94,6 +94,7 @@ function CreateItem(){
                 if(response.status === 403){
                     window.location.href = "/login";
                 }
+                console.log(response);
                 // Update the menu
                 setUpdate(!update);
                 setItemPrice(0);

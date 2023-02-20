@@ -113,6 +113,7 @@
 .alwaysActiveCategory{
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .category:hover{
@@ -210,7 +211,6 @@
 .onElement{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -218,6 +218,8 @@
     width: 25px;
     height: 25px;
     margin: 0 25px 0 0;
+    position: absolute;
+    left: 100%;
 }
 
 .iconsChoice{

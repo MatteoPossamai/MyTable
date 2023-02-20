@@ -2,6 +2,10 @@ import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
 
 function DashboardCard(){
+    const base_redirect:string | undefined = process.env.REACT_APP_BASE_REDIRECT;
+    const id = window.location.pathname.split("/")[2];
+    let link_qr = `${base_redirect}/${id}`;
+
     const takeAndDownload = (e: any, filename: string, text: string) => {
         // Get the SVG element
         const svg = document.getElementById("qrCode") as HTMLElement;
@@ -70,9 +74,7 @@ function DashboardCard(){
     }
 
     return (
-        <>
-            { /* Statistiche */}
-            
+        <>            
             <h1 className="topHeading">Dashboard</h1>
             <div className="dashboardWrapper">
                 <section className='news'>
@@ -108,7 +110,7 @@ function DashboardCard(){
                 <h2>QR Code</h2>
                     <QRCodeSVG
                         id='qrCode' 
-                        value="https://mytable.it" 
+                        value={link_qr}
                         size={256}
                         level='H'
                         includeMargin={true}

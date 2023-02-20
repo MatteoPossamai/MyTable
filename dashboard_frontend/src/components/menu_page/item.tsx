@@ -18,7 +18,8 @@ function Food(props: {food: Item, idx: number}) {
     // Get from .env file the number of icons
     let icon_plates:number = Number(process.env.REACT_APP_PLATES_ICONS);
 
-    const {selectedItem, setSelectedItem, items, setItems, update, setUpdate} = useContext(menuContext);
+    const {selectedItem, setSelectedItem, items, setItems, update, setUpdate
+        , setDonePopupVisible, setDonePopupText} = useContext(menuContext);
     const {setPopupAwake, setPopupTitle, 
         setPopupMessage, setPopupFollowingFunction} = useContext(menuContext);
     const [edit, setEdit] = useState(false);
@@ -83,6 +84,8 @@ function Food(props: {food: Item, idx: number}) {
                 window.location.href = "/login";
             }
             setUpdate(!update);
+            setDonePopupText("Deleted successfully");
+            setDonePopupVisible(true);
           });
     }
 
@@ -121,6 +124,8 @@ function Food(props: {food: Item, idx: number}) {
             }
             setUpdate(!update);
             setEdit(false);
+            setDonePopupText("Saved successfully");
+            setDonePopupVisible(true);
           });
     }
 
@@ -149,7 +154,7 @@ function Food(props: {food: Item, idx: number}) {
                                         fontWeight: "bold"
                                     }}>€{props.food.price}</p>
                                 </div>
-                                <FaPen className="editIcon" onClick={(e) => {e.stopPropagation();setEdit(!edit)}} />
+                                <FaPen className="editIcon" onClick={(e) => {e.stopPropagation();setEdit(!edit);setSelectedIcon(props.food.iconId)}} />
                             </div>
                             :
                             <p>{props.food.name}</p>
