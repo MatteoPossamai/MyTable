@@ -6,8 +6,8 @@
 
 - [Introduction](#Introduction)
 - [Features](#Features)
-- [Menu management](#Menu management)
-- [Order management](#Order management)
+- [Menu management](#Menu)
+- [Order management](#Order)
 - [Menu management](#Menu management)
 - [Technologies](#Technologies)
 
@@ -29,7 +29,7 @@ Having MyTable, you can handle all the internals of your activity. The main aspe
   * Orders handled by your own weiters
   * Orders handled by clients from the table
 
-### Menu management
+### Menu 
 
 If you decide to use MyTable in your restaurant, you will have an online private page, where you will have displaied all the items in your own menu, divided in their own categories. 
 
@@ -39,7 +39,7 @@ Do you want to remove an item because you don't have enough ingredients? You onl
 
 Simplicity, beautiful user interface, video lessons and article to support you if you need help, you are not alone. 
 
-### Order management
+### Order
 
 Another key feature of MyTable is the order stream. This is pretty simple. You can decide whether orders can be made only from your waiters or also from the table, directly from your users. 
 
