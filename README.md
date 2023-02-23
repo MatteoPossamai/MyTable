@@ -2,6 +2,15 @@
 
 ![MyTable logo](/dashboard_frontend/public/mytable_logo.png)
 
+## Table of content
+
+- [Introduction](#Introduction)
+- [Features](#Features)
+- [Menu management](#Menu management)
+- [Order management](#Order management)
+- [Menu management](#Menu management)
+- [Technologies](#Technologies)
+
 ## Introduction
 
 This is a complete menu manager for a coffee shop and a restaurant. It is also a menu viewer for all the costumers. 
@@ -35,3 +44,26 @@ Simplicity, beautiful user interface, video lessons and article to support you i
 Another key feature of MyTable is the order stream. This is pretty simple. You can decide whether orders can be made only from your waiters or also from the table, directly from your users. 
 
 This system avoids most of the errors that sometimes humans made while reporting orders, or while people in the kitchen prepares them. With MyTable, you will have a reliable record to keep track of ordered items and everything that has been asked, and you will decrease the errors you make almost entirely. 
+
+## Technologies
+
+Here is the stack used to build the application:
+
+Frontend:  :fast_forward:
+- ReactJS with Typescript 
+
+Backend:  :rewind:
+- Django Rest Framework
+- PostgreSQL
+- Redis
+- Celery
+
+Tools: :hammer:
+- Git
+- Docker
+- docker-compose
+
+Deployment:
+Frontend: Netlify
+Backend: Digital Ocean
+
