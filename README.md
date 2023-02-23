@@ -8,7 +8,6 @@
 - [Features](#Features)
 - [Menu management](#Menu)
 - [Order management](#Order)
-- [Menu management](#Menu management)
 - [Technologies](#Technologies)
 
 ## Introduction
