@@ -51,7 +51,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
 
     return (
         <section className='item'>
-            <img src={`/plates/food_${item.iconId}.svg`} alt="Pizza Icon" className='foodIcon' />
+            <img src={`/plates/food_${item.iconId + 1}.svg`} alt="Pizza Icon" className='foodIcon' />
             <span className='itemTextSpan'>
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
