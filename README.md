@@ -12,7 +12,7 @@
 
 ## Video demo for the registration and creation of the plan
 
-[![asciicast](https://asciinema.org/a/113463.png)]([https://asciinema.org/a/113463](https://ik.imagekit.io/matteopossamai/Screencast-from-25-02-2023-20_16_00_cQesI9q2W.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1677353010317))
+https://user-images.githubusercontent.com/61617283/221375954-20dec67f-92fe-4765-9340-2ae2f451b38e.mp4
 
 ## Introduction
 
