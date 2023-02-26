@@ -10,6 +10,10 @@
 - [Order management](#Order)
 - [Technologies](#Technologies)
 
+## Video demo for the registration and creation of the plan
+
+https://user-images.githubusercontent.com/61617283/221375954-20dec67f-92fe-4765-9340-2ae2f451b38e.mp4
+
 ## Introduction
 
 This is a complete menu manager for a coffee shop and a restaurant. It is also a menu viewer for all the costumers. 
