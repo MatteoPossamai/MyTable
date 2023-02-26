@@ -1,6 +1,5 @@
 // Global imports
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 // Local imports
@@ -39,16 +38,30 @@ function LoginPage(){
             return;
         }
 
+        let data = {
+            email: email,
+            password: password
+        }
+
+        console.log(base_link)
+
         // Make the call to the API
-        axios.post(`${base_link}/restaurant_user/login/`, {
+        fetch(`${base_link}/restaurant_user/login/`, {
             headers: {
                 'Content-Type': 'application/json'
             },
-            email: email,
-            password: password
+            method: "POST",
+            body: JSON.stringify(data)
         }).then((res) => {
-            let token = res.data.token;
-            let restaurant_id = res.data.restaurant_id;
+            if (res.status === 403 || res.status === 400){
+                setDonePopupVisible(true);
+                setDonePopupText("Wrong email or password");
+                return;
+            }
+            return res.json();
+        }).then(data => {
+            let token = data.token;
+            let restaurant_id = data.restaurant_id;
             // save the token in the local storage
             localStorage.setItem("token", token);
             // Redirect to the home page
@@ -81,21 +94,34 @@ function LoginPage(){
         }
 
         // Make the call to the API
-        axios.post(`${base_link}/restaurant_user/signup/`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        console.log(base_link)
+
+        let data = {
             email: signupEmail,
             password: signupPassword,
             confirmPassword: signupConfirmPassword
+        }
+
+        fetch(`${base_link}/restaurant_user/signup/`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
         }).then((res) => {
-            let token = res.data.token;
+            if (res.status === 403 || res.status === 400){
+                setDonePopupVisible(true);
+                setDonePopupText("Email already exists");
+                return;
+            }
+            return res.json();  
+        }).then(data => {
+            let token = data.token;
             // save the token in the local storage
             localStorage.setItem("token", token);
             // Redirect to the home page
             history(`/create_restaurant`);
-        }
-        ).catch((err) => {
+        }).catch((err) => {
             setDonePopupVisible(true);
             setDonePopupText("Email already exists");
         })

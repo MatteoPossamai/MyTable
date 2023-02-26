@@ -8,7 +8,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {RxDoubleArrowLeft} from "react-icons/rx";
 import {RxDoubleArrowRight} from "react-icons/rx";
-import axios from "axios";
 
 // Local imports
 // Context
@@ -25,13 +24,15 @@ function LateralNav(){
     let history = useNavigate();
 
     const handleLogout = () => {
-        
-        axios.post(`${base_link}/restaurant_user/logout/`, {}, {
+        let token:any = localStorage.getItem("token");
+        fetch(`${base_link}/restaurant_user/logout/`, {
             headers: {
                 'Content-Type': 'application/json',
-                'token': localStorage.getItem('token'),
-            }
-        }).then((res) => {
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            method: "POST",
+        }).then((data) => {
             localStorage.clear();
             history(`/login`);
         }
