@@ -42,10 +42,10 @@ function MiddlePage(){
 
     return (
         <div className='middlePage'>
-            <img src={`/other/Home.svg`} alt="home" className="middleImage1" />
+            <img src={`/other/Home.svg`} alt="home" className="middleImage" />
             <h1>{restaurant.name}</h1>
             <button className='bigButton' onClick={()=>history(`/mytable/${id}`)}>Get Started</button>
-            <img src={`/other/Home.svg`} alt="home" className="middleImage2" />
+            <img src={`/other/Home.svg`} alt="home" className="middleImage" />
         </div>
     )
 }
