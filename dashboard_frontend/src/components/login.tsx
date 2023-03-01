@@ -43,8 +43,6 @@ function LoginPage(){
             password: password
         }
 
-        console.log(base_link)
-
         // Make the call to the API
         fetch(`${base_link}/restaurant_user/login/`, {
             headers: {
@@ -94,7 +92,6 @@ function LoginPage(){
         }
 
         // Make the call to the API
-        console.log(base_link)
 
         let data = {
             email: signupEmail,
