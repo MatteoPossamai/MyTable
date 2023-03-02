@@ -25,6 +25,10 @@ const ProductDisplay = () => {
         }
         ).then((data) => {
 			let products = data.data;
+			console.log(products);
+			// Sort the products by name
+			products.sort((a: any, b: any) => { return  a.name.localeCompare(b.name) });
+			console.log(products);
 			setProducts(products);
         }).catch((err) => {
             console.log(err);
