@@ -123,7 +123,7 @@ function Menu(){
                                     selectedCategory, setSelectedCategory, selectedItem, setSelectedItem,
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
-                                    setDonePopupText, setDonePopupVisible}}>
+                                    setDonePopupText, setDonePopupVisible, auth}}>
         <Banner visible={auth.base_menu || auth.image_menu ? false : true } />
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">

@@ -13,13 +13,16 @@ function CreateItem(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let token: any = localStorage.getItem("token");
 
-    const {categories, update, setUpdate, setDonePopupVisible, setDonePopupText} = useContext(menuContext);
+    const {categories, update, setUpdate, setDonePopupVisible,
+        setDonePopupText, auth} = useContext(menuContext);
+    console.log(auth.image_menu)
 
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemPrice, setItemPrice] = useState(0);
     const [selectedIcon, setSelectedIcon] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState(-1);
+    const [checked, setChecked] = useState(false);
 
     // Error handling
     const activateError = () => {
@@ -140,9 +143,16 @@ function CreateItem(){
                         )
                     })}
                 </select>
-
-                <label>Icon</label>
-                <section className="iconsChoice">
+                
+                <label> {checked ? "Image" : "Icon"} </label>
+                    <label className="switch" style={{display: auth.image_menu ? "block" :"none"}}>
+                        <input type="checkbox" onChange={() => setChecked(!checked) } />
+                        <span className="slider round"></span>
+                    </label>
+                    <p>Premi per inserire le immagini o le icone</p>
+                
+                <section className="iconsChoice" style={{display: checked ? "none" : "grid"}}>
+                    
                     {Array.from(Array(icon_plates).keys()).map((icon) => {
                         return (
                             <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
@@ -151,6 +161,10 @@ function CreateItem(){
                         )
                     })
                     }
+                </section>
+
+                <section className="iconsChoice" style={{display: checked ? "grid" : "none"}}>
+                    
                 </section>
 
                 <button type="submit">Create</button>
