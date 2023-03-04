@@ -92,10 +92,10 @@ function Items(){
     return (
         <div className="greyBox">
             <header className="header_menu">
-                <p>Category foods</p>
+                <p>Cibi della categoria</p>
                 <div className="searchContainer">
                     <AiOutlineSearch className="searchIcon" />
-                    <input type={"text"} placeholder={"Search"} className="searchBar" value={search} 
+                    <input type={"text"} placeholder={"Cerca..."} className="searchBar" value={search} 
                         onChange={(e) => handleModification(e)} />
                 </div>
             </header>
@@ -117,7 +117,8 @@ function Items(){
                             {/* Empty category placeholder */}
                             <div className="category" style={{display: selectedCategory === -1 || filteredItems.length === 0 ? "flex" : "none"}}>
                                 <p style={{margin: "15px auto"}}>
-                                    {selectedCategory === -1 ? "Select a category to see its items" : "No items in this category"}
+                                    {selectedCategory === -1 ? "Seleziona una categoria per visualizzare i suoi prodotti" :
+                                     "Nessun elemento in questa categoria"}
                                 </p>
                             </div>
                         
@@ -127,7 +128,7 @@ function Items(){
                 </Droppable>
             </DragDropContext>
             <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton"
-            style={{display: filteredItems.length > 0 ? "block" : "none" }}>Confirm changes</button>
+            style={{display: filteredItems.length > 0 ? "block" : "none" }}>Conferma modifiche</button>
         </div>
     )
 }

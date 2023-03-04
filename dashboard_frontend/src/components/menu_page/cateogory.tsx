@@ -48,7 +48,7 @@ function CategoryItem(props:{category:Category, idx:number}) {
         e.stopPropagation();
         setPopupAwake(true);
         setPopupTitle("Delete category");
-        setPopupMessage("Are you sure you want to delete this category?");
+        setPopupMessage("Sei certo di volere eliminare questa categoria?");
         setPopupFollowingFunction(() => deleteCategory);
     }
 
@@ -67,7 +67,7 @@ function CategoryItem(props:{category:Category, idx:number}) {
                 window.location.href = "/login";
             }
             setUpdate(!update);
-            setDonePopupText("Deleted successfully");
+            setDonePopupText("Eliminata con successo");
             setDonePopupVisible(true);
           });
     }
@@ -90,12 +90,12 @@ function CategoryItem(props:{category:Category, idx:number}) {
         e.stopPropagation();
         // Check if the name is given
         if (name === "") {
-            alert("The name must be given");
+            alert("Il nome e' obbligatorio");
             return;
         }
         // Check if the description is given
         if (description === "") {
-            alert("The description must be given");
+            alert("La descrizione e' obbligatoria");
             return;
         }
 
@@ -156,14 +156,14 @@ function CategoryItem(props:{category:Category, idx:number}) {
                         <aside style={{display: selectedCategory === category.id ? "flex": "none"}}>
             
                             <form className="generalForm" onClick={(e) => e.stopPropagation()} onSubmit={e => updateCategory(e)}>
-                                <label htmlFor="categoryName">Category Name</label>
+                                <label htmlFor="categoryName">Nome della Categoria</label>
                                 <input value={name} onChange={(e) => changeName(e)} type="text" name="categoryName" id="categoryName" /> 
-                                <label htmlFor="categoryDescription">Category Description</label>   
+                                <label htmlFor="categoryDescription">Descrizione della Categoria</label>   
                                 <textarea value={description} onChange={(e) => changeDescription(e)} name="categoryDescription" id="categoryDescription" 
                                         style={{maxWidth: "85%"}} rows={4} />
                                 <aside className="coupleButtons">
-                                    <button type="reset" onClick={e=>resetContent(e)}>Reset changes</button>
-                                    <button type="submit">Update Category</button>
+                                    <button type="reset" onClick={e=>resetContent(e)}>Annulla cambiamenti</button>
+                                    <button type="submit">Modifica Categoria</button>
                                 </aside>
 
                                 <HideAndDeleteButton hideCategory={hideCategory} deleteCategory={del} 

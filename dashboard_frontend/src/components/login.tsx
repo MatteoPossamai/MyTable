@@ -156,7 +156,7 @@ function LoginPage(){
                     <input type="email" name="emailsignup" id="emailsignup" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} />
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
-                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <label htmlFor="confirmPassword">Conferma Password</label>
                     <input type="password" name="ccp" id="cp" value={signupConfirmPassword} onChange={(e) => setSignupConfirmPassword(e.target.value)} />
                     <button type="submit">Signup</button>
                 </form>

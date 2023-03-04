@@ -103,7 +103,7 @@ function CreateItem(){
                 setItemName("");
                 setItemDescription("");
                 setDonePopupVisible(true);
-                setDonePopupText("Item created successfully");
+                setDonePopupText("Prodotto creato con successo!");
                 return response.json();
               });
         }
@@ -120,21 +120,21 @@ function CreateItem(){
         <div className="createBox">
             <p>Create Item</p>
             <form className="generalForm" onSubmit={(e) => createItem(e)}>
-                <label htmlFor="categoryName">Item Name</label>
-                <p id="categoryProblem5">The name must be given</p>
+                <label htmlFor="categoryName">Nome del Prodotto</label>
+                <p id="categoryProblem5">Il nome e' obbligatorio</p>
                 <input  type="text" value={itemName} onChange={(e) => {setItemName(e.target.value);deactivateError()}} />
 
-                <label htmlFor="categoryDescription">Item Description</label>
-                <p id="categoryProblem6">The description must be given</p>
+                <label htmlFor="categoryDescription">Descrizione del Prodotto</label>
+                <p id="categoryProblem6">La descrizione e' obbligatoria</p>
                 <input type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)
                 deactivateError()}} />
 
-                <label htmlFor="categoryDescription">Item Price</label>
-                <p id="categoryProblem7">The price must be bigger than 0 euro</p>
+                <label htmlFor="categoryDescription">Prezzo del Prodotto</label>
+                <p id="categoryProblem7">Il prezzo deve essere maggiore di 0.00$</p>
                 <input type="number" required min="0" step=".01" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
                 deactivateError()}} />
 
-                <label>Category</label>
+                <label>Categoria</label>
                 <select name="category" className="selectionCategory" value={selectedCategory}
                     onChange={(e) => {setSelectedCategory(Number(e.target.value));console.log(selectedCategory)}}>
                     {categories.map((category: Category) => {
@@ -144,7 +144,7 @@ function CreateItem(){
                     })}
                 </select>
                 
-                <label> {checked ? "Image" : "Icon"} </label>
+                <label> {checked ? "Icone" : "Immagini"} </label>
                     <label className="switch" style={{display: auth.image_menu ? "block" :"none"}}>
                         <input type="checkbox" onChange={() => setChecked(!checked) } />
                         <span className="slider round"></span>
@@ -167,7 +167,7 @@ function CreateItem(){
                     
                 </section>
 
-                <button type="submit">Create</button>
+                <button type="submit">Crea</button>
             </form>
         </div>
     )

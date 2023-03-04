@@ -78,7 +78,7 @@ function CreateCategory(){
                 setUpdate(!update);
                 setCategoryName("");
                 setCategoryDescription("");
-                setDonePopupText("Category created successfully");
+                setDonePopupText("Categoria creata con successo");
                 setDonePopupVisible(true);
                 return response.json();
               });
@@ -87,19 +87,19 @@ function CreateCategory(){
 
     return (
         <div className="createBox">
-            <p>Create Category</p>
+            <p>Crea Categoria</p>
             <form className="generalForm" onSubmit={(e) => createCategory(e)}>
-                <label htmlFor="categoryName">Category Name</label>
-                <p id="categoryProblem1">The name must be given</p>
+                <label htmlFor="categoryName">Nome della Categoria</label>
+                <p id="categoryProblem1">Devi fornire un nome</p>
                 <input type="text" value={categoryName} id="categoryName"
                 onChange={(e) => {setCategoryName(e.target.value);deactiveError()}} />
 
-                <label htmlFor="categoryDescription">Category Description</label>
-                <p id="categoryProblem2">The description must be given</p>
+                <label htmlFor="categoryDescription">Descrizione della Categoria</label>
+                <p id="categoryProblem2">Devi fornire una descrizione</p>
                 <input type="text" value={categoryDescription} id="categoryDescription"
                  onChange={(e) => {setCategoryDescription(e.target.value);deactiveError()}} />
 
-                <button type="submit">Create</button>
+                <button type="submit">Crea</button>
             </form>
         </div>
     )

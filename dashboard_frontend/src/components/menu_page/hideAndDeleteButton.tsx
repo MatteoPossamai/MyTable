@@ -11,15 +11,15 @@ const HideAndDeleteButton = (props: { hideCategory: any, deleteCategory: any, hi
 
                     <p>
                     {props.type === "item" ?
-                        props.hided ? "Show Item" : "Hide Item"
+                        props.hided ? "Show Item" : "Nascondi Prodotto"
                         :
-                        props.hided ? "Show Category" : "Hide Category"
+                        props.hided ? "Show Category" : "Nascondi Categoria"
                     }
                     </p>
             </button>
 
             {/* Button to delete a particular Item or category */}
-            <button onClick={(e) => props.deleteCategory(e)} type="button"> <BsTrash className="deleteIcon" /> <p>Delete {props.type === "item"? "Item" : "Category"} </p></button>
+            <button onClick={(e) => props.deleteCategory(e)} type="button"> <BsTrash className="deleteIcon" /> <p>Delete {props.type === "item"? "Prodotto" : "Categoria"} </p></button>
         
         </div>
     );

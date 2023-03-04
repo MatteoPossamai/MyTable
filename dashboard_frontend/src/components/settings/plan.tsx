@@ -13,9 +13,8 @@ function Plan(){
 
     return (
         <section className="settingsSection planSection">
-            <h2>Plan</h2>
-            <p>Your current plan rappresents what service you are paying for, and it can be
-                handled and modified at the following link.
+            <h2>Piano</h2>
+            <p> Se vuoi verificare che piano stai utilizzando, modificarlo o aggiornare il tuo piano, clicca sul bottone qui sotto.
             </p>
             <button className="submitBTN" onClick={(e) => sendToPayment()}>Change Plan</button>
         </section>

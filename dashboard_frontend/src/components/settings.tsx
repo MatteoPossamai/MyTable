@@ -9,7 +9,7 @@ import "../styles/settings.css";
 function Settings(){
     return (
         <>
-            <h1 className="topHeading">Settings</h1>
+            <h1 className="topHeading">Impostazioni</h1>
             <div className="settingsContainer">
                 <AccountPreview />
 

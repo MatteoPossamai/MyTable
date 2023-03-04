@@ -17,9 +17,9 @@ function AccountPreview(){
             <h2>Account</h2>
 
             <p> 
-                Your account rappresents your activity informations, and holds everything related to your work.
-                Keep track of it really wisely. 
-                If you need to visualize your informations or modify them, click at the following link.
+            Il tuo account rappresenta le informazioni sulla tua attività e contiene tutto ciò che riguarda il tuo lavoro.
+                Tieni traccia di esso davvero saggiamente.
+                Se hai bisogno di visualizzare i tuoi dati o modificarli, clicca sul seguente link.
             </p>
             <button className="submitBTN" onClick={(e) => sendToPayment()}>Edit account</button>
         </section>

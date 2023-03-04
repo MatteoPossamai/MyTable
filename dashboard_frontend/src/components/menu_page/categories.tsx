@@ -81,10 +81,10 @@ function Categories(){
     return (
         <div className="greyBox">
             <header className="header_menu">
-                <p>All your categories</p>
+                <p>Tutte le tue categorie</p>
                 <div className="searchContainer">
                     <AiOutlineSearch className="searchIcon" />
-                    <input type={"text"} placeholder={"Search"} className="searchBar" value={search} 
+                    <input type={"text"} placeholder={"Cerca..."} className="searchBar" value={search} 
                         onChange={(e) => handleModification(e)} />
                 </div>
             </header>
@@ -106,7 +106,7 @@ function Categories(){
                         {filteredCategories.length === 0 &&
                             <div className="category">
                                 <p style={{margin: "15px auto"}}>
-                                    {"No categories found with these specs"}
+                                    {"Non ci sono categorie con queste caratteristiche"}
                                 </p>
                             </div>
                         }
@@ -115,7 +115,7 @@ function Categories(){
                 </Droppable>
             </DragDropContext>
             <button onClick={(e) => confirmChanges(e)} className="submitBTN bottomButton"
-            style={{display: categories.length > 0 ? "block" : "none" }}>Confirm changes</button>
+            style={{display: categories.length > 0 ? "block" : "none" }}>Conferma modifiche</button>
         </div>
     )
 }

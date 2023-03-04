@@ -45,15 +45,15 @@ function CreateRestaurant() {
                 a disposizione dei tuoi clienti. 
             </p>
             <form className="generalForm resForm" onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="restaurantName">Restaurant Name</label>
+                <label htmlFor="restaurantName">Nome del ristorante</label>
                 <input type="text" value={restaurantName} id="restaurantName" onChange={(e) => setRestaurantName(e.target.value)} />
-                <label htmlFor="restaurantAddress">Restaurant Address</label>
+                <label htmlFor="restaurantAddress">Indirizzo del ristorante</label>
                 <input type="text" value={restaurantAddress} id="restaurantAddress" onChange={(e) => setRestaurantAddress(e.target.value)} />
-                <label htmlFor="restaurantPhone">Restaurant Phone</label>
+                <label htmlFor="restaurantPhone">Telefono del ristorante</label>
                 <input type="text" value={restaurantPhone} id="restaurantPhone" onChange={(e) => setRestaurantPhone(e.target.value)} />
-                <label htmlFor="restaurantDescription">Restaurant Description</label>
+                <label htmlFor="restaurantDescription">Descrizione del ristorante</label>
                 <textarea value={restaurantDescription} id="restaurantDescription" onChange={(e) => setRestaurantDescription(e.target.value)} />
-                <button type="submit">Create Restaurant</button>
+                <button type="submit">Crea Ristorante</button>
             </form>
         </div>
     )

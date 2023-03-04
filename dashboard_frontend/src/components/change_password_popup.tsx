@@ -8,7 +8,7 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
 
         if (props.old === "" || props.pass === "" || props.conf === "") {
             props.spv(true);
-            props.spp("All fields are required");
+            props.spp("Tutti i campi sono richiesti");
             props.setVisible(false);
             props.setOld("");
             props.setPass("");
@@ -17,7 +17,7 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
         }
         if (props.pass !== props.conf) {
             props.spv(true);
-            props.spp("Passwords do not match");
+            props.spp("Le password non corrispondono");
             props.setVisible(false);
             props.setOld("");
             props.setPass("");
@@ -27,7 +27,7 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
 
         if (props.pass.length < 8) {
             props.spv(true);
-            props.spp("Password must be at least 8 characters long");
+            props.spp("La password deve essere almeno di 8 caratteri, con almeno un numero e una lettera");
             props.setVisible(false);
             props.setOld("");
             props.setPass("");
@@ -51,7 +51,7 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
         }).then((res) => {
             if (res.status === 204) {
                 props.spv(true);
-                props.spp("Password changed successfully");
+                props.spp("Password cambiata con successo");
                 props.setVisible(false);
                 props.setOld("");
                 props.setPass("");
@@ -72,7 +72,7 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
         }).catch((err) => {
             console.log(err);
             props.spv(true);
-            props.spp("Something went wrong");
+            props.spp("Qualcosa e' andato storto...");
             props.setVisible(false);
             props.setOld("");
             props.setPass("");
@@ -83,14 +83,14 @@ function ChangePasswordPopup (props: {old: string, setOld: (old: string) => void
     return (
         <div className="change-password-popup" style={{display: props.visible ? "flex" : "none",
          left: props.visible ? "" : "0" }}>
-            <h2>Change Password</h2>
-            <p>Password must be at least 8 characters long and with both a number and a letter</p>
+            <h2>Cambia Password</h2>
+            <p>Password deve essere lunga almeno 8 caratteri, e deve contenere almeno un numero e una lettera</p>
             <form className="generalForm">
-                <label htmlFor="old-password">Old Password</label>
+                <label htmlFor="old-password">Vecchia Password</label>
                 <input type="password" name="old-password" id="old-password" value={props.old} onChange={(e) => props.setOld(e.target.value)} />
-                <label htmlFor="new-password">New Password</label>
+                <label htmlFor="new-password">Nuova Password</label>
                 <input type="password" name="new-password" id="new-password" value={props.pass} onChange={(e) => props.setPass(e.target.value)} />
-                <label htmlFor="confirm-password">Confirm Password</label>
+                <label htmlFor="confirm-password">Conferma Password</label>
                 <input type="password" name="confirm-password" id="confirm-password" value={props.conf} onChange={(e) => props.setConf(e.target.value)} />
                 <button type="submit" onClick={e => changePassword(e)}>Change Password</button>
             </form>

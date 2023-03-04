@@ -65,8 +65,8 @@ function Food(props: {food: Item, idx: number}) {
     const del = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.stopPropagation();
         setPopupAwake(true);
-        setPopupTitle("Delete item");
-        setPopupMessage("Are you sure you want to delete this item?");
+        setPopupTitle("Elimina prodotto");
+        setPopupMessage("Sei sicuro di voler eliminare questo elemento?");
         setPopupFollowingFunction(() => deleteItem);
     }
 
@@ -84,7 +84,7 @@ function Food(props: {food: Item, idx: number}) {
                 window.location.href = "/login";
             }
             setUpdate(!update);
-            setDonePopupText("Deleted successfully");
+            setDonePopupText("Eliiminato con successo");
             setDonePopupVisible(true);
           });
     }
@@ -124,7 +124,7 @@ function Food(props: {food: Item, idx: number}) {
             }
             setUpdate(!update);
             setEdit(false);
-            setDonePopupText("Saved successfully");
+            setDonePopupText("Salvato con successo");
             setDonePopupVisible(true);
           });
     }
@@ -164,12 +164,12 @@ function Food(props: {food: Item, idx: number}) {
                         <div className="editItem" style={{display: edit && selectedItem === props.food.id ? "flex" : "none"}}>
                             
                             <form className="generalForm" onSubmit={e=>{submitItemChanges(e)}} >
-                                <label htmlFor="itemName">Item Name</label>
+                                <label htmlFor="itemName">Nome del Prodotto</label>
                                 <input type="text" name="name" id="name" 
                                 value={name} onChange={(e) => {e.stopPropagation(); setName(e.target.value)}}
                                 onClick={(e) => {e.stopPropagation()}} />
 
-                                <label htmlFor="itemPrice">Item Price</label>
+                                <label htmlFor="itemPrice">Prezzo del Prodotto</label>
                                 <input type="number" name="price" id="price" 
                                 value={price} onChange={(e) => {e.stopPropagation(); setPrice(Number(e.target.value))}}
                                 onClick={(e) => {e.stopPropagation()}} />
@@ -177,7 +177,7 @@ function Food(props: {food: Item, idx: number}) {
                                 <HideAndDeleteButton hideCategory={hideItem} deleteCategory={del}
                                  hided={!food.isActive} type="item" />
                                 
-                                <label htmlFor="itemDescription">Item Description</label>
+                                <label htmlFor="itemDescription">Descrizione del Prodotto</label>
                                 <textarea name="description" id="description" 
                                 value={description} onChange={e=>{ e.stopPropagation(); setDescription(e.target.value)}}
                                 onClick={(e) => {e.stopPropagation()}} rows={4} />
@@ -196,7 +196,7 @@ function Food(props: {food: Item, idx: number}) {
 
                                 <aside className="coupleButtons">
                                     <button type="button" onClick={() => setEdit(!edit)}>Cancel</button>
-                                    <button type="submit">Save</button>
+                                    <button type="submit">Salva</button>
                                 </aside>
                             </form>
                         </div>
