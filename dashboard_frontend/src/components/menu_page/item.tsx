@@ -9,6 +9,7 @@ import { Draggable } from "@hello-pangea/dnd";
 import { menuContext } from "../menu";
 //Components
 import HideAndDeleteButton from "./hideAndDeleteButton";
+import IconOrImage from "./iconOrImage";
 // Types
 import Item from "../../types/item";
 
@@ -21,7 +22,8 @@ function Food(props: {food: Item, idx: number}) {
     const {selectedItem, setSelectedItem, items, setItems, update, setUpdate
         , setDonePopupVisible, setDonePopupText} = useContext(menuContext);
     const {setPopupAwake, setPopupTitle, 
-        setPopupMessage, setPopupFollowingFunction} = useContext(menuContext);
+        setPopupMessage, setPopupFollowingFunction, auth,
+        imagePopup, setImagePopup} = useContext(menuContext);
     const [edit, setEdit] = useState(false);
 
     // Data states
@@ -182,17 +184,8 @@ function Food(props: {food: Item, idx: number}) {
                                 value={description} onChange={e=>{ e.stopPropagation(); setDescription(e.target.value)}}
                                 onClick={(e) => {e.stopPropagation()}} rows={4} />
 
-                                <label>Icon</label>
-                                    <section className="iconsChoice">
-                                        {Array.from(Array(icon_plates).keys()).map((icon) => {
-                                            return (
-                                                <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
-                                                onClick={(e) => {changeItemIcon(e, icon);}} className="foodIcon"
-                                                style={{backgroundColor: icon === selectedIcon ? "#530F26" : "white" }} />
-                                            )
-                                        })
-                                        }
-                                </section>
+                                <IconOrImage icon_plates={icon_plates} selectedIcon={selectedIcon} changeCategoryIcon={changeItemIcon}
+                                    auth={auth} imagePopup={imagePopup} setImagePopup={setImagePopup} />
 
                                 <aside className="coupleButtons">
                                     <button type="button" onClick={() => setEdit(!edit)}>Cancel</button>

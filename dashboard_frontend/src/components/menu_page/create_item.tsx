@@ -5,6 +5,8 @@ import Category from "../../types/category";
 // Local imports
 // Context
 import { menuContext } from "../menu";
+// Components
+import IconOrImage from "./iconOrImage";
 
 function CreateItem(){
     // Get from .env file the number of icons
@@ -13,16 +15,14 @@ function CreateItem(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     let token: any = localStorage.getItem("token");
 
-    const {categories, update, setUpdate, setDonePopupVisible,
-        setDonePopupText, auth} = useContext(menuContext);
-    console.log(auth.image_menu)
+    const {categories, update, setUpdate, setDonePopupVisible, setDonePopupText, auth,
+        imagePopup, setImagePopup } = useContext(menuContext);
 
     const [itemName, setItemName] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemPrice, setItemPrice] = useState(0);
     const [selectedIcon, setSelectedIcon] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState(-1);
-    const [checked, setChecked] = useState(false);
 
     // Error handling
     const activateError = () => {
@@ -103,7 +103,7 @@ function CreateItem(){
                 setItemName("");
                 setItemDescription("");
                 setDonePopupVisible(true);
-                setDonePopupText("Prodotto creato con successo!");
+                setDonePopupText("Item created successfully");
                 return response.json();
               });
         }
@@ -120,21 +120,21 @@ function CreateItem(){
         <div className="createBox">
             <p>Create Item</p>
             <form className="generalForm" onSubmit={(e) => createItem(e)}>
-                <label htmlFor="categoryName">Nome del Prodotto</label>
-                <p id="categoryProblem5">Il nome e' obbligatorio</p>
+                <label htmlFor="categoryName">Item Name</label>
+                <p id="categoryProblem5">The name must be given</p>
                 <input  type="text" value={itemName} onChange={(e) => {setItemName(e.target.value);deactivateError()}} />
 
-                <label htmlFor="categoryDescription">Descrizione del Prodotto</label>
-                <p id="categoryProblem6">La descrizione e' obbligatoria</p>
+                <label htmlFor="categoryDescription">Item Description</label>
+                <p id="categoryProblem6">The description must be given</p>
                 <input type="text" value={itemDescription} onChange={(e) => {setItemDescription(e.target.value)
                 deactivateError()}} />
 
-                <label htmlFor="categoryDescription">Prezzo del Prodotto</label>
-                <p id="categoryProblem7">Il prezzo deve essere maggiore di 0.00$</p>
+                <label htmlFor="categoryDescription">Item Price</label>
+                <p id="categoryProblem7">The price must be bigger than 0 euro</p>
                 <input type="number" required min="0" step=".01" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
                 deactivateError()}} />
 
-                <label>Categoria</label>
+                <label>Category</label>
                 <select name="category" className="selectionCategory" value={selectedCategory}
                     onChange={(e) => {setSelectedCategory(Number(e.target.value));console.log(selectedCategory)}}>
                     {categories.map((category: Category) => {
@@ -143,31 +143,11 @@ function CreateItem(){
                         )
                     })}
                 </select>
-                
-                <label> {checked ? "Icone" : "Immagini"} </label>
-                    <label className="switch" style={{display: auth.image_menu ? "block" :"none"}}>
-                        <input type="checkbox" onChange={() => setChecked(!checked) } />
-                        <span className="slider round"></span>
-                    </label>
-                    <p>Premi per inserire le immagini o le icone</p>
-                
-                <section className="iconsChoice" style={{display: checked ? "none" : "grid"}}>
-                    
-                    {Array.from(Array(icon_plates).keys()).map((icon) => {
-                        return (
-                            <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
-                            onClick={(e) => {changeCategoryIcon(e, icon);}} className="foodIcon"
-                            style={{backgroundColor: icon === selectedIcon ? "#530F26" : "white" }} />
-                        )
-                    })
-                    }
-                </section>
 
-                <section className="iconsChoice" style={{display: checked ? "grid" : "none"}}>
-                    
-                </section>
-
-                <button type="submit">Crea</button>
+                <IconOrImage icon_plates={icon_plates} selectedIcon={selectedIcon} changeCategoryIcon={changeCategoryIcon} 
+                    auth={auth} imagePopup={imagePopup} setImagePopup={setImagePopup} />
+ 
+                <button type="submit">Create</button>
             </form>
         </div>
     )

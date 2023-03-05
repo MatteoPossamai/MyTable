@@ -10,6 +10,7 @@ import CreateCategory from "./menu_page/create_category";
 import Popup from "./popup/popup";
 import DonePopup from "./menu_page/donePopup";
 import Banner from "./menu_page/banner";
+import ImagePopup from "./menu_page/imagePopup";
 // Styles
 import "../styles/menu.css";
 
@@ -55,6 +56,7 @@ function Menu(){
     const [selectedCategory, setSelectedCategory] = useState(categories.length > 0 ? 0 : null);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
     const [update, setUpdate] = useState(false);
+    const [imagePopup, setImagePopup] = useState(false);
 
     // fetching categories from the server
     useEffect(() => {
@@ -123,7 +125,7 @@ function Menu(){
                                     selectedCategory, setSelectedCategory, selectedItem, setSelectedItem,
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
-                                    setDonePopupText, setDonePopupVisible, auth}}>
+                                    setDonePopupText, setDonePopupVisible, auth, imagePopup, setImagePopup}}>
         <Banner visible={auth.base_menu || auth.image_menu ? false : true } />
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
@@ -136,6 +138,8 @@ function Menu(){
                     <CreateItem />
                 </section>
         </div>
+
+        <ImagePopup active={imagePopup} changeVisibility={setImagePopup} />
 
         <Popup awake={popupAwake} title={popupTitle} message={popupMessage} />
         <DonePopup text={donePopupText} visible={donePopupvisible} page="menu" />
