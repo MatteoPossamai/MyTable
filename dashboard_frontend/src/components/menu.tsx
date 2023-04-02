@@ -21,7 +21,7 @@ function Menu(){
     let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
 
     // check if the user payid for the service
-    const [auth, setAuth] = useState<any>({"client_order": false, "image_menu": false, "base_menu": false , "waiter_order": false});
+    const [auth, setAuth] = useState<any>({"client_order": false, "image_menu": false, "base_menu": true , "waiter_order": false});
     
     useEffect(() => {
         let currentUrl = window.location.href;

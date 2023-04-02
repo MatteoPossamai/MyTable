@@ -13,6 +13,10 @@ function CreateRestaurant() {
 
     const handleSubmit = async (e:any) => {
         e.preventDefault();
+        if (restaurantName === '' || restaurantAddress === '' || restaurantPhone === '' || restaurantDescription === '') {
+            alert('Riempi tutti i campi per poter proseguire');
+            return;
+        }
         let data = {
             "name": restaurantName,
             "location": restaurantAddress,
