@@ -25,12 +25,14 @@ const Navbar = memo((props: {categories:any, activeCategory: number, handleClick
     return (
         <nav className='parent'>
             <nav className="categories">
-                { categories?.map((category:Category) => 
-                    <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
-                    onClick={() => handleClick(category)}>{category.name}</button>
-                ) }
+                { 
+                    categories?.map((category:Category) => 
+                        <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
+                        onClick={() => handleClick(category)}>{category.name}</button>
+                    ) 
+                }
             </nav>
-            <aside className={props.note ? "note" : "emptyButton"} onClick={(e) => addNote(e)}>
+            <aside className={"note"} onClick={(e) => addNote(e)} style={{display: props.note ? "flex" : "none"}}>
                 <img src={"/other/note.svg"} style={{display: props.note ? "block" : "none"}} alt="note"/>
             </aside>
         </nav>

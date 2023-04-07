@@ -72,8 +72,9 @@
   top: 0;
   display: flex;
   flex-direction: row;
-  height: 50px;
-  width: 72%;
+  align-items: center;
+  height: fit-content;
+  width: 82%;
   overflow-x: auto;
   overflow-y: hidden;
   z-index: 10;
@@ -85,7 +86,7 @@
   background-color: var(--redwine);
   padding: 10px;
   height: 35px; 
-  width: 13%;
+  width: 7%;
   margin-left: 2%;
   border-radius: 20px;
 }
@@ -107,9 +108,10 @@
 .smallButton {
   color: var(--white);
   background-color: var(--redwine);
-  height: 50px;
   padding: 15px 20px;
-  width: 100%;
+  text-align: center;
+  max-width: 300px;
+  height: fit-content;
   border: none;
   border-radius: 20px;
   transition: 1s;
@@ -164,7 +166,6 @@
 .item{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   position: relative;
   background-color: var(--white);
   color: var(--white);
@@ -175,6 +176,12 @@
   margin:10px auto;
   color: var(--black);
   align-items: center;
+}
+
+.itemTextSpan{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
 }
 
 .item p{
