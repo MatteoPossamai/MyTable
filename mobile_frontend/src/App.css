@@ -111,7 +111,7 @@
   padding: 15px 20px;
   text-align: center;
   max-width: 300px;
-  height: fit-content;
+  height: auto;
   border: none;
   border-radius: 20px;
   transition: 1s;
