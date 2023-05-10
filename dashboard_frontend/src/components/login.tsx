@@ -17,6 +17,9 @@ function LoginPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // Handle Checkbox
+    const [checked, setChecked] = useState(false);
+
     // Handle the signup form
     const [signupEmail, setSignupEmail] = useState("");
     const [signupPassword, setSignupPassword] = useState("");
@@ -158,7 +161,13 @@ function LoginPage(){
                     <input type="password" name="password" id="password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} />
                     <label htmlFor="confirmPassword">Conferma Password</label>
                     <input type="password" name="ccp" id="cp" value={signupConfirmPassword} onChange={(e) => setSignupConfirmPassword(e.target.value)} />
-                    <button type="submit">Signup</button>
+
+                    <form className="checkTerms">  
+                        <input type="checkbox" id="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
+                        <label htmlFor="checkbox">Accetto i <a href="/terms">Termini e le Condizioni</a></label>
+                    </form>
+
+                    <button type="submit" className={checked ? "" : "disabled"}>Signup</button>
                 </form>
             </section>
             <DonePopup text={donePopupText} visible={donePopupvisible} page={"login"} />

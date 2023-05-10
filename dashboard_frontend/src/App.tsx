@@ -12,6 +12,7 @@ import Loader from './components/loader';
 import MainPayment from './payment/payment_main';
 import Account from './components/account';
 import CreateRestaurant from './components/create_restaurant';
+import Terms from './components/terms';
 
 let Help = lazy(() => import('./components/help'));
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/payment/:id" element={<MainPayment />} />
           <Route path="/account/:id" element={<Account />} />
           <Route path="/create_restaurant" element={<CreateRestaurant />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<FourOhFour />} />
         </Routes>
       </Router>

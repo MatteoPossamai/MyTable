@@ -541,3 +541,8 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+.iconTop{
+    display: flex;
+    float: inline-start;
+}

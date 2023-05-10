@@ -73,11 +73,26 @@
 .loginSection, .signupSection, .googleSection{
   margin: 200px 2%;
   border: 2px solid var(--black);
-  height: 400px;
+  height: 470px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
   background-color: var(--backgrey);
+}
+
+.checkTerms{
+  margin: 15px 0;
+}
+
+.disabled{
+  background-color: var(--grey);
+  border: 2px solid var(--grey);
+  pointer-events: none;
+  cursor: not-allowed;  
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 /* End of Login code */
