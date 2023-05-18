@@ -126,7 +126,7 @@ function Menu(){
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
                                     setDonePopupText, setDonePopupVisible, auth, imagePopup, setImagePopup}}>
-        <Banner visible={auth.base_menu || auth.image_menu ? false : true } />
+        <Banner visible={false}/> {/*visible={auth.base_menu || auth.image_menu ? false : true } />*/}
         <h1 className="topHeading">Menu'</h1>
         <div className="menu-container">
                 <Categories />
