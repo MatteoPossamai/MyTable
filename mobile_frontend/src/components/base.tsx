@@ -75,6 +75,7 @@ function Base(){
     useEffect(() => {
         let currentUrl = window.location.href;
         let id = currentUrl.split("/")[5];
+        console.log(`${base_link}/category/restaurant_category/active/${id}`)
         fetch(`${base_link}/category/restaurant_category/active/${id}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
