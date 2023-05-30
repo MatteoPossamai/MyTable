@@ -31,6 +31,7 @@ function LoginPage(){
     // Handle the login call to the API
     const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("Login")
 
         if (email.length < 1){
             alert("Email cannot be empty");
