@@ -37,7 +37,7 @@ function CreateItem(){
             problem!.style.display = "block";
             flag = false;
         }
-        if(itemPrice <= 0){
+        if(itemPrice < 0){
             let problem = document.getElementById("categoryProblem7");
             problem!.style.display = "block";
             flag = false;
@@ -130,7 +130,9 @@ function CreateItem(){
                 deactivateError()}} />
 
                 <label htmlFor="categoryDescription">Item Price</label>
-                <p id="categoryProblem7">The price must be bigger than 0 euro</p>
+                <p id="categoryProblem7">
+                    The price must be al least 0.00 euro. If it is 0.00, will be hidden
+                    </p>
                 <input type="number" required min="0" step=".01" value={itemPrice} onChange={(e) => {setItemPrice(Number(e.target.value))
                 deactivateError()}} />
 
