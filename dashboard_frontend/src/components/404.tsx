@@ -4,7 +4,7 @@ import { BiError } from "react-icons/bi";
 
 function FourOhFour() {
   return (
-    <div className="fof" onClick={() => window.location.replace('https://mytablelanding.netlify.app/') }>
+    <div className="fof" onClick={() => window.location.replace('https://landing.my-table.it/') }>
         <TbError404 className="ice" />
         <h1>Page not found</h1>
         <p>Mi dispiace, ma questa pagina non esiste. Clicca qui per venire reinderizzato</p>
