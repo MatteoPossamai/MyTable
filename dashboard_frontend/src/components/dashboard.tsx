@@ -45,26 +45,16 @@ function DashboardCard(){
 
             // Set the href of the link to the PNG data
             link.setAttribute("href", pngData);
-
-            // Append the link to the body
             document.body.appendChild(link);
 
             // Simulate click
             link.click();
-
-            // Remove the link from the body
             document.body.removeChild(link);
         }
-
-        // When the image fails to load, throw an error
         img.onerror = function() {
             throw new Error("Error loading image");
         }
-
-        // Set the src of the image to the SVG data
         img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
-
-        // Prevent the default click event
         e.preventDefault();
 
         // download the file
