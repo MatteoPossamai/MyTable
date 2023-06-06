@@ -51,12 +51,12 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
 
     return (
         <section className='item'>
-            <img src={`/plates/food_${item.iconId + 1}.svg`} alt="Pizza Icon" className='foodIcon'
-            hidden={item.iconId !== -1 ? false : true} />
+            <img src={`/plates/food_${item.iconId + 1}.svg`} alt="Food Icon" className='foodIcon'
+            hidden={item.iconId !== -1 ? false : true} width={120} height={120} />
             <span className='itemTextSpan'>
                 <h3>{item.name}</h3>
-                <p>{item.description}</p>
-                <aside className='price'> € {item.price}</aside>
+                <p className='itemDescription'>{item.description}</p>
+                <aside className='price' style={{opacity: item.price > 0 ? "100" : "0"}}> € {item.price}</aside>
             </span>
             <form className='ordination' style={{display: props.auth.client_order ? 'visible' : 'none'}} 
                  onSubmit={(e) => onSubmitHandler(e)}>
