@@ -7,7 +7,7 @@ function IconOrImage(props : {icon_plates: number, selectedIcon: number, changeC
                     <section className="iconsChoice">
                         {Array.from(Array(icon_plates).keys()).map((icon) => {
                             return (
-                                <img key={icon} src={`/plates/food_${icon+1}.svg`} alt="Category cover"
+                                <img key={icon} src={`/new_plates/food_${icon+1}.png`} alt="Category cover"
                                 onClick={(e) => {changeCategoryIcon(e, icon);}} className="foodIcon"
                                 style={{backgroundColor: icon === selectedIcon ? "#530F26" : "white" }} />
                             )
