@@ -43,11 +43,12 @@
   color: var(--black);
   height: 50px;
   padding: 12px;
+  text-align: center;
 }
 
 .header h1{
-  font-size: 22px;
-  font-weight: medium;
+  font-size: 26px;
+  font-weight: 1000;
 }
 
 /* End of header code */
