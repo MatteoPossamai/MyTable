@@ -33,6 +33,7 @@ function Base(){
     const [activeCategory, setActiveCategory] = useState<number>(0);
     const [note, setNote] = useState<string>("");
     const [visible, setVisible] = useState<boolean>(false);
+    const [colorPalette, setColorPalette] = useState<string[]>([]);
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -48,6 +49,8 @@ function Base(){
         }).then((data) => {
             setRestaurant(data.restaurant);
             setAuth(data.auth);
+            // Fake data while the API is not ready
+            setColorPalette(["#0f0", "#0044aa"]);
         }).catch((err) => {
             console.log(err);
         })
@@ -107,7 +110,7 @@ function Base(){
     return (
         <>
             <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities,
-                auth, setVisible}}>
+                auth, setVisible, colorPalette, setColorPalette}}>
                 {/* Header */}
                 <Header name={restaurant ? restaurant.name : "Loading..."} />
 

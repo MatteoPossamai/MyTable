@@ -12,7 +12,7 @@ const Navbar = memo((props: {categories:any, activeCategory: number, handleClick
     let activeCategory = props.activeCategory;
     let handleClick = props.handleClick;
 
-    const {setVisible} = useContext(orderedContext);
+    const {setVisible, colorPalette} = useContext(orderedContext);
 
     function addNote(e: any){
         e.stopPropagation();
@@ -28,7 +28,8 @@ const Navbar = memo((props: {categories:any, activeCategory: number, handleClick
                 { 
                     categories?.map((category:Category) => 
                         <button key={category.id} className="smallButton" id={category.id === activeCategory ? "activeSmallButton" : ""}
-                        onClick={() => handleClick(category)}>{category.name}</button>
+                        onClick={() => handleClick(category)} style={{backgroundColor: category.id === activeCategory ? colorPalette[0]: colorPalette[1]}}>
+                            {category.name}</button>
                     ) 
                 }
             </nav>

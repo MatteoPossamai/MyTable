@@ -10,7 +10,7 @@ import Restaurant from '../types/restaurant';
 
 const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:boolean, auth: any}) => {
 
-    const {orderedItems, setOrderedItems, quantities, setQuantities} = useContext(orderedContext);
+    const {orderedItems, setOrderedItems, quantities, setQuantities, colorPalette} = useContext(orderedContext);
 
     // setting up the state variables
     let quantity = quantities[orderedItems.indexOf(props.item)] || 0;
@@ -56,7 +56,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
             <span className='itemTextSpan'>
                 <h3>{item.name}</h3>
                 <p className='itemDescription'>{item.description}</p>
-                <aside className='price' style={{opacity: item.price > 0 ? "100" : "0"}}> € {item.price}</aside>
+                <aside className='price' style={{opacity: item.price > 0 ? "100" : "0", color: colorPalette[1]}}> € {item.price}</aside>
             </span>
             <form className='ordination' style={{display: props.auth.client_order ? 'visible' : 'none'}} 
                  onSubmit={(e) => onSubmitHandler(e)}>
