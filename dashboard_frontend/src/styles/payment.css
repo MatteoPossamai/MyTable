@@ -30,7 +30,7 @@
     min-height: 92vh;
     align-items: center;
     border: 2px solid var(--black);
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     padding: 10px 0;
 }
 
@@ -41,7 +41,7 @@
     margin-left: 20px;
     align-items: center;
     border: 2px solid var(--black);
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     height: fit-content;
     padding: 10px 0;
     width: calc(100% - 40px);
@@ -74,27 +74,27 @@
     display: flex;
     flex-direction: column;
     border: 2px solid var(--black);
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     padding: 10px 0;
     width: 100%;
-    background-color: var(--redwine);
+    background-color: var(--primary-color);
 }
 
 .provaGratis h2{
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--white);
+    color: var(--bg-color);
 }
 
 .provaGratis h3{
     font-weight: 100;
-    color: var(--white);
+    color: var(--bg-color);
 }
 
 .provaGratis p{
     font-size: 10pt;
     font-weight: 100;
-    color: var(--white);
+    color: var(--bg-color);
 }
 
 .provaGratis > * {
@@ -105,7 +105,7 @@
     display: flex;
     flex-direction: column;
     border: 2px solid var(--black);
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     padding: 10px 0;
     width: 100%;
 }

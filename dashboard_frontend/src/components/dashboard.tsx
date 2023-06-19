@@ -1,10 +1,32 @@
 import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
+import { useContext, useEffect } from 'react';
+import { navigationContext, updateColors, updateBorder } from './main';
 
 function DashboardCard(){
     const base_redirect:string | undefined = process.env.REACT_APP_BASE_REDIRECT;
+    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     const id = window.location.pathname.split("/")[2];
     let link_qr = `${base_redirect}/${id}`;
+
+    const {setColors} = useContext(navigationContext);
+
+    useEffect(() => {
+        // Fetch the colors from the API
+        fetch(`${base_link}/restaurant/`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "GET",
+        }).then((res) => {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            setColors([data.primary_color, data.secondary_color, data.bg_color, data.text_color]);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [base_link, setColors]);
 
     const takeAndDownload = (e: any, filename: string, text: string) => {
         // Get the SVG element
@@ -63,8 +85,28 @@ function DashboardCard(){
         link.click();
     }
 
+    const getColors = (e: any) => {
+        e.preventDefault();
+        const primaryColor = document.getElementById("primaryColor") as HTMLInputElement;
+        const secondaryColor = document.getElementById("secondaryColor") as HTMLInputElement;
+        const bgColor = document.getElementById("bgColor") as HTMLInputElement;
+        const boxColor = document.getElementById("boxColor") as HTMLInputElement;
+        const textColor = document.getElementById("textColor") as HTMLInputElement;
+
+
+        setColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+        updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+    }
+
+    const setColorsOnRemote = (e: any) => {
+        e.preventDefault();
+        console.log("CLICKED")
+        
+        console.log("DONE");
+    }
+
     return (
-        <>            
+        <>       
             <h1 className="topHeading">Dashboard</h1>
             <div className="dashboardWrapper">
                 <section className='news'>
@@ -96,26 +138,55 @@ function DashboardCard(){
                     </aside>
                 </section>
 
-                <section className="qrSection">
-                <h2>QR Code</h2>
-                    <QRCodeSVG
-                        id='qrCode' 
-                        value={link_qr}
-                        size={256}
-                        level='H'
-                        includeMargin={true}
-                        bgColor="#f1f1f1"
-                        imageSettings={
-                            {
-                                src: "../../mytable_logo.png",
-                                height: 60,
-                                width: 60,
-                                excavate: true
+                <aside className='qrAndColor'>
+                    <section className="qrSection">
+                    <h2>QR Code</h2>
+                        <QRCodeSVG
+                            id='qrCode' 
+                            value={link_qr}
+                            size={256}
+                            level='H'
+                            includeMargin={true}
+                            bgColor="#f1f1f1"
+                            imageSettings={
+                                {
+                                    src: "../../mytable_logo.png",
+                                    height: 60,
+                                    width: 60,
+                                    excavate: true
+                                }
                             }
-                        }
-                        />
-                    <button className='submitBTN' onClick={(e) => takeAndDownload(e, "sample", "Sample")}>Download</button>
-                </section>
+                            />
+                        <button className='submitBTN' onClick={(e) => takeAndDownload(e, "sample", "Sample")}>Download</button>
+                    </section>
+
+                    <section className="qrSection">
+                        <h2>Personalizzazioni</h2>
+                        <form className='generalForm'>
+                            <section style={{display: 'grid', gridTemplateColumns: "repeat(4, 1fr)"}}>
+                                <label htmlFor='primaryColor'>Colore primario</label>
+                                <input type='color' name='primaryColor' id='primaryColor' placeholder='Colore primario' 
+                                onChange={(e) => getColors(e)} />
+                                <label htmlFor='secondaryColor'>Colore secondario</label>
+                                <input type='color' name='secondaryColor' id='secondaryColor' placeholder='Colore secondario' 
+                                onChange={(e) => getColors(e)} />
+                                <label htmlFor='bgColor'>Colore sfondo</label>
+                                <input type='color' name='bgColor' id='bgColor' placeholder='Colore sfondo' 
+                                onChange={(e) => getColors(e)} />
+                                <label htmlFor='boxColor'>Colore contenitori</label>
+                                <input type='color' name='boxColor' id='boxColor' placeholder='Colore contenitori' 
+                                onChange={(e) => getColors(e)} />
+                                <label htmlFor='textColor'>Colore testo</label>
+                                <input type='color' name='textColor' id='textColor' placeholder='Colore testo' 
+                                onChange={(e) => getColors(e)} />
+                                <label htmlFor='radius'>Bordi</label>
+                                <input type='number' name='radius' id='radius' placeholder='Bordi' 
+                                onChange={(e) => updateBorder(Number(e.target.value))} />
+                            </section>
+                            <input type='submit' onClick={(e) => setColorsOnRemote(e)} value='Salva' className='submitBTN' />
+                        </form>
+                    </section>
+                </aside>
             </div>
         </>
     )

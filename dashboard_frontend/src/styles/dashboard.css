@@ -8,26 +8,26 @@
     width: fit-content;
     text-align: center;
     margin: 20px;
-    padding: 1px;
-    background-color: var(--backgrey);
-    border-radius: 20px;
+    padding: 5px;
+    background-color: var(--box-color);
+    border-radius: var(--border-radius-fix);
 }
 
 .dashboardWrapper h2, .dashboardWrapper h3{
-    color: var(--redwine);
+    color: var(--primary-color);
 }
 
 .news{
     padding: 20px;
     margin: 30px;
-    background-color: var(--backgrey);
-    border-radius: 20px;
+    background-color: var(--box-color);
+    border-radius: var(--border-radius-fix);
 }
 
 .news aside{
     margin: 5px;
     padding: 15px;
     margin: 10px;
-    border-radius: 20px;
-    background-color: var(--white);
+    border-radius: var(--border-radius-fix);
+    background-color: var(--bg-color);
 }

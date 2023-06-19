@@ -1,21 +1,30 @@
 /* Code variables */
 :root {
-  --blue: #1e90ff;
-  --white: #ffffff;
-  --red: #e60b0b;
-  --acqua: #a7ebdb;
+  --bg-color: #ffffff;
   --black: #32324d;
-  --backgrey: #f1f1f1;
-  --redwine: #530F26;
-  --activeyellow: #FFB01D;
-  --lowyellow: #FFD27F;
+  --box-color: #f1f1f1;
+  --primary-color: #530F26;
+  --secondary-color: #FFB01D;
   --greyactive: #8E8EA9;
-  --greytext: #707070;
+  --text-color: #707070;
   --activelateral: rgba(67, 145, 237, 0.1);
   --grey: #EEF2F5;
-  --p_font_size: 14px;
   --inactive_red: #FF7B7B;
-  --orange: #FF7B2C;
+  --p_font_size: 14px;
+  --border-radius-fix: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  font-family: 'Mulish', sans-serif;
+  letter-spacing: -0.5px;
+  color: var(--text-color);
 }
 
 ::-webkit-scrollbar {
@@ -24,13 +33,13 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix);
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--redwine); 
-  border-radius: 10px;
+  background: var(--primary-color); 
+  border-radius: var(--border-radius-fix);
 }
 
 .App {
@@ -48,15 +57,15 @@
   float: right;
   height: auto;
   width: 83%;
-  background-color: var(--white);
+  background-color: var(--bg-color);
   top: 0;
 }
 
 .header__help-icon{
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background-color: var(--white);
+  border-radius: var(--border-radius-fix); 
+  background-color: var(--bg-color);
   margin: 10px;
   stroke: .5px;
 }
@@ -72,8 +81,8 @@
 .header__user-icon{
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background-color: var(--white);
+  border-radius: var(--border-radius-fix); 
+  background-color: var(--bg-color);
   margin: 10px;
 }
 
@@ -82,28 +91,28 @@
   right: 0;
   top: 65px;
   width: 150px;
-  border-radius: 10%;
-  background-color: var(--white);
+  border-radius: var(--border-radius-fix); 
+  background-color: var(--bg-color);
   margin: 10px; 
-  background-color: var(--redwine);
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
 }
 
 .header__menu button{
-  background-color: var(--redwine);
+  background-color: var(--primary-color);
   border: none;
-  color: var(--white);
+  color: var(--text-color);
   font-size: 1rem;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: var(--border-radius-fix);
   width: 100%;
   transition: .3s;
 }
 
 .header__menu button:hover{
-  background-color: var(--backgrey);
-  color: var(--white);
+  background-color: var(--box-color);
+  color: var(--text-color);
 }
 
 /* End of Header code */
@@ -119,7 +128,7 @@
   float: left;
   height: 100vh;
   transition: .5s;
-  background-color: var(--white);
+  background-color: var(--bg-color);
   top: 0;
   padding: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -143,7 +152,7 @@
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  color: var(--greytext);
+  color: var(--text-color);
   font-size: .85rem;
   padding: 15px 0 15px 0;
   font-weight: 400;
@@ -155,7 +164,7 @@
 .lateral-nav ul li section:hover{
   background-color: var(--activelateral);
   cursor: pointer;
-  color: var(--black);
+  color: var(--text-color);
   font-weight: 700;
 }
 
@@ -180,8 +189,8 @@
 }
 
 .logo{
-  color: var(--redwine);
-  fill: var(--redwine);
+  color: var(--primary-color);
+  fill: var(--primary-color);
   height: 3rem;
   width: 3rem;
 }
@@ -233,7 +242,7 @@
 }
 
 .categories h1{
-  color: var(--black);
+  color: var(--text-color);
   font-size: 2rem;;
   padding-left: 1rem;
   padding-top: 1rem;
@@ -247,7 +256,7 @@
   margin: auto;
   padding: 0 2% 0 2%;
   position: relative;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix);
 }
 
 .category:hover{
@@ -274,14 +283,14 @@
 }
 
 .icon2:hover{
-  fill: var(--redwine);
+  fill: var(--primary-color);
 }
 
 .all-categories{
   width: 100%;
   margin: auto;
   border: 2px var(--black) solid;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix); 
   min-height: 70%;
   max-height: 70%;
   overflow-y: auto;
@@ -290,7 +299,7 @@
 .item{
   width: 300px;
   max-width: 300px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix); 
   padding: 0;
   margin: 0;
   border-bottom: 2px solid var(--black);
@@ -299,7 +308,7 @@
 }
 
 .active{
-  border-left: var(--activeyellow) 7px solid;
+  border-left: var(--secondary-color) 7px solid;
 }
 
 .topItem{
@@ -337,7 +346,7 @@
 }
 
 .iconize:hover{
-  fill: var(--redwine);
+  fill: var(--primary-color);
 }
 
 .addCategoryForm{
@@ -357,10 +366,10 @@
   margin: 10px auto;
   height: 45px;
   width: 85%;
-  color: var(--white);
-  background-color: var(--redwine);
+  color: var(--bg-color);
+  background-color: var(--primary-color);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix); 
   font-weight: 600;
 }
 
@@ -388,7 +397,7 @@
 }
 
 .foodList h1, .foodDetails h1{
-  color: var(--black);
+  color: var(--text-color);
   font-size: 2rem;;
   padding-left: 1rem;
   padding-top: 1rem;
@@ -417,8 +426,8 @@
   margin: 10px 0;
   height: 30px;
   width: 90%;
-  border: 2px solid var(--redwine);
-  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-fix); 
   font-size: 1.2em;
   font-weight: 600;
   transition: .5s;
@@ -428,8 +437,8 @@
   margin: 10px 0;
   height: 30px;
   width: 90%;
-  border: 2px solid var(--redwine);
-  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-fix); 
   font-size: 1.2em;
   font-weight: 600;
   transition: .5s;
@@ -439,10 +448,10 @@
   margin: 20px auto;
   height: 50px;
   width: 65%;
-  color: var(--white);
-  background-color: var(--redwine);
-  border: 2px solid var(--white);
-  border-radius: 10px;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--bg-color);
+  border-radius: var(--border-radius-fix);
   font-size: 1.2em;
   font-weight: 600;
   transition: .5s;
@@ -464,15 +473,15 @@
   padding: 20px 0 20px 0;
   top: 0;
   z-index: 1;
-  border: 3px solid var(--redwine);
-  border-radius: 30px;
+  border: 3px solid var(--primary-color);
+  border-radius: var(--border-radius-fix); 
   transition: .3s;
-  color: var(--redwine);
+  color: var(--text-color);
 }
 
 .fof h1{
   font-size: 10rem;
-  color: var(--redwine);
+  color: var(--text-color);
   font-weight: 700;
   font-size: 35pt;
 }
@@ -482,22 +491,22 @@
   width: 200px;
   margin: 0;
   padding: 0;
-  color: var(--redwine);
+  color: var(--text-color);
 }
 
 .fof:hover{
   cursor: pointer;
-  background-color: var(--redwine);
-  color: var(--white);
-  fill: var(--white);
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  fill: var(--bg-color);
 }
 
 .fof:hover .ice{
-  color: var(--white);
+  color: var(--bg-color);
 }
 
 .fof:hover h1{
-  color: var(--white);
+  color: var(--bg-color);
 }
 
 /* End of 404 code */
@@ -515,12 +524,13 @@
   padding: 20px 0 20px 0;
   top: 0;
   z-index: 1;
-  border: 3px solid var(--redwine);
+  border: 3px solid var(--primary-color);
   transition: .3s;
   padding: 20px;
   line-height: 1.4;
   overflow-y: auto;
-  border-radius: 10px;
+  color: var(--text-color);
+  border-radius: var(--border-radius-fix); 
 }
 
 .soon div{
@@ -561,10 +571,10 @@
   margin-top: 5px;
   padding: 20px 0 20px 0;
   top: 0;
-  border: 3px solid var(--redwine);
+  border: 3px solid var(--primary-color);
   line-height: 1.4;
   overflow-y: auto;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix);
 }
 
 /* End of active code */
@@ -600,7 +610,7 @@
   height: 1em;
   fill: none;
   stroke-width: 10;
-  stroke: var(--redwine);
+  stroke: var(--primary-color);
   stroke-linecap: round;
   transform:translate(5px, 5px);
   stroke-dasharray: 440;
@@ -629,9 +639,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--backgrey);
+  background-color: var(--box-color);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix);
 }
 
 .createRestaurant p{
@@ -655,10 +665,10 @@
   left: 20vw;
   height: 40vh;
   width: 35vw;
-  background-color: var(--white);
-  border: 2px solid var(--redwine);
+  background-color: var(--bg-color);
+  border: 2px solid var(--primary-color);
   z-index: 100;
-  border-radius: 10px;
+  border-radius: var(--border-radius-fix);
   text-align: center;
 }
 

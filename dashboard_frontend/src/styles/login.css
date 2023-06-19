@@ -51,7 +51,7 @@
   padding: 5px;
   font-size: 1.2rem;
   color: var(--black);
-  background-color: var(--white);
+  background-color: var(--bg-color);
 }
 
 .authForm input:focus{
@@ -62,9 +62,9 @@
   margin: 20px auto;
   height: 50px;
   width: 65%;
-  color: var(--white);
-  background-color: var(--redwine);
-  border: 2px solid var(--white);
+  color: var(--bg-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--bg-color);
   border-radius: 10px;
   font-size: 1.2em;
   font-weight: 600;
@@ -78,7 +78,7 @@
   padding: 30px;
   border-radius: 10px;
   box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.2);
-  background-color: var(--backgrey);
+  background-color: var(--box-color);
 }
 
 .checkTerms{

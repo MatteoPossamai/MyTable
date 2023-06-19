@@ -23,7 +23,7 @@
 
 .greyBox{
     background-color: var(--grey);
-    border-radius: 10px;
+    border-radius: var(--border-radius-fix);
     padding: 0;
     overflow-y: overlay;
     position: relative;
@@ -79,7 +79,7 @@
 .createBox{
     background-color: var(--grey);
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--border-radius-fix);
     padding: 0;
 }
 
@@ -92,7 +92,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--border-radius-fix);
 }
 
 .plusIcon{
@@ -100,7 +100,7 @@
 }
 
 .category{
-    background-color: var(--white);
+    background-color: var(--bg-color);
     margin-top: 10px;
     width: 90%;
     height: fit-content;
@@ -153,20 +153,20 @@
 
 .iconModifier{
     width: 40%;
-    background-color: var(--white);
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
+    border-radius: var(--border-radius-fix);
 }
 
 .changeCategoryIcon{
-    background-color: var(--redwine);
+    background-color: var(--primary-color);
     width: 55%;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: var(--border-radius-fix);
     overflow-y: auto;
     height: 140px;
     padding: 0;
@@ -174,7 +174,7 @@
 }
 
 .hideIcon{
-    border-radius: 16px;
+    border-radius: var(--border-radius-fix);
     padding: 5px;
     width: 20%;
     height: 80%;
@@ -182,12 +182,12 @@
 }
 
 .deleteIcon{
-    border-radius: 16px;
-    background-color: var(--white);
+    border-radius: var(--border-radius-fix);
+    background-color: var(--bg-color);
     padding: 5px;
     width: 20%;
     height: 80%;
-    color: var(--redwine);
+    color: var(--primary-color);
 }
 
 .bottomButton{
@@ -205,7 +205,7 @@
 }
 
 .smallP{
-    color: var(--greytext);
+    color: var(--text-color);
 }
 
 .onElement{
@@ -229,8 +229,8 @@
     max-height: 130px;
     min-height: 130px;
     overflow-y: auto;
-    background-color: var(--white);
-    border-radius: 10px;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius-fix);
 }
 
 .foodIcon{
@@ -238,14 +238,14 @@
     height: 50px;
     padding: 5px;
     margin: 2px;
-    border-radius: 10px;
+    border-radius: var(--border-radius-fix);
 }
 
 #categoryProblem1, #categoryProblem2, #categoryProblem3, #categoryProblem4,
 #categoryProblem5, #categoryProblem6, #categoryProblem7, #categoryProblem8 {
     display: none;
     font-size: smaller;
-    color: var(--redwine);
+    color: var(--primary-color);
     margin: 0;
     padding: 0;
 }
@@ -259,7 +259,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--border-radius-fix);
     margin: 0;
     padding: 0;
 }
@@ -297,10 +297,10 @@
 }
 
 .generalForm button{
-    background-color: var(--redwine);
-    color: var(--white);
+    background-color: var(--primary-color);
+    color: var(--bg-color);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius-fix);
     width: 80%;
     margin: 10px auto 1px auto;
     min-height: 30px;
@@ -311,9 +311,9 @@
     width: 90%;
     margin: 0 auto 5px auto;
     padding: 7px 5px;
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     border: none;
-    background-color: var(--white);
+    background-color: var(--bg-color);
     color: var(--black);
 }
 
@@ -331,9 +331,9 @@
     min-width: 90%;
     margin: 0 auto 10px auto;
     padding: 10px 5px;
-    border-radius: 5px;
+    border-radius: var(--border-radius-fix);
     border: none;
-    background-color: var(--white);
+    background-color: var(--bg-color);
     color: var(--black);
     resize: none;
 }
@@ -374,12 +374,12 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: var(--border-radius-fix);
     margin: 2px;
     padding: 5px;
     border: none;
-    color: var(--white);
-    background-color: var(--redwine);
+    color: var(--bg-color);
+    background-color: var(--primary-color);
 }
 
 .hideAndDelete p{
@@ -402,8 +402,8 @@
     width: 25vw;
     background-color: var(--black);
     opacity: 0.5;
-    border: 2px solid var(--white);
-    border-radius: 10px;
+    border: 2px solid var(--bg-color);
+    border-radius: var(--border-radius-fix);
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -424,12 +424,12 @@
 }
 
 .donePopup h3{
-    color: var(--white);
+    color: var(--bg-color);
     font-size: 1.3em;
 }
 
 .doneicon{
-    fill: var(--white);
+    fill: var(--bg-color);
     width: 50px;
     height: 50px;
     margin: 3% auto 0 auto;
@@ -454,18 +454,18 @@
     background-color: var(--black);
     opacity: 0.8;
     z-index: 99;
-    border-radius: 20px; 
+    border-radius: var(--border-radius-fix);
 }
 
 .banner h1 {
-    color: var(--white);
+    color: var(--bg-color);
     font-size: 3em;
     padding: 0;
     text-align: center;
 }
 
 .banner p {
-    color: var(--white);
+    color: var(--bg-color);
     font-size: 1.4em;
     padding: 0;
     text-align: center;
@@ -479,7 +479,7 @@
 .blockIcon{
     height: 30%;
     width: 30%;
-    fill: var(--white);
+    fill: var(--bg-color);
 }
 
 .switch {
@@ -535,11 +535,11 @@
   
   /* Rounded sliders */
   .slider.round {
-    border-radius: 34px;
+    border-radius: var(--border-radius-fix);
   }
   
   .slider.round:before {
-    border-radius: 50%;
+    border-radius: var(--border-radius-fix);
   }
 
 .iconTop{
