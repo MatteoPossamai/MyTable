@@ -1,32 +1,14 @@
 import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { navigationContext, updateColors, updateBorder } from './main';
 
 function DashboardCard(){
     const base_redirect:string | undefined = process.env.REACT_APP_BASE_REDIRECT;
-    let base_link:string | undefined = process.env.REACT_APP_BASE_LINK;
     const id = window.location.pathname.split("/")[2];
     let link_qr = `${base_redirect}/${id}`;
 
     const {colors, setColors, border, setBorder} = useContext(navigationContext);
-
-    useEffect(() => {
-        // Fetch the colors from the API
-        fetch(`${base_link}/restaurant/`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "GET",
-        }).then((res) => {
-            return res.json();
-        }).then(data => {
-            console.log(data);
-            setColors([data.primary_color, data.secondary_color, data.bg_color, data.text_color]);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }, [base_link, setColors]);
 
     const takeAndDownload = (e: any, filename: string, text: string) => {
         // Get the SVG element
@@ -100,9 +82,6 @@ function DashboardCard(){
 
     const setColorsOnRemote = (e: any) => {
         e.preventDefault();
-        console.log("CLICKED")
-        
-        console.log("DONE");
     }
 
     return (
@@ -147,7 +126,7 @@ function DashboardCard(){
                             size={256}
                             level='H'
                             includeMargin={true}
-                            bgColor="#f1f1f1"
+                            bgColor="#E5E5E5"
                             imageSettings={
                                 {
                                     src: "../../mytable_logo.png",

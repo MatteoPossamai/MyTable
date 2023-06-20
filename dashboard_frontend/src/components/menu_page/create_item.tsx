@@ -138,7 +138,7 @@ function CreateItem(){
 
                 <label>Category</label>
                 <select name="category" className="selectionCategory" value={selectedCategory}
-                    onChange={(e) => {setSelectedCategory(Number(e.target.value));console.log(selectedCategory)}}>
+                    onChange={(e) => {setSelectedCategory(Number(e.target.value))}}>
                     {categories.map((category: Category) => {
                         return (
                             <option key={category.id} value={Number(category.id)}>{category.name}</option>

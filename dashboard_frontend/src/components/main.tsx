@@ -13,7 +13,6 @@ import Settings from "./settings";
 let navigationContext = createContext<any>(0);
 
 const updateColors = (colors: String[]) => {
-    console.log(colors);
     document.documentElement.style.setProperty('--primary-color', String(colors[0]));
     document.documentElement.style.setProperty('--secondary-color', String(colors[1]));
     document.documentElement.style.setProperty('--box-color', String(colors[2]));
@@ -21,7 +20,8 @@ const updateColors = (colors: String[]) => {
     document.documentElement.style.setProperty('--text-color', String(colors[4]));
 }
 
-const updateBorder = (border: Number) => {
+const updateBorder = (border: Number, setBorder: any) => {
+    setBorder(border);
     document.documentElement.style.setProperty('--border-radius-fix', String(border) + "px");
 }
 
@@ -62,6 +62,35 @@ function MainPage(){
             checkIfLogged();
         }
     }, [token, base_link])
+
+
+    useEffect(() => {
+        let currentUrl = window.location.href;
+        let id = currentUrl.split("/")[4];
+        console.log(id)
+        fetch(`${base_link}/restaurant/${id}`, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+            if (res.status === 403 || res.status === 400){
+                window.location.href = "/error";
+            }
+            return res.json();
+        }).then((data) => {
+            let palette = data.palette; 
+            let colors = [
+                palette.primary,
+                palette.secondary,
+                palette.bg,
+                palette.box,
+                palette.text
+            ]
+            setColors(colors)
+            updateColors(colors);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [base_link])
 
     return (
         <main>
