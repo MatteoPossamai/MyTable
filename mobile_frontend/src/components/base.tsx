@@ -33,7 +33,6 @@ function Base(){
     const [activeCategory, setActiveCategory] = useState<number>(0);
     const [note, setNote] = useState<string>("");
     const [visible, setVisible] = useState<boolean>(false);
-    const [colorPalette, setColorPalette] = useState<string[]>([]);
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -50,11 +49,29 @@ function Base(){
             setRestaurant(data.restaurant);
             setAuth(data.auth);
             // Fake data while the API is not ready
-            setColorPalette(["#0f0", "#0044aa"]);
+            let palette = data.palette;
+            updateAll([
+                palette.primary,
+                palette.secondary,
+                palette.box,
+                palette.bg,
+                palette.text
+            ], data.border);
+
         }).catch((err) => {
             console.log(err);
         })
     }, [base_link, history]);
+
+    const updateAll = (colors: string[], border: number) => {
+        document.documentElement.style.setProperty('--primary-color', String(colors[0]));
+        document.documentElement.style.setProperty('--secondary-color', String(colors[1]));
+        document.documentElement.style.setProperty('--box-color', String(colors[2]));
+        document.documentElement.style.setProperty('--bg-color', String(colors[3]));
+        document.documentElement.style.setProperty('--text-color', String(colors[4]));
+
+        document.documentElement.style.setProperty('--border-radius-fix', String(border) + "px");
+    }
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -78,7 +95,6 @@ function Base(){
     useEffect(() => {
         let currentUrl = window.location.href;
         let id = currentUrl.split("/")[5];
-        console.log(`${base_link}/category/restaurant_category/active/${id}`)
         fetch(`${base_link}/category/restaurant_category/active/${id}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
@@ -110,7 +126,7 @@ function Base(){
     return (
         <>
             <orderedContext.Provider value={{orderedItems, setOrderedItems, quantities, setQuantities,
-                auth, setVisible, colorPalette, setColorPalette}}>
+                auth, setVisible}}>
                 {/* Header */}
                 <Header name={restaurant ? restaurant.name : "Loading..."} />
 

@@ -9,7 +9,7 @@ function DashboardCard(){
     const id = window.location.pathname.split("/")[2];
     let link_qr = `${base_redirect}/${id}`;
 
-    const {setColors} = useContext(navigationContext);
+    const {colors, setColors, border, setBorder} = useContext(navigationContext);
 
     useEffect(() => {
         // Fetch the colors from the API
@@ -166,22 +166,22 @@ function DashboardCard(){
                             <section style={{display: 'grid', gridTemplateColumns: "repeat(4, 1fr)"}}>
                                 <label htmlFor='primaryColor'>Colore primario</label>
                                 <input type='color' name='primaryColor' id='primaryColor' placeholder='Colore primario' 
-                                onChange={(e) => getColors(e)} />
+                                onChange={(e) => getColors(e)} value={colors[0]} />
                                 <label htmlFor='secondaryColor'>Colore secondario</label>
                                 <input type='color' name='secondaryColor' id='secondaryColor' placeholder='Colore secondario' 
-                                onChange={(e) => getColors(e)} />
+                                onChange={(e) => getColors(e)} value={colors[1]} />
                                 <label htmlFor='bgColor'>Colore sfondo</label>
                                 <input type='color' name='bgColor' id='bgColor' placeholder='Colore sfondo' 
-                                onChange={(e) => getColors(e)} />
+                                onChange={(e) => getColors(e)} value={colors[2]} />
                                 <label htmlFor='boxColor'>Colore contenitori</label>
                                 <input type='color' name='boxColor' id='boxColor' placeholder='Colore contenitori' 
-                                onChange={(e) => getColors(e)} />
+                                onChange={(e) => getColors(e)} value={colors[3]} />
                                 <label htmlFor='textColor'>Colore testo</label>
                                 <input type='color' name='textColor' id='textColor' placeholder='Colore testo' 
-                                onChange={(e) => getColors(e)} />
+                                onChange={(e) => getColors(e)} value={colors[4]} />
                                 <label htmlFor='radius'>Bordi</label>
                                 <input type='number' name='radius' id='radius' placeholder='Bordi' 
-                                onChange={(e) => updateBorder(Number(e.target.value))} />
+                                onChange={(e) => updateBorder(Number(e.target.value), setBorder)} value={border} />
                             </section>
                             <input type='submit' onClick={(e) => setColorsOnRemote(e)} value='Salva' className='submitBTN' />
                         </form>
