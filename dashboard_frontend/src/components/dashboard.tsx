@@ -82,6 +82,40 @@ function DashboardCard(){
 
     const setColorsOnRemote = (e: any) => {
         e.preventDefault();
+        const primaryColor = document.getElementById("primaryColor") as HTMLInputElement;
+        const secondaryColor = document.getElementById("secondaryColor") as HTMLInputElement;
+        const bgColor = document.getElementById("bgColor") as HTMLInputElement;
+        const boxColor = document.getElementById("boxColor") as HTMLInputElement;
+        const textColor = document.getElementById("textColor") as HTMLInputElement;
+
+        // take the borders from the form
+        const border = document.getElementById("radius") as HTMLInputElement;
+        setBorder(border.value);
+
+        setColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+        updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+
+        const data = {"colors":[
+            primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value
+        ], "border": border.value};
+
+        let token: any = localStorage.getItem("token");
+
+        fetch(`${process.env.REACT_APP_BASE_LINK}/restaurant/put/color/${id}/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            body: JSON.stringify({data}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
     return (

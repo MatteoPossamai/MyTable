@@ -31,7 +31,7 @@ function MainPage(){
 
     let token:string | null = localStorage.getItem("token");
     let [isCollapsed, setIsCollapsed] = useState(false);
-    const [colors, setColors] = useState<String[]>([]);
+    const [colors, setColors] = useState<String[]>(["#000000", "#000000", "#000000", "#000000", "#000000"]);
     const [border, setBorder] = useState<Number>(10);
 
     useEffect(() => {
@@ -67,7 +67,6 @@ function MainPage(){
     useEffect(() => {
         let currentUrl = window.location.href;
         let id = currentUrl.split("/")[4];
-        console.log(id)
         fetch(`${base_link}/restaurant/${id}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'}})
@@ -85,8 +84,11 @@ function MainPage(){
                 palette.box,
                 palette.text
             ]
+
+            let border = data.border;
             setColors(colors)
             updateColors(colors);
+            updateBorder(border, setBorder);
         }).catch((err) => {
             console.log(err);
         })

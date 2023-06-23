@@ -162,10 +162,10 @@ function LoginPage(){
                     <label htmlFor="confirmPassword">Conferma Password</label>
                     <input type="password" name="ccp" id="cp" value={signupConfirmPassword} onChange={(e) => setSignupConfirmPassword(e.target.value)} />
 
-                    <form className="checkTerms">  
+                    <aside className="checkTerms">  
                         <input type="checkbox" id="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} />
                         <label htmlFor="checkbox">Accetto i <a href="/terms">Termini e le Condizioni</a></label>
-                    </form>
+                    </aside>
 
                     <button type="submit" className={checked ? "" : "disabled"}>Signup</button>
                 </form>
