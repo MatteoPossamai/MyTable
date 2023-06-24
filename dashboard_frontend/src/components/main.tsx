@@ -15,8 +15,8 @@ let navigationContext = createContext<any>(0);
 const updateColors = (colors: String[]) => {
     document.documentElement.style.setProperty('--primary-color', String(colors[0]));
     document.documentElement.style.setProperty('--secondary-color', String(colors[1]));
-    document.documentElement.style.setProperty('--box-color', String(colors[2]));
-    document.documentElement.style.setProperty('--bg-color', String(colors[3]));
+    document.documentElement.style.setProperty('--box-color', String(colors[3]));
+    document.documentElement.style.setProperty('--bg-color', String(colors[2]));
     document.documentElement.style.setProperty('--text-color', String(colors[4]));
 }
 
