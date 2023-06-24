@@ -126,23 +126,23 @@ function Menu(){
                                     update, setUpdate, popupAwake, setPopupAwake, popupMessage, setPopupMessage,
                                     popupTitle, setPopupTitle, popupFollowingFunction, setPopupFollowingFunction,
                                     setDonePopupText, setDonePopupVisible, auth, imagePopup, setImagePopup}}>
-        <Banner visible={false}/> {/*visible={auth.base_menu || auth.image_menu ? false : true } />*/}
-        <h1 className="topHeading">Menu'</h1>
-        <div className="menu-container">
-                <Categories />
-                
-                <Items />
+            <Banner visible={false}/> {/*visible={auth.base_menu || auth.image_menu ? false : true } />*/}
+            <h1 className="topHeading">Menu'</h1>
+            <div className="menu-container">
+                    <Categories />
+                    
+                    <Items />
 
-                <section className="create-items">
-                    <CreateCategory />
-                    <CreateItem />
-                </section>
-        </div>
+                    <section className="create-items">
+                        <CreateCategory />
+                        <CreateItem />
+                    </section>
+            </div>
 
-        <ImagePopup active={imagePopup} changeVisibility={setImagePopup} />
+            <ImagePopup active={imagePopup} changeVisibility={setImagePopup} />
 
-        <Popup awake={popupAwake} title={popupTitle} message={popupMessage} />
-        <DonePopup text={donePopupText} visible={donePopupvisible} page="menu" />
+            <Popup awake={popupAwake} title={popupTitle} message={popupMessage} />
+            <DonePopup text={donePopupText} visible={donePopupvisible} page="menu" />
         </menuContext.Provider>
     )
 }

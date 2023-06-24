@@ -61,8 +61,7 @@ function MainPage(){
         }else{
             checkIfLogged();
         }
-    }, [token, base_link])
-
+    }, [token, base_link]);
 
     useEffect(() => {
         let currentUrl = window.location.href;
@@ -76,7 +75,33 @@ function MainPage(){
             }
             return res.json();
         }).then((data) => {
-            let palette = data.palette; 
+            let palette = data.palette;
+            if (palette === undefined){
+                palette = {
+                    primary: "#530F26",
+                    secondary: "#FFB01D",
+                    bg: "#ffffff",
+                    box: "#E5E5E5",
+                    text: "#707070"
+                }
+                let border = 10;
+                setColors([
+                    palette.primary,
+                    palette.secondary,
+                    palette.bg,
+                    palette.box,
+                    palette.text
+                ])
+                updateColors([
+                    palette.primary,
+                    palette.secondary,
+                    palette.bg,
+                    palette.box,
+                    palette.text
+                ]);
+                updateBorder(border, setBorder);
+                setColorFirstTime(palette, border)
+            } 
             let colors = [
                 palette.primary,
                 palette.secondary,
@@ -93,6 +118,30 @@ function MainPage(){
             console.log(err);
         })
     }, [base_link])
+
+    const setColorFirstTime = (palette: String[], border: number) => {
+
+        const data = {"colors":palette, "border": border};
+
+        let token: any = localStorage.getItem("token");
+        const id = window.location.pathname.split("/")[2];
+
+        fetch(`${process.env.REACT_APP_BASE_LINK}/restaurant/put/color/${id}/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token,
+                "HTTP_TOKEN": token
+            },
+            body: JSON.stringify({data}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 
     return (
         <main>

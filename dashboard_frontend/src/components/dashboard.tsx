@@ -1,7 +1,9 @@
 import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { navigationContext, updateColors, updateBorder } from './main';
+
+import DonePopup from './menu_page/donePopup';
 
 function DashboardCard(){
     const base_redirect:string | undefined = process.env.REACT_APP_BASE_REDIRECT;
@@ -9,6 +11,17 @@ function DashboardCard(){
     let link_qr = `${base_redirect}/${id}`;
 
     const {colors, setColors, border, setBorder} = useContext(navigationContext);
+
+    const [donePopupvisible, setDonePopupVisible] = useState(false);
+    const [seconds, setSeconds] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setSeconds(seconds + 1);
+        setDonePopupVisible(false);
+        }, 1000);
+        return () => clearInterval(interval);
+        // eslint-disable-next-line
+    }, []);
 
     const takeAndDownload = (e: any, filename: string, text: string) => {
         // Get the SVG element
@@ -82,6 +95,7 @@ function DashboardCard(){
 
     const setColorsOnRemote = (e: any) => {
         e.preventDefault();
+        setDonePopupVisible(true);
         const primaryColor = document.getElementById("primaryColor") as HTMLInputElement;
         const secondaryColor = document.getElementById("secondaryColor") as HTMLInputElement;
         const bgColor = document.getElementById("bgColor") as HTMLInputElement;
@@ -200,6 +214,7 @@ function DashboardCard(){
                         </form>
                     </section>
                 </aside>
+                <DonePopup text={"Updated succesfully"} visible={donePopupvisible} page={"menu"} />
             </div>
         </>
     )
