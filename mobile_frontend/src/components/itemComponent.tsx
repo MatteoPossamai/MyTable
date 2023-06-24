@@ -54,7 +54,7 @@ const ItemComponent = memo((props: {item: Item, restaurant: Restaurant, active?:
 
             {/* Put the svg and change its color to white */}
             <img src={`/new_plates/food_${item.iconId + 1}.png`} alt="Food Icon" className='foodIcon'
-            hidden={item.iconId !== -1 ? false : true} width={120} height={120} />
+            hidden={item.iconId !== 0 ? false : true} width={120} height={120} />
             <span className='itemTextSpan'>
                 <h3>{item.name}</h3>
                 <p className='itemDescription'>{item.description}</p>
