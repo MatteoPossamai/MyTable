@@ -92,13 +92,13 @@ function MainPage(){
                     palette.box,
                     palette.text
                 ])
-                updateColors([
-                    palette.primary,
-                    palette.secondary,
-                    palette.bg,
-                    palette.box,
-                    palette.text
-                ]);
+                // updateColors([
+                //     palette.primary,
+                //     palette.secondary,
+                //     palette.bg,
+                //     palette.box,
+                //     palette.text
+                // ]);
                 updateBorder(border, setBorder);
                 setColorFirstTime(palette, border)
             } 
@@ -112,7 +112,7 @@ function MainPage(){
 
             let border = data.border;
             setColors(colors)
-            updateColors(colors);
+            //updateColors(colors);
             updateBorder(border, setBorder);
         }).catch((err) => {
             console.log(err);

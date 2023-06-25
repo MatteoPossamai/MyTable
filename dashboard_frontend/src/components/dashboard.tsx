@@ -1,7 +1,7 @@
 import {QRCodeSVG} from 'qrcode.react';
 import "../styles/dashboard.css";
 import { useContext, useEffect, useState } from 'react';
-import { navigationContext, updateColors, updateBorder } from './main';
+import { navigationContext, updateBorder } from './main';
 
 import DonePopup from './menu_page/donePopup';
 
@@ -90,7 +90,7 @@ function DashboardCard(){
 
 
         setColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
-        updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+        //updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
     }
 
     const setColorsOnRemote = (e: any) => {
@@ -107,7 +107,7 @@ function DashboardCard(){
         setBorder(border.value);
 
         setColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
-        updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
+        //updateColors([primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value]);
 
         const data = {"colors":[
             primaryColor.value, secondaryColor.value, bgColor.value, boxColor.value, textColor.value
