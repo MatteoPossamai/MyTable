@@ -12,7 +12,7 @@
 
 ## Video demo for the registration and creation of the plan
 
-https://user-images.githubusercontent.com/61617283/221375954-20dec67f-92fe-4765-9340-2ae2f451b38e.mp4
+[my_table_demo.webm](https://github.com/MatteoPossamai/MyTable/assets/61617283/7058b0be-c701-4aa3-ab5f-e3bf07715320)
 
 ## Introduction
 
